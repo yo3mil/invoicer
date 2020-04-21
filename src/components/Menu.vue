@@ -20,6 +20,7 @@
 </template>
 
 <script>
+
     export default {
 
     }
@@ -30,12 +31,13 @@
 
     .menu {
         background-color: $base-color;
-
+        height: 100vh;
         &__list {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            
         }
         &__element {
             font-size: 400%;
