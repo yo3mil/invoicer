@@ -2,9 +2,10 @@
 // Variables
 $base-color: #60B8D4;
 $base-color-light: #E0F2FA;
-
+$base-color-lighter: rgb(235, 248, 255);
 $color-white: #fff;
 
+$font-color: #6A6A6A;
 
 ////////////////////////////////////////////////////////////////////////
 // BASIC
@@ -16,7 +17,9 @@ $color-white: #fff;
 body {
   
   font-size: 62.5%;
-  font-family: "Lato", sans-serif;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: $font-color;
+  font-weight: 200;
 }
 
 ////////////////////////////////////////////////////////////////////////
@@ -25,6 +28,29 @@ body {
 li {
   list-style: none;
 }
+h1 {
+  font-family: 'Noto Sans TC', sans-serif;
+}
+h2 {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 400;
+}
+
+// menu icon
+
+.menu__icon {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  cursor: pointer;
+  & div {
+    width: 35px;
+    height: 3px;
+    background-color: $base-color;
+    margin: 6px 0
+  }
+  
+}
+//action icon
 
 
 
@@ -70,6 +96,7 @@ li {
     grid-column: 3;
     align-self: end;
     justify-self: end;
+    
   }
   &__menu {
     grid-row: 1;
