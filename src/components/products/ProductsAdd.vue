@@ -1,0 +1,100 @@
+<template>
+  <div class="popup__container">
+      <div class="product__popup">
+          <div class="product__popup-header">
+              <h1>Add a product</h1>
+          </div>
+          <div class="product__popup-input">
+                <input v-model="name" placeholder="ENTER NAME" class="product__popup-input_area" type="text">
+                <input v-model="size" placeholder="ENTER SIZE" class="product__popup-input_area" type="text">
+                <input v-model="price" placeholder="ENTER PRICE" class="product__popup-input_area" type="text">
+                
+          </div>
+          <div class="product__popup-btn">
+              <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
+              <div 
+                @click="testLog" class="btn__simple"
+                ><i class="ion-ios-download"></i></div>
+          </div>
+      </div>
+  </div>
+</template>
+
+<script>
+import { saveProduct } from "../../database/firestore.js";
+export default {
+    data() {
+        return {
+            name: '',
+            size: '',
+            price: ''
+        }
+    },
+    methods: {
+        exitPopup() {
+            this.$emit('popupClosed', false);
+        },
+        testLog() {
+            console.log(this.name);
+            console.log(this.size)
+            console.log(this.price)
+            saveProduct(this.name, this.size, this.price);
+            this.exitPopup();
+            
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+@import "../../styles/_base.scss";
+ .product__popup {
+    height: 75vh;
+    width: 60vw;    
+    background-color: $base-color;
+    display: flex;
+    flex-direction: column;
+    border-radius: 25px;
+    box-shadow:  3px 3px 5px 6px #ccc;
+
+    &-header {
+        flex: 0 0 20%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $color-white;
+        text-transform: uppercase;
+    }
+    &-input {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+
+        
+        &_area {
+            width: 60%;
+            height: 2rem;
+            border-radius: 25px;
+            color: $base-color;
+            border-radius: 100px;
+            border: 2px solid $base-color-light;
+            background-color: $base-color-lighter;
+            transition: all .5s;
+            padding-left: 25%;
+            font-weight: 600;
+            
+        }
+    }
+    &-btn {
+        flex: 0 0 15%;
+        display: flex;
+        justify-content: center;
+        align-items: center;  
+        margin-bottom: 2rem;
+    }
+ }
+
+ 
+</style>

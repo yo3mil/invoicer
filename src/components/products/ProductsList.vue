@@ -6,8 +6,8 @@
       <h3 class="product__price">£ {{price}}</h3>
       <h3 class="product__vat">£ {{vat}}</h3>
       <div class="product__console">
-          <div class="product__console-edit">edit</div>
-          <div class="product__console-delete">del</div>
+          <div class="product__console-edit"><i class="ion-edit"></i></div>
+          <div class="product__console-delete"><i class="ion-trash-a"></i></div>
       </div>
   </li>
   
@@ -74,12 +74,26 @@ export default {
             align-items: center;
             justify-content: center;
             align-items: center;
+            font-size: .9rem;
+            cursor: pointer;
+            height: 100%;
+            &-edit,
+            &-delete {
+              width: 50%;
+              height: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              
+              &:hover {
+                transform: scale(1.1);
+              }
+            }
             &-edit {
-                margin-left: auto;
-                
+              color: $base-color;
             }
             &-delete {
-                
+              color: $color-red;
             }
         }
     }

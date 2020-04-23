@@ -5,7 +5,7 @@
         <button class="products__search-btn">search</button>
       </div>
       <div class="products__header">
-        <h2 class="products__header-product">Product</h2>
+        <h2 class="products__header-product">Code</h2>
         <h2 class="products__header-name">Name</h2>
         <h2 class="products__header-size">Size</h2>
         <h2 class="products__header-price">Price (excl.VAT)</h2>
