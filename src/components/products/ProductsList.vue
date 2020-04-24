@@ -1,20 +1,33 @@
 <template>
   <li class="product" v-if="visible">
-      <h3 class="product__id">{{code}}</h3>
-      <h3 class="product__name">{{name}}</h3>
-      <h3 class="product__size">{{size}}</h3>
-      <h3 class="product__price">£ {{price}}</h3>
-      <h3 class="product__vat">£ {{vat}}</h3>
+    <div v-if="!edit" class="product__container product">
+      <h3 class="product__id">{{ curCode }}</h3>
+      <h3 class="product__name">{{ curName }}</h3>
+      <h3 class="product__size">{{ curSize }}</h3>
+      <h3 class="product__price">£ {{ curPrice }}</h3>
+      <h3 class="product__vat">£ {{ curVat }}</h3>
       <div class="product__console">
-          <div class="product__console-edit"><i class="ion-edit"></i></div>
+          <div @click="editFields()" class="product__console-edit"><i class="ion-edit"></i></div>
           <div @click="remove()" class="product__console-delete"><i class="ion-trash-a"></i></div>
       </div>
+    </div>
+
+    <div v-else class="product__container product bg-lighter">
+      <input v-model="curCode" type="text" class="product__id  edit_input">
+      <input v-model="curName" type="text" class="product__name edit_input">
+      <input v-model="curSize" type="text" class="product__size edit_input">
+      <input v-model="curPrice" type="text" class="product__price edit_input">
+      <input v-model="curVat" type="text" class="product__vat edit_input">
+      <div class="product__console">
+          <div @click="approveEdit()" class="product__console-edit"><i class="ion-checkmark-round"></i></div>
+      </div>
+    </div>
   </li>
   
 </template>
 
 <script>
-import { deleteProduct } from '../../database/firestore.js';
+import { deleteProduct, updateProduct } from '../../database/firestore.js';
 
 export default {
     props: {
@@ -26,13 +39,27 @@ export default {
     },
     data() {
       return {
-        visible: true
+        visible: true,
+        edit: false,
+        curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat
       }
     },
     methods: {
       remove() {
         deleteProduct(this.$vnode.key);
         this.visible = false
+      },
+      editFields() {
+        this.edit = true;
+        
+      },
+      approveEdit() {
+        
+        updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat);
+
+        this.edit = false;
+        
+        
       }
     }
 }
@@ -40,7 +67,19 @@ export default {
 
 <style lang="scss">
     @import "../../styles/_base.scss";
-
+    .bg-lighter {
+      background-color: $base-color-light;
+    }
+    .edit_input {
+      margin-right: 1rem;
+      color: $base-color;
+      outline: none;
+      border-radius: 100px;
+      border: 2px solid $base-color-light;
+      background-color: $base-color-lighter;
+      
+      padding-left: 6px ;
+    }
     .product {
         display: flex;
         width: 100%;

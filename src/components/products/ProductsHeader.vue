@@ -31,6 +31,7 @@
     &__search {
       margin-top: 1rem;
       &-input {
+        outline: none;
         color: $base-color;
         height: 1.8rem;
         width: 7rem;

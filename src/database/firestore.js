@@ -5,6 +5,7 @@ export const products = [];
 
 
 
+
 const productColection = db.collection('test');
 
 
@@ -22,6 +23,12 @@ productColection.onSnapshot(function(snapshot) {
             //console.log(products);
         }
         if (change.type === "modified") {
+            console.log(change.doc.data());
+
+            
+            //passes ID as a field and pushes every object into an array.
+            
+
             // update array
             //console.log("Modified product: ", change.doc.data());
         }
@@ -32,7 +39,7 @@ productColection.onSnapshot(function(snapshot) {
     });
 });
 
-// saving new product to  
+// Saving new product 
 
 export const saveProduct = (name, size, price) => {
     productColection.add({
@@ -55,5 +62,17 @@ export const deleteProduct = (id) => {
     });
 };
 
+// Updating a product 
+
+export const updateProduct = (id, newCode, newName, newSize, newPrice, newVat) => {
+    productColection.doc(id).update({
+        code: newCode,
+        product: newName,
+        size: newSize,
+        priceNoVat: newPrice,
+        vat: newVat
+    });
+    
+}
 
 
