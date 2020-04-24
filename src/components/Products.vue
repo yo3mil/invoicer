@@ -21,7 +21,7 @@
           <products-list 
             v-for="product in allProducts"
             :key="product.id"
-            :id="product.code"
+            :code="product.code"
             :name="product.product"
             :size="product.size"
             :price="product.priceNoVat"
@@ -44,12 +44,8 @@ export default {
     return {
       allProducts: products,
       searched: "",
+      filterProducts: [],
       addPopup: false
-    }
-  },
-  computed: {
-    allProducts() {
-      return products;
     }
   },
   components: {

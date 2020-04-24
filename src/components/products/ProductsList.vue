@@ -1,40 +1,38 @@
 <template>
-  <li class="product">
-      <h3 class="product__id">{{id}}</h3>
+  <li class="product" v-if="visible">
+      <h3 class="product__id">{{code}}</h3>
       <h3 class="product__name">{{name}}</h3>
       <h3 class="product__size">{{size}}</h3>
       <h3 class="product__price">£ {{price}}</h3>
       <h3 class="product__vat">£ {{vat}}</h3>
       <div class="product__console">
           <div class="product__console-edit"><i class="ion-edit"></i></div>
-          <div class="product__console-delete"><i class="ion-trash-a"></i></div>
+          <div @click="remove()" class="product__console-delete"><i class="ion-trash-a"></i></div>
       </div>
   </li>
   
 </template>
 
 <script>
+import { deleteProduct } from '../../database/firestore.js';
+
 export default {
     props: {
-        id: {
-        type: String,
-        required: true
-      },
-      name: {
-        type: String,
-        required: true
-      },
-      size: {
-        type: String,
-        required: true
-      },
-      price: {
-        type: String,
-        required: true
-      },
-      vat: {
-        type: String,
-        required: true
+      code: { type: String, required: true },
+      name: { type: String,required: true },
+      size: { type: String, required: true },
+      price: { type: String, required: true},
+      vat: { type: String, required: true }
+    },
+    data() {
+      return {
+        visible: true
+      }
+    },
+    methods: {
+      remove() {
+        deleteProduct(this.$vnode.key);
+        this.visible = false
       }
     }
 }

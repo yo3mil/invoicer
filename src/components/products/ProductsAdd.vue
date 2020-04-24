@@ -13,7 +13,7 @@
           <div class="product__popup-btn">
               <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
               <div 
-                @click="testLog" class="btn__simple"
+                @click="addProduct" class="btn__simple"
                 ><i class="ion-ios-download"></i></div>
           </div>
       </div>
@@ -34,13 +34,9 @@ export default {
         exitPopup() {
             this.$emit('popupClosed', false);
         },
-        testLog() {
-            console.log(this.name);
-            console.log(this.size)
-            console.log(this.price)
+        addProduct() {
             saveProduct(this.name, this.size, this.price);
             this.exitPopup();
-            
         }
     }
 }
