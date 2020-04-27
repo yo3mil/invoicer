@@ -1,0 +1,39 @@
+// .pagination - Pagination component container (ul element)
+// .pagination li - All list items in the pagination component
+// .pagination li a - All pagination links including first, last, previous and next
+// .pagination li.page-number - All page numbers (1, 2, 3 etc) pagination elements
+// .pagination li.first - The 'First' pagination element
+// .pagination li.last - The 'Last' pagination element
+// .pagination li.previous - The 'Previous' pagination element
+// .pagination li.next - The 'Next' pagination element
+
+.pagination {
+    display: flex;
+    height: 1.8rem;
+    
+    color: #60B8D4;
+    font-size: .7rem;
+    width: 15rem;
+    align-self: center;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 500;
+    & li {
+        height: 100%;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        & a {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        align-items: center;
+        justify-content: center;
+            cursor: pointer;
+            &:hover {
+                background-color: #E0F2FA;
+            }
+        }
+    }
+}

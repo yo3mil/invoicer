@@ -19,7 +19,7 @@
         <products-header @inputChange="searched = $event"></products-header>
         <ul class="products__list">
           <products-list 
-            v-for="product in allProducts"
+            v-for="product in pageOfItems"
             :key="product.id"
             :code="product.code"
             :name="product.product"
@@ -28,6 +28,15 @@
             :vat="product.vat"
           ></products-list>
         </ul>
+        <div class="footer">
+          <hr class="products__line">
+          <jw-pagination :items="allProducts" 
+            :pageSize="12" 
+            @changePage="onChangePage"
+            :disableDefaultStyles="true"
+            :labels="customLabels"
+          ></jw-pagination>
+        </div>
       </div>
     </div>
 
@@ -35,6 +44,7 @@
 </template>
 
 <script>
+const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
 import {products} from "../database/firestore.js";
 import ProductsHeader from "./products/ProductsHeader.vue";
 import ProductsList from "./products/ProductsList.vue";
@@ -44,8 +54,10 @@ export default {
     return {
       allProducts: products,
       searched: "",
-      addPopup: false
-      
+      addPopup: false,
+      //jw pagination
+      pageOfItems: [],
+      customLabels
     }
   },
   components: {
@@ -71,7 +83,12 @@ export default {
           this.allProducts.push(products[i])
         }
       }
+    },
+    //pagination setup
+    onChangePage(pageOfitems) {
+      this.pageOfItems = pageOfitems;
     }
+    
   }
 }
 </script>
