@@ -6,7 +6,7 @@ export const products = [];
 
 
 
-const productColection = db.collection('test');
+const productColection = db.collection('products');
 
 
 
@@ -49,13 +49,13 @@ productColection.onSnapshot(function(snapshot) {
 
 // Saving new product 
 
-export const saveProduct = (name, size, price) => {
+export const saveProduct = (name, size, price, vat) => {
     productColection.add({
         code: 'D0005',
         product: name,
         size: size,
         priceNoVat: price,
-        vat: "0"
+        vat: vat
     })
 }
 

@@ -1,21 +1,24 @@
 <template>
   <div class="popup__container">
       <div class="product__popup">
-          <div class="product__popup-header">
-              <h1>Add a product</h1>
-          </div>
-          <div class="product__popup-input">
-                <input v-model="name" placeholder="ENTER NAME" class="product__popup-input_area" type="text">
-                <input v-model="size" placeholder="ENTER SIZE" class="product__popup-input_area" type="text">
-                <input v-model="price" placeholder="ENTER PRICE" class="product__popup-input_area" type="text">
-                
-          </div>
-          <div class="product__popup-btn">
-              <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
-              <div 
-                @click="addProduct" class="btn__simple"
-                ><i class="ion-ios-download"></i></div>
-          </div>
+        <div class="product__popup-header">
+            <h1>Add a product</h1>
+        </div>
+        <div class="product__popup-input">
+            <input v-model="name" placeholder="ENTER NAME" class="product__popup-input_area" type="text">
+            <input v-model="size" placeholder="ENTER SIZE" class="product__popup-input_area" type="text">
+            <input v-model="price" placeholder="ENTER PRICE" class="product__popup-input_area" type="text">
+            <div class="product__popup-checkbox">
+                <h2>CALCULATE VAT</h2>
+                <input type="checkbox" v-model="includeVat">
+            </div>
+        </div>
+        <div class="product__popup-btn">
+            <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
+            <div 
+            @click="addProduct" class="btn__simple"
+            ><i class="ion-ios-download"></i></div>
+        </div>
       </div>
   </div>
 </template>
@@ -27,7 +30,9 @@ export default {
         return {
             name: '',
             size: '',
-            price: ''
+            price: '',
+            vat: 0,
+            includeVat: false
         }
     },
     methods: {
@@ -35,8 +40,19 @@ export default {
             this.$emit('popupClosed', false);
         },
         addProduct() {
-            saveProduct(this.name, this.size, this.price);
+            if(this.includeVat) {
+                this.vat = (this.price * 0.2).toFixed(2);
+            } else {
+                this.vat = 0;
+            }
+            saveProduct(this.name, this.size, this.price, this.vat);
             this.exitPopup();
+            this.clearFields();
+        },
+        clearFields() {
+            this.name = "";
+            this.size = "";
+            this.price = "";
         }
     }
 }
