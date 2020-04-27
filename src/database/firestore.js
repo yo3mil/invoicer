@@ -23,18 +23,26 @@ productColection.onSnapshot(function(snapshot) {
             //console.log(products);
         }
         if (change.type === "modified") {
-            console.log(change.doc.data());
-
-            
-            //passes ID as a field and pushes every object into an array.
-            
-
-            // update array
+            for (var i = products.length - 1; i >= 0; --i) {
+                if (products[i].id == change.doc.id ) {
+                    // removes old one
+                    products.splice(i,1);
+                    // and updates with new one plus id
+                    let newProduct = change.doc.data();
+                    let newProductID = change.doc.id;
+                    newProduct.id = newProductID;
+                    products.push(newProduct);
+                }
+            }
             //console.log("Modified product: ", change.doc.data());
         }
         if (change.type === "removed") {
-            // update array
-            //console.log("Removed product: ", change.doc.data());
+            // update array (remove product that was removed from the database)
+            for (var i = products.length - 1; i >= 0; --i) {
+                if (products[i].product == change.doc.data().product && products[i].code == change.doc.data().code) {
+                    products.splice(i,1);
+                }
+            }
         }
     });
 });
