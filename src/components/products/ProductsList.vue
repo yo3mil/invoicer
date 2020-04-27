@@ -1,5 +1,5 @@
 <template>
-  <li class="product" v-if="visible">
+  <li class="product">
     <div v-if="!edit" class="product__container product">
       <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__name">{{ curName }}</h3>
@@ -39,7 +39,6 @@ export default {
     },
     data() {
       return {
-        visible: true,
         edit: false,
         curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat
       }
@@ -47,19 +46,13 @@ export default {
     methods: {
       remove() {
         deleteProduct(this.$vnode.key);
-        this.visible = false
       },
       editFields() {
         this.edit = true;
-        
       },
       approveEdit() {
-        
         updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat);
-
         this.edit = false;
-        
-        
       }
     }
 }

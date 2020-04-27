@@ -16,7 +16,7 @@
       </div>
 
       <div class="body">
-        <products-header></products-header>
+        <products-header @inputChange="searched = $event"></products-header>
         <ul class="products__list">
           <products-list 
             v-for="product in allProducts"
@@ -44,14 +44,34 @@ export default {
     return {
       allProducts: products,
       searched: "",
-      filterProducts: [],
       addPopup: false
+      
     }
   },
   components: {
     ProductsHeader,
     ProductsList,
     ProductsAdd
+  },
+  watch: {
+    searched() {
+      if(this.searched === "") {
+        this.allProducts = products;
+      } else {
+        this.allProducts = [];
+        this.updateSearch();
+      }
+    }
+  },
+  methods: {
+    updateSearch() {
+      for (let i = 0; i < products.length; i++) {
+        if(products[i].product.toLowerCase().includes(this.searched.toLowerCase())
+        || products[i].code.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.allProducts.push(products[i])
+        }
+      }
+    }
   }
 }
 </script>

@@ -1,8 +1,8 @@
 <template>
   <div class="products">
       <div class="products__search">
-        <input class="products__search-input" type="text" placeholder="Search...">
-        <button class="products__search-btn">search</button>
+        <input v-model="searchPhrase" class="products__search-input" type="text" placeholder="Search...">
+        <button @click="search()" class="products__search-btn">search</button>
       </div>
       <div class="products__header">
         <h2 class="products__header-product">Code</h2>
@@ -17,7 +17,17 @@
 
 <script>
   export default {
-
+    data() {
+      return {
+        searchPhrase: ""
+      }
+    },
+    watch: {
+      searchPhrase() {
+        this.$emit('inputChange', this.searchPhrase);
+        
+      }
+    }
   }
 </script>
 
