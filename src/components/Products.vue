@@ -1,8 +1,5 @@
 <template>
   <div class="page__container">
-
-    <products-add v-show="addPopup" @popupClosed="addPopup = $event"></products-add>
-
     <div class="container">
       <div class="header">
         <router-link tag="div" class="header__menu" to="/">
@@ -10,12 +7,12 @@
         </router-link>
         <h1 class="header__title">Products</h1>
         <!-- Add button -->
-        <div class="header__action" @click="addPopup = true">
+        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
           <i class="ion-plus"></i>
         </div>
       </div>
 
-      <div class="body">
+      <div class="body" v-show="!addPopup">
         <products-header @inputChange="searched = $event"></products-header>
         <ul class="products__list">
           <products-list 
@@ -37,6 +34,10 @@
             :labels="customLabels"
           ></jw-pagination>
         </div>
+      </div>
+
+      <div class="body" v-show="addPopup">
+        <products-add  @popupClosed="addPopup = $event"></products-add>
       </div>
     </div>
 
@@ -94,5 +95,9 @@ export default {
 </script>
 
 <style lang="scss">
-  
+  .products__list {
+    grid-row: 2 / -1;
+    grid-column: center-start / center-end;
+    
+  }
 </style>

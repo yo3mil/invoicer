@@ -8,7 +8,7 @@
         <h2 class="products__header-product">Code</h2>
         <h2 class="products__header-name">Name</h2>
         <h2 class="products__header-size">Size</h2>
-        <h2 class="products__header-price">Price (excl.VAT)</h2>
+        <h2 class="products__header-price">Price</h2>
         <h2 class="products__header-vat">VAT</h2>
       </div>
       <hr class="products__line">
@@ -83,9 +83,6 @@
       background-image: -webkit-linear-gradient(left, $base-color-light, $base-color, $base-color-light);
       
     }
-    &__list {
-      grid-row: 2 / -1;
-      grid-column: center-start / center-end;
-    }
+    
   }
 </style>

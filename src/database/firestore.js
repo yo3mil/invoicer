@@ -6,7 +6,7 @@ export const products = [];
 
 
 
-const productColection = db.collection('products');
+const productColection = db.collection('test');
 
 
 

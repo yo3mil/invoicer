@@ -6,12 +6,19 @@
       <h3 class="product__size">{{ curSize }}</h3>
       <h3 class="product__price">£ {{ curPrice }}</h3>
       <h3 class="product__vat">£ {{ curVat }}</h3>
-      <div class="product__console">
+
+      <!--Main Console-->
+      <div class="product__console" v-if="subConsole">
           <div @click="editFields()" class="product__console-edit"><i class="ion-edit"></i></div>
-          <div @click="remove()" class="product__console-delete"><i class="ion-trash-a"></i></div>
+          <div @click="subConsole = false" class="product__console-delete"><i class="ion-trash-a"></i></div>
+      </div>
+      <!-- Y/N console after clicking del-->
+      <div class="product__console" v-else>
+        <div @click="remove()" class="product__console-yes"><i class="ion-checkmark"></i></div>
+        <div @click="subConsole = true" class="product__console-no"><i class="ion-close"></i></div>
       </div>
     </div>
-
+    <!--EDITing-->
     <div v-else class="product__container product bg-lighter">
       <input v-model="curCode" type="text" class="product__id  edit_input">
       <input v-model="curName" type="text" class="product__name edit_input">
@@ -42,7 +49,8 @@ export default {
       return {
         edit: false,
         visible: true,
-        curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat
+        curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat,
+        subConsole: true
       }
     },
     methods: {
@@ -102,32 +110,43 @@ export default {
         }
         &__console {
             
-            width: 11%;
+          width: 11%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-items: center;
+          font-size: .9rem;
+          cursor: pointer;
+          height: 100%;
+          &-edit,
+          &-delete,
+          &-yes,
+          &-no {
+            width: 50%;
+            height: 100%;
             display: flex;
-            align-items: center;
             justify-content: center;
             align-items: center;
-            font-size: .9rem;
-            cursor: pointer;
-            height: 100%;
-            &-edit,
-            &-delete {
-              width: 50%;
-              height: 100%;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              
-              &:hover {
-                transform: scale(1.1);
-              }
+            
+            &:hover {
+              transform: scale(1.1);
             }
-            &-edit {
-              color: $base-color;
-            }
-            &-delete {
-              color: $color-red;
-            }
+          }
+          &-edit {
+            color: $base-color;
+          }
+          &-delete {
+            color: $color-red;
+          }
+          &-yes {
+            color: red;
+            
+          }
+          &-no {
+            
+            color: green;
+           
+          }
         }
     }
 </style>

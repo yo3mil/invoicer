@@ -1,6 +1,5 @@
 <template>
-  <div class="popup__container">
-      <div class="product__popup">
+    <div class="add__popup">
         <div class="product__popup-header">
             <h1>Add a product</h1>
         </div>
@@ -20,7 +19,7 @@
             ><i class="ion-ios-download"></i></div>
         </div>
       </div>
-  </div>
+  
 </template>
 
 <script>
@@ -61,20 +60,12 @@ export default {
 <style lang="scss">
 @import "../../styles/_base.scss";
  .product__popup {
-    height: 75vh;
-    width: 60vw;    
-    background-color: $base-color;
-    display: flex;
-    flex-direction: column;
-    border-radius: 25px;
-    box-shadow:  3px 3px 5px 6px #ccc;
-
-    &-header {
+     &-header {
         flex: 0 0 20%;
         display: flex;
         justify-content: center;
         align-items: center;
-        color: $color-white;
+        color: $base-color;
         text-transform: uppercase;
     }
     &-input {
@@ -100,11 +91,15 @@ export default {
         }
     }
     &-btn {
+        
         flex: 0 0 15%;
         display: flex;
         justify-content: center;
         align-items: center;  
         margin-bottom: 2rem;
+        & i {
+            color: $base-color;
+        }
     }
  }
 
