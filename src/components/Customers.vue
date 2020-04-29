@@ -1,26 +1,110 @@
 <template>
   <div class="page__container">
-      <div class="container">
-        <div class="header">
-          <router-link tag="div" class="header__menu" to="/">
-            <a href="#">MENU</a>
-          </router-link>
-          <h1 class="header__title">Customers</h1>
-          <div class="header__action"><a href="#">GO</a></div>
-        </div>
-        <div class="body">
-
+    <div class="container">
+      <div class="header">
+        <!-- menu btn-->
+        <router-link tag="div" class="header__menu" to="/">
+          <div class="menu__icon"><div></div><div></div><div></div></div>
+        </router-link>
+        <h1 class="header__title">Customers</h1>
+        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
+          <i class="ion-plus"></i>
         </div>
       </div>
+      <div class="body" v-show="!addPopup">
+        <!--Header with Search Element-->
+        <customers-header @inputChange="searched = $event"></customers-header>
+
+        <!--List With all Customers-->
+        <ul class="products__list">
+          <customers-list 
+            v-for="customer in pageOfItems"
+            :key="customer.id"
+            :name="customer.name"
+            :contactName="customer.contactName"
+            :email="customer.email"
+            :phone="customer.phone"
+            :address="customer.address"
+            :delivery="customer.deliveryAddress"
+          ></customers-list>
+        </ul>
+
+        <!--Footer with pagination-->
+        <div class="footer">
+          <hr class="products__line">
+          <jw-pagination :items="allCustomers" 
+            :pageSize="12" 
+            @changePage="onChangePage"
+            :disableDefaultStyles="true"
+            :labels="customLabels"
+          ></jw-pagination>
+        </div>
+      </div>
+
+      <!--Add a Customer Component-->
+      <div class="body" v-show="addPopup">
+        <customers-add  @popupClosed="addPopup = $event"></customers-add>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-export default {
+// js pagination
+const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
 
+import { customers } from "../database/firestore.js";
+import CustomersHeader from "./customers/CustomersHeader.vue";
+import CustomersList from "./customers/CustomersList.vue";
+import CustomersAdd from "./customers/CustomersAdd.vue";
+export default {
+  data() {
+    return {
+      allCustomers: customers,
+      searched: "",
+      addPopup: false,
+      
+      //jw pagination
+      pageOfItems: [],
+      customLabels
+    }
+  },
+  components: {
+    CustomersHeader,
+    CustomersList,
+    CustomersAdd
+  },
+  watch: {
+    searched() {
+      if(this.searched === "") {
+        this.allCustomers = customers;
+      } else {
+        this.allCustomers = [];
+        this.updateSearch();
+      }
+    }
+  },
+  methods: {
+    updateSearch() {
+      for (let i = 0; i < customers.length; i++) {
+        if(customers[i].name.toLowerCase().includes(this.searched.toLowerCase())
+        || customers[i].contactName.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.allCustomers.push(customers[i])
+        }
+      }
+    },
+    //pagination setup
+    onChangePage(pageOfitems) {
+      this.pageOfItems = pageOfitems;
+    }
+    
+  }
 }
 </script>
 
 <style>
-
+  .products__list {
+    grid-row: 2 / -1;
+    grid-column: center-start / center-end;
+  }
 </style>

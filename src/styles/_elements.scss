@@ -1,0 +1,27 @@
+// menu icon
+
+.menu__icon {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    & div {
+      width: 35px;
+      height: 3px;
+      background-color: $base-color;
+      margin: 6px 0
+    }
+    
+  }
+  //simple btn 
+  .btn__simple {
+    background-color: &$base-color-light;
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: $color-white;
+    cursor: pointer;
+  }
+  
