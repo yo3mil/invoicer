@@ -3,14 +3,17 @@
 
 ////////////////////////////////////////////////////////////////////////
 // Variables
+$font-color: #6A6A6A;
+
 $base-color: #60B8D4;
 $base-color-light: #E0F2FA;
 $base-color-lighter: rgb(235, 248, 255);
 $color-white: #fff;
 
 $color-red: #FFB07E;
-$font-color: #6A6A6A;
 
+$color-warning: red;
+$color-ok:green;
 ////////////////////////////////////////////////////////////////////////
 // BASIC
 * {

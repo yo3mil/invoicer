@@ -1,7 +1,9 @@
 <template>
   <div class="page__container">
     <div class="container">
+      <!--MAIN HEADER-->
       <div class="header">
+        <!-- menu btn-->
         <router-link tag="div" class="header__menu" to="/">
           <div class="menu__icon"><div></div><div></div><div></div></div>
         </router-link>
@@ -12,8 +14,12 @@
         </div>
       </div>
 
+      <!--MAIN BODY-->
       <div class="body" v-show="!addPopup">
+        <!--Header with Search Element-->
         <products-header @inputChange="searched = $event"></products-header>
+
+        <!--List With all products-->
         <ul class="products__list">
           <products-list 
             v-for="product in pageOfItems"
@@ -25,6 +31,8 @@
             :vat="product.vat"
           ></products-list>
         </ul>
+
+        <!--Footer with pagination-->
         <div class="footer">
           <hr class="products__line">
           <jw-pagination :items="allProducts" 
@@ -36,6 +44,7 @@
         </div>
       </div>
 
+      <!--Add Product Component-->
       <div class="body" v-show="addPopup">
         <products-add  @popupClosed="addPopup = $event"></products-add>
       </div>
@@ -45,7 +54,9 @@
 </template>
 
 <script>
+// js pagination
 const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
+
 import {products} from "../database/firestore.js";
 import ProductsHeader from "./products/ProductsHeader.vue";
 import ProductsList from "./products/ProductsList.vue";
@@ -56,6 +67,7 @@ export default {
       allProducts: products,
       searched: "",
       addPopup: false,
+      
       //jw pagination
       pageOfItems: [],
       customLabels
@@ -98,6 +110,5 @@ export default {
   .products__list {
     grid-row: 2 / -1;
     grid-column: center-start / center-end;
-    
   }
 </style>

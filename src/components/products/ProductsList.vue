@@ -1,5 +1,6 @@
 <template>
   <li class="product" v-if="visible">
+    <!--PRODUCT-->
     <div v-if="!edit" class="product__container product">
       <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__name">{{ curName }}</h3>
@@ -18,7 +19,8 @@
         <div @click="subConsole = true" class="product__console-no"><i class="ion-close"></i></div>
       </div>
     </div>
-    <!--EDITing-->
+
+    <!--EDIT-->
     <div v-else class="product__container product bg-lighter">
       <input v-model="curCode" type="text" class="product__id  edit_input">
       <input v-model="curName" type="text" class="product__name edit_input">
@@ -71,6 +73,7 @@ export default {
 
 <style lang="scss">
     @import "../../styles/_base.scss";
+    
     .bg-lighter {
       background-color: $base-color-light;
     }
@@ -96,20 +99,10 @@ export default {
         }
         &__id,
         &__size,
-        &__price {
-            width: 16.2%;
-            
-        }
-        &__name {
-            width: 35%;
-            
-        }
-        &__vat {
-            width: 5%;
-            
-        }
+        &__price { width: 16.2%; }
+        &__name { width: 35%; }
+        &__vat {width: 5%;}
         &__console {
-            
           width: 11%;
           display: flex;
           align-items: center;
@@ -127,7 +120,6 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
-            
             &:hover {
               transform: scale(1.1);
             }
@@ -139,13 +131,11 @@ export default {
             color: $color-red;
           }
           &-yes {
-            color: red;
+            color: $color-warning;
             
           }
           &-no {
-            
-            color: green;
-           
+            color: $color-ok;
           }
         }
     }

@@ -25,7 +25,6 @@
     watch: {
       searchPhrase() {
         this.$emit('inputChange', this.searchPhrase);
-        
       }
     }
   }

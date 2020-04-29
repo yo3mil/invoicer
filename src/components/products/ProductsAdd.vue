@@ -8,15 +8,13 @@
             <input v-model="size" placeholder="ENTER SIZE" class="product__popup-input_area" type="text">
             <input v-model="price" placeholder="ENTER PRICE" class="product__popup-input_area" type="text">
             <div class="product__popup-checkbox">
-                <h2>CALCULATE VAT</h2>
-                <input type="checkbox" v-model="includeVat">
+                <label for="vat">CALCULATE VAT</label>
+                <input id="vat" type="checkbox" v-model="includeVat">
             </div>
         </div>
         <div class="product__popup-btn">
             <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
-            <div 
-            @click="addProduct" class="btn__simple"
-            ><i class="ion-ios-download"></i></div>
+            <div @click="addProduct" class="btn__simple"><i class="ion-ios-download"></i></div>
         </div>
       </div>
   
