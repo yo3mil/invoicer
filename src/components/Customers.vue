@@ -33,7 +33,7 @@
         <div class="footer">
           <hr class="products__line">
           <jw-pagination :items="allCustomers" 
-            :pageSize="12" 
+            :pageSize="6" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"

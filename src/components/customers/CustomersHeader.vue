@@ -5,11 +5,11 @@
         <button @click="search()" class="products__search-btn">search</button>
       </div>
       <div class="products__header">
-        <h2 class="products__header-">Name</h2>
-        <h2 class="products__header-">Name</h2>
-        <h2 class="products__header-">Size</h2>
-        <h2 class="products__header-">Price</h2>
-        <h2 class="products__header-">VAT</h2>
+        <h2 class="customer__header-name">Name</h2>
+        <h2 class="customer__header-address">Address</h2>
+        <h2 class="customer__header-address">Delivery Address</h2>
+        <h2 class="customer__header-contact">Contact</h2>
+        
       </div>
       <hr class="products__line">
     </div>
@@ -32,4 +32,15 @@
 
 <style lang="scss">
   @import "../../styles/_base.scss";
+  .customer__header {
+    &-name {
+      width: 19%;
+    }
+    &-address {
+      width: 40%;
+    }
+    &-contact {
+      width: 29%;
+    }
+  }
 </style>

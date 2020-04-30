@@ -7,9 +7,9 @@ export {updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustome
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const productCollection = db.collection('test');
-const customerCollection = db.collection('customers');
+const customerCollection = db.collection('test2');
 
-//checkForChanges(productCollection, products);
+checkForChanges(productCollection, products);
 checkForChanges(customerCollection, customers);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
@@ -45,32 +45,34 @@ const updateProduct = (id, newCode, newName, newSize, newPrice, newVat) => {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //CUSTOMER QUERIES
 // Saving new product 
-const saveCustomer = (name, size, price, vat) => {
-    productCollection.add({
-        code: 'D0005',
-        product: name,
-        size: size,
-        priceNoVat: price,
-        vat: vat
+const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
+    customerCollection.add({
+        name: newName,
+        contactName: newContactName,
+        address: newAddress,
+        deliveryAddress: newDelivery,
+        phone: newPhone,
+        email: newEmail
     })
 }
 // Deleting a product
 const deleteCustomer = (id) => {
     
-    productCollection.doc(id).delete().then(function() {
+    customerCollection.doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
         console.error("Error removing document: ", error);
     });
 };
 // Updating a product 
-const updateCustomer = (id, newCode, newName, newSize, newPrice, newVat) => {
-    productCollection.doc(id).update({
-        code: newCode,
-        product: newName,
-        size: newSize,
-        priceNoVat: newPrice,
-        vat: newVat
+const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
+    customerCollection.doc(id).update({
+        name: newName,
+        contactName: newContactName,
+        address: newAddress,
+        deliveryAddress: newDelivery,
+        phone: newPhone,
+        email: newEmail
     });
 }
 
@@ -115,9 +117,9 @@ function checkForChanges(input, output) {
                     }
                     //console.log('removed from the array')
                 } else if (output === customers){
-                    for (var i = products.length - 1; i >= 0; --i) {
-                        if (products[i].product == change.doc.data().product && products[i].code == change.doc.data().code) {
-                            products.splice(i,1);
+                    for (var i = customers.length - 1; i >= 0; --i) {
+                        if (customers[i].name == change.doc.data().name && customers[i].contactName == change.doc.data().contactName) {
+                            customers.splice(i,1);
                         }
                     }
                 }

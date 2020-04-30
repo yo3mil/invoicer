@@ -1,34 +1,46 @@
 <template>
-  <li class="product" v-if="visible">
-    <!--PRODUCT-->
-    <div v-if="!edit" class="product__container product">
-      <h3 class="product__id">{{ curName }}</h3>
-      <h3 class="product__name">{{ curAddress }}</h3>
-      <h3 class="product__size">{{ curContactName }}</h3>
-      <h3 class="product__price">£ {{ curPhone }}</h3>
-      <h3 class="product__vat">£ {{ curEmail }}</h3>
-    <h3 class="product__vat">£ {{ curDelivery }}</h3>
+  <li class="customer" v-if="visible">
+    <!--Customer-->
+    <div v-if="!edit" class="customer__container customer">
+      <div class="customer__name">
+        <h3>{{ curName }}</h3>
+        <h3>{{ curContactName }}</h3>
+      </div>
+      <h3 class="customer__address">{{ curAddress }}</h3>
+      <h3 class="customer__address">{{ curDelivery }}</h3>
+      <div class="customer__contact">
+        <h3>{{ curPhone }}</h3>
+        <h3>{{ curEmail }}</h3>
+      </div>
+     
+    
       <!--Main Console-->
-      <div class="product__console" v-if="subConsole">
-          <div @click="editFields()" class="product__console-edit"><i class="ion-edit"></i></div>
-          <div @click="subConsole = false" class="product__console-delete"><i class="ion-trash-a"></i></div>
+      <div class="customer__console" v-if="subConsole">
+        <div class="customer__console-invoice"><i class="ion-printer"></i></div>
+        <div @click="editFields()" class="customer__console-edit"><i class="ion-edit"></i></div>
+        <div @click="subConsole = false" class="customer__console-delete"><i class="ion-trash-a"></i></div>
       </div>
       <!-- Y/N console after clicking del-->
-      <div class="product__console" v-else>
-        <div @click="remove()" class="product__console-yes"><i class="ion-checkmark"></i></div>
-        <div @click="subConsole = true" class="product__console-no"><i class="ion-close"></i></div>
+      <div class="customer__console" v-else>
+        <div @click="remove()" class="customer__console-yes"><i class="ion-checkmark"></i></div>
+        <div @click="subConsole = true" class="customer__console-no"><i class="ion-close"></i></div>
       </div>
     </div>
 
     <!--EDIT-->
-    <div v-else class="product__container product bg-lighter">
-      <input v-model="curCode" type="text" class="product__id  edit_input">
-      <input v-model="curName" type="text" class="product__name edit_input">
-      <input v-model="curSize" type="text" class="product__size edit_input">
-      <input v-model="curPrice" type="text" class="product__price edit_input">
-      <input v-model="curVat" type="text" class="product__vat edit_input">
-      <div class="product__console">
-          <div @click="approveEdit()" class="product__console-edit"><i class="ion-checkmark-round"></i></div>
+    <div v-else class="customer__container customer bg-lighter">
+      <div class="customer__name">
+        <input v-model="curName" type="text" class="edit_input">
+        <input v-model="curContactName" type="text" class="edit_input">
+      </div>
+      <input v-model="curAddress" type="text" class="customer__address edit_input">
+      <input v-model="curDelivery" type="text" class="customer__address edit_input">
+      <div class="customer__contact">
+        <input v-model="curPhone" type="text" class="edit_input">
+        <input v-model="curEmail" type="text" class="edit_input">
+      </div>
+      <div class="customer__console">
+          <div @click="approveEdit()" class="customer__console-edit"><i class="ion-checkmark-round"></i></div>
       </div>
     </div>
   </li>
@@ -36,7 +48,7 @@
 </template>
 
 <script>
-import { deleteProduct, updateProduct } from '../../database/firestore.js';
+import { deleteCustomer, updateCustomer } from '../../database/firestore.js';
 
 export default {
     props: {
@@ -54,23 +66,23 @@ export default {
         visible: true,
         curName: this.name, 
         curContactName: this.contactName, 
-        curEmail: this.email, 
-        curPhone: this.phone, 
         curAddress: this.address,
         curDelivery: this.delivery,
+        curPhone: this.phone,
+        curEmail: this.email, 
         subConsole: true
       }
     },
     methods: {
       remove() {
-        deleteProduct(this.$vnode.key);
+        deleteCustomer(this.$vnode.key);
         this.visible = false;
       },
       editFields() {
         this.edit = true;
       },
       approveEdit() {
-        updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat);
+        updateCustomer(this.$vnode.key, this.curName, this.curContactName, this.curAddress, this.curDelivery, this.curPhone, this.curEmail);
         this.edit = false;
       }
     }
@@ -80,34 +92,26 @@ export default {
 <style lang="scss">
     @import "../../styles/_base.scss";
     
-    .bg-lighter {
-      background-color: $base-color-light;
-    }
-    .edit_input {
-      margin-right: 1rem;
-      color: $base-color;
-      outline: none;
-      border-radius: 100px;
-      border: 2px solid $base-color-light;
-      background-color: $base-color-lighter;
-      
-      padding-left: 6px ;
-    }
-    .product {
+    
+    .customer {
         display: flex;
         width: 100%;
-        height: 2rem;
-        
+        height: 4rem;
         align-items: center;
         transition: all .1s;
         &:hover {
             background-color: $base-color-light;
         }
-        &__id,
-        &__size,
-        &__price { width: 16.2%; }
-        &__name { width: 35%; }
-        &__vat {width: 5%;}
+        &__name {
+          width: 19%;
+        }
+        &__address {
+          width: 40%;
+        }
+        &__contact {
+          width: 18%;
+        }
+        // console style
         &__console {
           width: 11%;
           display: flex;
@@ -119,9 +123,10 @@ export default {
           height: 100%;
           &-edit,
           &-delete,
+          &-invoice,
           &-yes,
           &-no {
-            width: 50%;
+            
             height: 100%;
             display: flex;
             justify-content: center;
@@ -130,6 +135,17 @@ export default {
               transform: scale(1.1);
             }
           }
+          &-edit,
+          &-delete,
+          &-invoice {
+            width: 33%;
+          }
+          &-yes,
+          &-no {
+            width: 50%;
+          }
+
+
           &-edit {
             color: $base-color;
           }

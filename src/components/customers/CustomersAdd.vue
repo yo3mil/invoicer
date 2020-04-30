@@ -5,51 +5,55 @@
         </div>
         <div class="product__popup-input">
             <input v-model="name" placeholder="ENTER NAME" class="product__popup-input_area" type="text">
-            <input v-model="size" placeholder="ENTER SIZE" class="product__popup-input_area" type="text">
-            <input v-model="price" placeholder="ENTER PRICE" class="product__popup-input_area" type="text">
-            <div class="product__popup-checkbox">
-                <label for="vat">CALCULATE VAT</label>
-                <input id="vat" type="checkbox" v-model="includeVat">
-            </div>
+            <input v-model="contactName" placeholder="ENTER contact name" class="product__popup-input_area" type="text">
+            <input v-model="address" placeholder="ENTER address" class="product__popup-input_area" type="text">
+            <input v-model="delivery" placeholder="ENTER delivery address" class="product__popup-input_area" type="text">
+            <input v-model="phone" placeholder="ENTER phone " class="product__popup-input_area" type="text">
+            <input v-model="email" placeholder="ENTER email" class="product__popup-input_area" type="text">
+
+           
         </div>
         <div class="product__popup-btn">
-            <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
-            <div @click="addProduct" class="btn__simple"><i class="ion-ios-download"></i></div>
+            <div @click="exitPopup()" class="btn__simple"><i class="ion-close"></i></div>
+            <div @click="addCustomer()" class="btn__simple"><i class="ion-ios-download"></i></div>
         </div>
       </div>
   
 </template>
 
 <script>
-import { saveProduct } from "../../database/firestore.js";
+import { saveCustomer } from "../../database/firestore.js";
 export default {
     data() {
         return {
             name: '',
-            size: '',
-            price: '',
-            vat: 0,
-            includeVat: false
+            contactName: '',
+            address: '',
+            delivery: '',
+            phone: '',
+            email: '',
+            sameAddress: false
         }
     },
     methods: {
         exitPopup() {
             this.$emit('popupClosed', false);
         },
-        addProduct() {
-            if(this.includeVat) {
-                this.vat = (this.price * 0.2).toFixed(2);
-            } else {
-                this.vat = 0;
+        addCustomer() {
+            if(this.sameAddress) {
+                this.delivery = this.address
             }
-            saveProduct(this.name, this.size, this.price, this.vat);
+            saveCustomer(this.name, this.contactName, this.address, this.delivery, this.phone, this.email);
             this.exitPopup();
             this.clearFields();
         },
         clearFields() {
             this.name = "";
-            this.size = "";
-            this.price = "";
+            this.contactName = "";
+            this.address = "";
+            this.delivery = "";
+            this.phone = "";
+            this.email = "";
         }
     }
 }

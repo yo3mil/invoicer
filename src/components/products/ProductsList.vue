@@ -74,19 +74,7 @@ export default {
 <style lang="scss">
     @import "../../styles/_base.scss";
     
-    .bg-lighter {
-      background-color: $base-color-light;
-    }
-    .edit_input {
-      margin-right: 1rem;
-      color: $base-color;
-      outline: none;
-      border-radius: 100px;
-      border: 2px solid $base-color-light;
-      background-color: $base-color-lighter;
-      
-      padding-left: 6px ;
-    }
+    
     .product {
         display: flex;
         width: 100%;
