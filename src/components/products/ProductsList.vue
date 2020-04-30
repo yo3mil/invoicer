@@ -73,12 +73,11 @@ export default {
 
 <style lang="scss">
     @import "../../styles/_base.scss";
-    
-    
-    .product {
+      .product {
         display: flex;
         width: 100%;
-        height: 2rem;
+        height: 100%;
+        max-height: 2.3rem;
         
         align-items: center;
         transition: all .1s;

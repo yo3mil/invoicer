@@ -20,7 +20,7 @@
         <products-header @inputChange="searched = $event"></products-header>
 
         <!--List With all products-->
-        <ul class="products__list">
+        <ul class="list">
           <products-list 
             v-for="product in pageOfItems"
             :key="product.id"
@@ -36,7 +36,7 @@
         <div class="footer">
           <hr class="products__line">
           <jw-pagination :items="allProducts" 
-            :pageSize="12" 
+            :pageSize="13" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"
@@ -107,8 +107,5 @@ export default {
 </script>
 
 <style lang="scss">
-  .products__list {
-    grid-row: 2 / -1;
-    grid-column: center-start / center-end;
-  }
+  
 </style>

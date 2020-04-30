@@ -11,7 +11,10 @@
         <h2 class="products__header-price">Price</h2>
         <h2 class="products__header-vat">VAT</h2>
       </div>
-      <hr class="products__line">
+      <div class="products__line">
+        <hr class="products__line">
+      </div>
+      
     </div>
 </template>
 
