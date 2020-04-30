@@ -16,7 +16,7 @@
         <customers-header @inputChange="searched = $event"></customers-header>
 
         <!--List With all Customers-->
-        <ul class="products__list">
+        <ul class="list">
           <customers-list 
             v-for="customer in pageOfItems"
             :key="customer.id"

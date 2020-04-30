@@ -96,9 +96,11 @@ export default {
     .customer {
         display: flex;
         width: 100%;
-        height: 4rem;
+        height: 100%;
+        max-height: 4.6rem;
         align-items: center;
         transition: all .1s;
+        
         &:hover {
             background-color: $base-color-light;
         }

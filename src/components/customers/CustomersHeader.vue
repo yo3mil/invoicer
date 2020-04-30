@@ -11,7 +11,9 @@
         <h2 class="customer__header-contact">Contact</h2>
         
       </div>
-      <hr class="products__line">
+      <div class="products__line">
+        <hr class="products__line">
+      </div>
     </div>
 </template>
 
