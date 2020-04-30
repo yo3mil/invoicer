@@ -14,7 +14,7 @@
   
   .header {
     width: 100%;
-    flex: 0 0 30%;
+    flex: 0 0 20vh;
     background-color: $base-color-light;
     color: $base-color;
     display: grid;
@@ -69,7 +69,7 @@
   }
   
   .body {
-    flex: 0 0 70%;
+    flex: 0 0 80vh;
     width: 100%;
     
     display: grid;
@@ -78,27 +78,9 @@
     
   }
   
-  .footer {
   
-    grid-row: 6 / 7;
-    grid-column: center-start / center-end;
-    margin-top: -1rem;
-    display: flex;
-    flex-direction: column;
-    
-    
-    
-  
-  }
   ////////////////////////////////////////////////////////////////////
   ///// POPUP
   
-  .add__popup {
-    grid-column: full-start / full-end;
-    grid-row: 1 / -1;
-    
-    display: flex;
-    flex-direction: column;
-    
-  }
+  
   ////////////////////////////////////////////////////////////////////////////////////
