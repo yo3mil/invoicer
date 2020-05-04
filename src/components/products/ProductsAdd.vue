@@ -1,28 +1,52 @@
 <template>
-    <div class="add__popup">
-        <div class="add__popup-header">
-            <h1>Add a product</h1>
-        </div>
-        <div class="add__popup-body">
-            <label for="name" class="add__popup-label">Name</label>
-            <input id="name" v-model="name" placeholder="Name" class="add__popup-input" type="text">
-            
-            <label for="size" class="add__popup-label">Size</label>
-            <input id="size" v-model="size" placeholder="Size" class="add__popup-input" type="text">
-            
-            <label for="price" class="add__popup-label">Price</label>
-            <input id="price" v-model="price" placeholder="Price" class="add__popup-input" type="text">
-           
-           <div class="add__popup-checkbox">
-                <label for="vat" class="add__popup-label">CALCULATE VAT</label>
-                <input id="vat" type="checkbox" v-model="includeVat">
+    <div class="body_element">
+        
+        <div class="form_details">
+            <div class="form_details-row">
+                
+                <div class="form_details-input short">
+                    <label for="name" >Name of product</label>
+                    <input id="name" v-model="name" class="add__popup-input" type="text">
+                </div>
+                <div class="form_details-input short">
+                    <label for="size" >Size</label>
+                    <input id="size" v-model="size" class="add__popup-input" type="text">
+                </div>
+                <div class="form_details-input very_short">
+                    <label for="price" >Price(no VAT)</label>
+                    <input id="price" v-model="price"  class="add__popup-input" type="text">
+                </div>
+            </div>
+            <div class="form_details-row">
+                
+                <div class="form_details-input very_short">
+                    <label for="typeof">Type of food</label>
+                    <select id="typeof" name="typeoffood">
+                        <option value="drink">Drink</option>
+                        <option value="dry">Dry</option>
+                        <option value="frozen">Frozen</option>
+                    </select>
+                </div>
+
+                <div class="form_details-input">
+                    <label for="vat">CALCULATE VAT ?</label>
+                    <input class="vat_checkbox" id="vat" type="checkbox" v-model="includeVat">
+                </div>
+                
+               
+                <div class="form_details-input">
+                    <label>Add this product ?</label>
+                    <div class="form_details-console">
+                        <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
+                        <div @click="addProduct" class="btn__simple"><i class="ion-checkmark"></i></div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
-        <div class="add__popup-console">
-            <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
-            <div @click="addProduct" class="btn__simple"><i class="ion-ios-download"></i></div>
-        </div>
-      </div>
+       
+        
+    </div>
   
 </template>
 
@@ -63,25 +87,11 @@ export default {
 
 <style lang="scss">
 @import "../../styles/_base.scss";
+    
+    
+ .vat_checkbox {
+     margin-right: auto;
+ }
 
-    .add__popup {
-        grid-column: center-start / center-end;
-        grid-row: 1 / -1;
-        &-header {
 
-        }
-        &-body {
-            position: relative;
-            padding: 15px 0 0;
-            margin-top: 10px;
-            width: 50%;
-        }
-        &-checkbox {
-
-        }
-        &-console {
-
-        }
-    }   
- 
 </style>

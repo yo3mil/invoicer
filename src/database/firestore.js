@@ -6,8 +6,8 @@ export {updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustome
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const productCollection = db.collection('products');
-const customerCollection = db.collection('customers');
+const productCollection = db.collection('test');
+const customerCollection = db.collection('test2');
 
 checkForChanges(productCollection, products);
 checkForChanges(customerCollection, customers);

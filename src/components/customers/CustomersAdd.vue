@@ -1,23 +1,52 @@
 <template>
-    <div class="add__popup">
-        <div class="product__popup-header">
-            <h1>Add a customer</h1>
-        </div>
-        <div class="product__popup-input">
-            <input v-model="name" placeholder="ENTER NAME" class="product__popup-input_area" type="text">
-            <input v-model="contactName" placeholder="ENTER contact name" class="product__popup-input_area" type="text">
-            <input v-model="address" placeholder="ENTER address" class="product__popup-input_area" type="text">
-            <input v-model="delivery" placeholder="ENTER delivery address" class="product__popup-input_area" type="text">
-            <input v-model="phone" placeholder="ENTER phone " class="product__popup-input_area" type="text">
-            <input v-model="email" placeholder="ENTER email" class="product__popup-input_area" type="text">
+    <div class="body_element">
+        <div class="form_details">
+            <div class="form_details-row">
+                    
+                <div class="form_details-input short">
+                    <label for="Name">Company Name</label>
+                    <input id="name" v-model="name" type="text">
+                </div>
+                <div class="form_details-input short">
+                    <label for="contactname">Contact Name</label>
+                    <input id="contactname" v-model="contactName" type="text">
+                </div>
+                <div class="inline short">
+                    <div class="form_details-input short">
+                        <label for="phone">Phone</label>
+                        <input id="phone" v-model="phone" type="text">
+                    </div>
+                    <div class="form_details-input short mg">
+                        <label for="email">email</label>
+                        <input id="email" v-model="email" type="text">
+                    </div>
+                </div>
+            </div>
+            <div class="form_details-row">
+                
+                <div class="form_details-input long">
+                <label for="address">Company Address</label>
+                    <input id="address" v-model="address" type="text">
+                </div>
 
-           
+                <div class="form_details-input long">
+                    <label for="delivery">Delivery Address</label>
+                    <input id="delivery" v-model="delivery" type="text">
+                </div>
+                
+                
+                <div class="form_details-input">
+                    <label>Add this product ?</label>
+                    <div class="form_details-console">
+                        <div @click="exitPopup()" class="btn__simple"><i class="ion-close"></i></div>
+                        <div @click="addCustomer()" class="btn__simple"><i class="ion-ios-download"></i></div>
+                    </div>
+                    
+                </div>
+            </div>
         </div>
-        <div class="product__popup-btn">
-            <div @click="exitPopup()" class="btn__simple"><i class="ion-close"></i></div>
-            <div @click="addCustomer()" class="btn__simple"><i class="ion-ios-download"></i></div>
-        </div>
-      </div>
+    </div>
+    
   
 </template>
 
@@ -61,49 +90,14 @@ export default {
 
 <style lang="scss">
 @import "../../styles/_base.scss";
- .product__popup {
-     &-header {
-        flex: 0 0 20%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        color: $base-color;
-        text-transform: uppercase;
-    }
-    &-input {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-
-        
-        &_area {
-            width: 60%;
-            height: 2rem;
-            border-radius: 25px;
-            color: $base-color;
-            border-radius: 100px;
-            border: 2px solid $base-color-light;
-            background-color: $base-color-lighter;
-            transition: all .5s;
-            padding-left: 25%;
-            font-weight: 600;
-            
-        }
-    }
-    &-btn {
-        
-        flex: 0 0 15%;
-        display: flex;
-        justify-content: center;
-        align-items: center;  
-        margin-bottom: 2rem;
-        & i {
-            color: $base-color;
-        }
-    }
- }
-
  
+
+ .inline {
+     display: flex;
+     
+     justify-content: space-between;
+ }
+ .mg {
+     margin-left: 2rem;
+ }
 </style>
