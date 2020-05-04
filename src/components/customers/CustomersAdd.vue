@@ -18,7 +18,7 @@
                     </div>
                     <div class="form_details-input short mg">
                         <label for="email">email</label>
-                        <input id="email" v-model="email" type="text">
+                        <input id="email" v-model="email" type="email">
                     </div>
                 </div>
             </div>

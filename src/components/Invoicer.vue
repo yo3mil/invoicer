@@ -6,7 +6,7 @@
             <div class="menu__icon"><div></div><div></div><div></div></div>
           </router-link>
           <h1 class="header__title">Invoicer</h1>
-          <div class="header__action"><i class="ion-arrow-right-a"></i></div>
+          <div @click="proceed()" class="header__action"><i class="ion-arrow-right-a"></i></div>
 
         </div>
         <div class="body">
@@ -34,6 +34,20 @@
         stage: { customerStage: true, productStage: false, verifyStage: false},
         customerDetails: {},
         order: []
+      }
+    },
+    methods: {
+      proceed() {
+        if(this.stage.customerStage) {
+          this.stage.customerStage = false;
+          this.stage.productStage = true;
+          this.stage.verifyStage = false;
+        } else if (this.productStage) {
+          this.stage.customerStage = false;
+          this.stage.productStage = false;
+          this.stage.verifyStage = true;
+        }
+        
       }
     }
   }
