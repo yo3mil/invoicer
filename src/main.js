@@ -17,10 +17,12 @@ const router = new VueRouter({
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
 
-
+// VUEX
+import { store } from './store/store.js'
 
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 })

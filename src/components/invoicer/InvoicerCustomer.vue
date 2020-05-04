@@ -45,15 +45,12 @@
 export default {
     data() {
         return {
-            customer: {
-                name: '',
-                contact: '',
-                phone: '',
-                email: '',
-                address: '',
-                delivery: '',
-                payment: ''
-            }
+            
+        }
+    },
+    computed: {
+        customer() {
+            return this.$store.state.customer;
         }
     }
 }

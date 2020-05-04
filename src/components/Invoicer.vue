@@ -31,9 +31,7 @@
     },
     data() {
       return {
-        stage: { customerStage: true, productStage: false, verifyStage: false},
-        customerDetails: {},
-        order: []
+        stage: { customerStage: true, productStage: false, verifyStage: false}
       }
     },
     methods: {

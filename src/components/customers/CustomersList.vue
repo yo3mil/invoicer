@@ -16,7 +16,7 @@
     
       <!--Main Console-->
       <div class="customer__console" v-if="subConsole">
-        <div class="customer__console-invoice"><i class="ion-printer"></i></div>
+        <div @click="post()" class="customer__console-invoice"><i class="ion-printer"></i></div>
         <div @click="editFields()" class="customer__console-edit"><i class="ion-edit"></i></div>
         <div @click="subConsole = false" class="customer__console-delete"><i class="ion-trash-a"></i></div>
       </div>
@@ -84,6 +84,15 @@ export default {
       approveEdit() {
         updateCustomer(this.$vnode.key, this.curName, this.curContactName, this.curAddress, this.curDelivery, this.curPhone, this.curEmail);
         this.edit = false;
+      },
+      post() {
+        this.$store.state.customer.name = this.curName;
+        this.$store.state.customer.contact = this.curContactName;
+        this.$store.state.customer.address = this.curAddress;
+        this.$store.state.customer.delivery = this.curDelivery;
+        this.$store.state.customer.phone = this.curPhone;
+        this.$store.state.customer.email = this.curEmail;
+        this.$router.push({ path: '/invoicer' })
       }
     }
 }
