@@ -6,8 +6,9 @@
             <div class="menu__icon"><div></div><div></div><div></div></div>
           </router-link>
           <h1 class="header__title">Invoicer</h1>
-          <div @click="proceed()" class="header__action"><i class="ion-arrow-right-a"></i></div>
-
+          <div @click="proceed()" v-show="!printbtn" class="header__action"><i class="ion-arrow-right-a"></i></div>
+          <div @click="back()" v-show="backbtn" class="header__action move_left"><i class="ion-arrow-left-a"></i></div>
+          <div @click="print()" v-show="printbtn" class="header__action printer"><i class="ion-printer"></i></div>
         </div>
         <div class="body">
           <invoicer-customer v-if="stage.customerStage"></invoicer-customer>
@@ -31,26 +32,44 @@
     },
     data() {
       return {
-        stage: { customerStage: true, productStage: false, verifyStage: false}
+        stage: { customerStage: true, productStage: false, verifyStage: false },
+        backbtn: false,
+        printbtn: false
       }
     },
     methods: {
       proceed() {
         if(this.stage.customerStage) {
-          this.stage.customerStage = false;
-          this.stage.productStage = true;
-          this.stage.verifyStage = false;
-        } else if (this.productStage) {
-          this.stage.customerStage = false;
-          this.stage.productStage = false;
-          this.stage.verifyStage = true;
+          this.viewChanger(false, true, false, true, false);
+        } else if (this.stage.productStage) {
+          this.viewChanger(false, false, true, true, true);
         }
-        
+      },
+      back() {
+        if(this.stage.productStage) {
+          this.viewChanger(true, false, false, false, false)
+        } else if (this.stage.verifyStage) {
+          this.viewChanger(false, true, false, true, false)
+        }
+      },
+      viewChanger(customerDetails, productDetails, verifyPage, backButton, printButton) {
+        this.stage.customerStage = customerDetails;
+        this.stage.productStage = productDetails;
+        this.stage.verifyStage = verifyPage;
+        this.backbtn = backButton;
+        this.printbtn = printButton;
       }
     }
   }
 </script>
 
-<style>
-
+<style lang="scss">
+  @import "../styles/_base.scss";
+  .move_left {
+    margin-right: 4rem;
+  }
+  .printer {
+    transform: scale(1.2);
+    
+  }
 </style>
