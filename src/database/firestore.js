@@ -89,6 +89,9 @@ function checkForChanges(input, output) {
                 let newProduct = change.doc.data();
                 let newProductID = change.doc.id;
                 newProduct.id = newProductID;
+                // if(output === products) {
+                //     newProduct.quantity = 0;
+                // }
                 output.push(newProduct);
                 
                 //console.log("added product: ", change.doc.data());
