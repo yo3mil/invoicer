@@ -4,7 +4,7 @@
         <h3 class="store_product-2">{{ name }}</h3>
         <h3 class="store_product-1">{{ size }}</h3>
         <h3 class="store_product-1">£{{ price }}</h3>
-        <input v-if="!mode" v-model="quantity" class="store_product-quantity" type="number">
+        <input v-if="!mode" v-model="itemQuantity" class="store_product-quantity" type="number" min="1">
         <div v-if="mode" @click="addProduct()" class="store_product-add"><i class="ion-android-add-circle"></i></div>
         <div v-if="!mode" @click="deleteProduct()" class="store_product-delete"><i class="ion-trash-a"></i></div>
     </li>
@@ -19,11 +19,11 @@
             size: { type: String, required: true },
             price: { type: String, required: true},
             //if true its a product || false its a basket
-            mode: { type: Boolean}
+            mode: { type: Boolean }
         },
         data() {
             return {
-                quantity: 1
+                itemQuantity: 1
             }
         },
         computed: {
@@ -33,9 +33,16 @@
         },
         methods: {
             addProduct() {
+                for(let i = 0; i < this.basket.length; i++) {
+                    if(this.basket[i].id === this.$vnode.key) {
+                        alert('This item is already in the basket');
+                        return;
+                    } 
+                }
                 for (let i = 0; i < products.length; i++) {
                     if(products[i].id === this.$vnode.key) {
-                        this.$store.state.productsOrder.push(products[i])
+                        
+                        this.basket.push(products[i]);
                     }
                 }
             },
@@ -97,7 +104,8 @@
         }
         &-quantity {
             border: 0;
-            width: 8%;
+            width: 12%;
+            background-color: transparent;
         }
     }
 

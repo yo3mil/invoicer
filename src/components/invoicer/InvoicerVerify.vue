@@ -10,6 +10,7 @@
                     {{customer.name}}
                     ({{customer.contact}}),
                     {{customer.delivery}}
+                    {{ customer.payment }}
       </h3>
     </div>
     <hr class="products__line">
@@ -42,7 +43,8 @@
       },
       customer() {
         return this.$store.state.customer;
-      }
+      },
+
     }
   }
 </script>
