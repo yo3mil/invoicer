@@ -23,9 +23,9 @@
             <div class="form_details-input short">
                 <label for="payment">Payment method</label>
                 <select v-model="customer.payment" id="payment" name="payments">
-                    <option value="PayPal">PayPal</option>
-                    <option value="Transfer">Bank Transfer</option>
-                    <option value="Card">Debit/Credit Card</option>
+                    <option>PayPal</option>
+                    <option>Bank Transfer</option>
+                    <option>Debit/Credit Card</option>
                 </select>
             </div>
             <div class="form_details-input long">

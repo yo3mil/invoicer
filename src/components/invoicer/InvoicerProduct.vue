@@ -30,6 +30,7 @@
           :name="product.product"
           :size="product.size"
           :price="product.priceNoVat"
+          :quantity="product.quantity"
           :mode="false"
         >
         </store-product>
@@ -98,12 +99,15 @@
       
     }
     .title {
-      height: 10%;
+      height: 4rem;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      
       margin-top: 1.5rem;
+
+      & input,
+      & h2 {
+        margin-bottom: auto;
+      }
 
     }
     
