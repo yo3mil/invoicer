@@ -3,7 +3,7 @@
         <h3 class="store_product-1">{{ code }}</h3>
         <h3 class="store_product-2">{{ name }}</h3>
         <h3 class="store_product-1">{{ size }}</h3>
-        <h3 class="store_product-1">£{{ price }}</h3>
+        <h3 class="store_product-1">£{{ twoDecimals(price) }}</h3>
         <input v-if="!mode" v-model="itemQuantity" class="store_product-quantity" type="number" min="1">
         <div v-if="mode" @click="addProduct()" class="store_product-add"><i class="ion-android-add-circle"></i></div>
         <div v-if="!mode" @click="deleteProduct()" class="store_product-delete"><i class="ion-trash-a"></i></div>
@@ -52,6 +52,9 @@
                         this.basket.splice(i,1);
                     }
                 }
+            },
+            twoDecimals(number) {
+                return (Math.round(number * 100) / 100).toFixed(2);
             }
         }
     }

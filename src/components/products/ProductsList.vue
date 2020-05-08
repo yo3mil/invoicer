@@ -5,8 +5,8 @@
       <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__name">{{ curName }}</h3>
       <h3 class="product__size">{{ curSize }}</h3>
-      <h3 class="product__price">£ {{ curPrice }}</h3>
-      <h3 class="product__vat">£ {{ curVat }}</h3>
+      <h3 class="product__price">£ {{ twoDecimals(curPrice) }}</h3>
+      <h3 class="product__vat">£ {{ twoDecimals(curVat) }}</h3>
 
       <!--Main Console-->
       <div class="product__console" v-if="subConsole">
@@ -66,6 +66,9 @@ export default {
       approveEdit() {
         updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat);
         this.edit = false;
+      },
+      twoDecimals(number) {
+        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
 }
