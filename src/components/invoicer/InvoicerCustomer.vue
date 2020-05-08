@@ -32,10 +32,16 @@
                 <label for="biling">Biling address</label>
                 <input v-model="customer.address" id="biling" type="text">
             </div>
+            
             <div class="form_details-input long">
                 <label for="shipping">Shipping Address</label>
-                <input v-model="customer.delivery" id="shipping" type="text">
+                <input v-model="customer.delivery" id="shipping" type="text" :disabled="deliveryAddress">
+                <div class="same_address">
+                    <input v-model="deliveryAddress" id="addresscheckbox" type="checkbox" @change="copyAddress()" >
+                    <label for="addresscheckbox">Same as billing address</label>
+                </div>
             </div>
+            
           </div>
       </div>
   </div>
@@ -45,19 +51,40 @@
 export default {
     data() {
         return {
-            
+            deliveryAddress: false,
         }
     },
     computed: {
         customer() {
             return this.$store.state.customer;
         }
+    },
+    methods: {
+        copyAddress() {
+            if(this.deliveryAddress) {
+                this.customer.delivery = this.customer.address;
+            } else {
+                this.customer.delivery = "";
+            }
+        }
     }
+        
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "../../styles/_base.scss";
 
+    .same_address {
+        height: 1.5rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        & label {
+            font-size: 90%;
+            margin-top: .3rem;
+            margin-left: .3rem;
+        }
+    }
     
 </style>
