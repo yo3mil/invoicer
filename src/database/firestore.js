@@ -1,4 +1,4 @@
-//Export Collections
+ //Export Collections
 export const products = [];
 export const customers = [];
 // export functions
@@ -16,7 +16,7 @@ checkForChanges(customerCollection, customers);
 // Saving new product 
 const saveProduct = (name, size, price, vat) => {
     productCollection.add({
-        code: 'D0005',
+        code: 'd',
         product: name,
         size: size,
         priceNoVat: price,

@@ -21,10 +21,13 @@
                 
                 <div class="form_details-input very_short">
                     <label for="typeof">Type of food</label>
-                    <select id="typeof" name="typeoffood">
-                        <option value="drink">Drink</option>
-                        <option value="dry">Dry</option>
-                        <option value="frozen">Frozen</option>
+                    <select id="typeof" name="typeoffood" v-model="type">
+                        <option value="D">Drink</option>
+                        <option value="F">Frozen</option>
+                        <option value="S">Snacks</option>
+                        <option value="N">Noodles</option>
+                        <option value="E">Other</option>
+                        <option value="Z">Single</option>
                     </select>
                 </div>
 
@@ -51,7 +54,8 @@
 </template>
 
 <script>
-import { saveProduct } from "../../database/firestore.js";
+import { saveProduct, products } from "../../database/firestore.js";
+
 export default {
     data() {
         return {
@@ -59,7 +63,9 @@ export default {
             size: '',
             price: '',
             vat: 0,
-            includeVat: false
+            includeVat: false,
+            type: '',
+            code: ''
         }
     },
     methods: {
@@ -67,6 +73,7 @@ export default {
             this.$emit('popupClosed', false);
         },
         addProduct() {
+            this.generateCode();
             if(this.includeVat) {
                 this.vat = (this.price * 0.2).toFixed(2);
             } else {
@@ -80,6 +87,17 @@ export default {
             this.name = "";
             this.size = "";
             this.price = "";
+        },
+        generateCode() {
+            let codeArr = [];
+            for(let i = 0; i < products.lenght; i++){
+                if(products[i].code.toLowerCase().includes(this.type.toLowerCase())){
+                    codeArr.push(products[i])
+                }
+            }
+            //let largest = Math.max.apply(Math, codeArr);
+            //this.code = this.type + (largest + 1);
+            console.log(codeArr)
         }
     }
 }
