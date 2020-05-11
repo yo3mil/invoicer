@@ -9,6 +9,10 @@
                     <input id="name" v-model="name" class="add__popup-input" type="text">
                 </div>
                 <div class="form_details-input short">
+                    <label for="category" >Category</label>
+                    <input id="category" v-model="category" class="add__popup-input" type="text">
+                </div>
+                <div class="form_details-input short">
                     <label for="size" >Size</label>
                     <input id="size" v-model="size" class="add__popup-input" type="text">
                 </div>
@@ -65,7 +69,8 @@ export default {
             vat: 0,
             includeVat: false,
             type: '',
-            code: ''
+            code: '',
+            category: ''
         }
     },
     methods: {
@@ -79,7 +84,7 @@ export default {
             } else {
                 this.vat = 0;
             }
-            saveProduct(this.name, this.size, this.price, this.vat);
+            saveProduct(this.name, this.size, this.price, this.vat, this.code, this.category);
             this.exitPopup();
             this.clearFields();
         },
@@ -87,17 +92,27 @@ export default {
             this.name = "";
             this.size = "";
             this.price = "";
+            this.includeVat = false;
+            this.category = "";
+            this.type = "";
         },
         generateCode() {
+            // function creates next number in the category
             let codeArr = [];
-            for(let i = 0; i < products.lenght; i++){
+            let largest;
+            for(let i = 0; i < products.length; i++){
                 if(products[i].code.toLowerCase().includes(this.type.toLowerCase())){
-                    codeArr.push(products[i])
-                }
+                    codeArr.push(products[i].code.substring(1));
+                } 
             }
-            //let largest = Math.max.apply(Math, codeArr);
-            //this.code = this.type + (largest + 1);
-            console.log(codeArr)
+            // in case there was no match:
+            codeArr.push('0001')
+            // find the largest
+            largest = Math.max.apply(Math, codeArr);
+            // creates zeros before the main generatet number
+            largest = largest + 10001;
+            this.code = this.type + (largest.toString().substring(1));
+            console.log(this.code)
         }
     }
 }

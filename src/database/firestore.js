@@ -14,13 +14,14 @@ checkForChanges(customerCollection, customers);
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
-const saveProduct = (name, size, price, vat) => {
+const saveProduct = (name, size, price, vat, code, category) => {
     productCollection.add({
-        code: 'd',
+        code: code,
         product: name,
         size: size,
         priceNoVat: price,
-        vat: vat
+        vat: vat,
+        category: category
     })
 }
 // Deleting a product
@@ -33,26 +34,28 @@ const deleteProduct = (id) => {
     });
 };
 // Updating a product 
-const updateProduct = (id, newCode, newName, newSize, newPrice, newVat) => {
+const updateProduct = (id, newCode, newName, newSize, newPrice, newVat, newCategory) => {
     productCollection.doc(id).update({
         code: newCode,
         product: newName,
         size: newSize,
         priceNoVat: newPrice,
-        vat: newVat
+        vat: newVat,
+        category: newCategory
     });
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //CUSTOMER QUERIES
 // Saving new product 
-const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
+const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhone, newEmail, newCategory) => {
     customerCollection.add({
         name: newName,
         contactName: newContactName,
         address: newAddress,
         deliveryAddress: newDelivery,
         phone: newPhone,
-        email: newEmail
+        email: newEmail,
+        category: newCategory
     })
 }
 // Deleting a product
@@ -65,14 +68,15 @@ const deleteCustomer = (id) => {
     });
 };
 // Updating a product 
-const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
+const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , newPhone, newEmail, newCategory) => {
     customerCollection.doc(id).update({
         name: newName,
         contactName: newContactName,
         address: newAddress,
         deliveryAddress: newDelivery,
         phone: newPhone,
-        email: newEmail
+        email: newEmail,
+        category: newCategory
     });
 }
 
