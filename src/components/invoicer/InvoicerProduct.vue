@@ -24,7 +24,8 @@
         <hr class="products__line">
       </div>
       <ul class="list">
-        <store-product v-for="product in basket"
+        <store-product v-for="(product, index) in basket"
+          :index="index"
           :key="product.id"
           :code="product.code"
           :name="product.product"

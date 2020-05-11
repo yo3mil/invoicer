@@ -16,35 +16,58 @@
     <hr class="products__line">
     <div class="summary__products">
       <ul>
-        <store-product v-for="product in basket"
+        <store-product v-for="(product, index) in basket"
           :key="product.id"
           :code="product.code"
           :name="product.product"
           :size="product.size"
           :price="product.priceNoVat"
+          :quantity="product.quantity"
+          :index="index"
           :mode="false"
         >
         </store-product>
       </ul>
+
+    </div>
+    <hr class="products__line">
+    <div>
+      <h1> {{ totalPrice }} </h1>
+      <h1> {{ totalVat }} </h1>
+      <h1> {{ subTotal }} </h1>
+      <input v-model="shipping" type="text">
+      <input v-model="discount" type="text">
+      <h1>{{ total }}</h1>
     </div>
   </div>
 </template>
 
 <script>
   import StoreProduct from './subComponents/StorePrododuct.vue';
+  import {mapGetters} from 'vuex';
   
   export default {
     components: {
       StoreProduct
     },
+    data() {
+      return {
+        shipping: 0,
+        discount: 0
+      }
+    },
     computed: {
-      basket() {
-        return this.$store.state.productsOrder;
-      },
-      customer() {
-        return this.$store.state.customer;
-      },
-
+      ...mapGetters([
+        'totalPrice',
+        'totalVat',
+        'subTotal',
+        'basket',
+        'customer'
+      ]),
+      // total including shipping and discount.
+      total() {
+        return (this.subTotal + Number(this.shipping)) - (this.subTotal * (Number(this.discount) / 100));
+      }
     }
   }
 </script>

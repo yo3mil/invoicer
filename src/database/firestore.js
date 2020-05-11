@@ -92,10 +92,11 @@ function checkForChanges(input, output) {
                 //passes ID as a field and pushes every object into an array.
                 let newProduct = change.doc.data();
                 let newProductID = change.doc.id;
+
                 newProduct.id = newProductID;
-                // if(output === products) {
-                //     newProduct.quantity = 0;
-                // }
+                if(output === products) {
+                    newProduct.quantity = 1;
+                }
                 output.push(newProduct);
                 
                 //console.log("added product: ", change.doc.data());

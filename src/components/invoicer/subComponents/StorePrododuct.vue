@@ -4,7 +4,11 @@
         <h3 class="store_product-2">{{ name }}</h3>
         <h3 class="store_product-1">{{ size }}</h3>
         <h3 class="store_product-1">£{{ twoDecimals(price) }}</h3>
-        <input v-if="!mode" v-model="itemQuantity" class="store_product-quantity" type="number" min="1">
+        <div class="store_product-1 quantity" v-if="!mode">
+            <i class="ion-android-remove-circle" @click="decrementItem"></i>
+            <h3>{{ quantity }}</h3>
+            <i class="ion-android-add-circle" @click="incrementItem"></i>
+        </div>
         <div v-if="mode" @click="addProduct()" class="store_product-add"><i class="ion-android-add-circle"></i></div>
         <div v-if="!mode" @click="deleteProduct()" class="store_product-delete"><i class="ion-trash-a"></i></div>
     </li>
@@ -12,12 +16,15 @@
 
 <script>
     import { products } from '../../../database/firestore';
+    import {mapMutations} from 'vuex';
     export default {
         props: {
             code: { type: String, required: true },
             name: { type: String,required: true },
             size: { type: String, required: true },
             price: { type: String, required: true},
+            quantity: {type: [Number, String], required:false},
+            index: {type: Number, required:false},
             //if true its a product || false its a basket
             mode: { type: Boolean }
         },
@@ -32,6 +39,10 @@
             }
         },
         methods: {
+            ...mapMutations([
+                "increment",
+                "decrement"
+            ]),
             addProduct() {
                 for(let i = 0; i < this.basket.length; i++) {
                     if(this.basket[i].id === this.$vnode.key) {
@@ -43,6 +54,7 @@
                     if(products[i].id === this.$vnode.key) {
                         
                         this.basket.push(products[i]);
+                        
                     }
                 }
             },
@@ -55,6 +67,12 @@
             },
             twoDecimals(number) {
                 return (Math.round(number * 100) / 100).toFixed(2);
+            },
+            incrementItem() {
+                this.$store.commit('increment', this.index);
+            },
+            decrementItem() {
+                this.$store.commit('decrement', this.index);
             }
         }
     }
