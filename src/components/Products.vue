@@ -4,7 +4,7 @@
       <!--MAIN HEADER-->
       <div class="header">
         <!-- menu btn-->
-        <router-link tag="div" class="header__menu" to="/">
+        <router-link tag="div" class="header__menu" to="/menu">
           <div class="menu__icon"><div></div><div></div><div></div></div>
         </router-link>
         <h1 class="header__title">Products</h1>

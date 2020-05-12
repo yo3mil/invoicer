@@ -2,7 +2,7 @@
   <div class="page__container">
       <div class="container">
         <div class="header">
-          <router-link tag="div" class="header__menu" to="/">
+          <router-link tag="div" class="header__menu" to="/menu">
             <a href="#">MENU</a>
           </router-link>
           <h1 class="header__title">History</h1>

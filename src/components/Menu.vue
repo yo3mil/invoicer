@@ -15,6 +15,9 @@
                   <a href="#">history</a>
               </router-link>
           </ul>
+          <div @click="logout" class="login__console-btn" >
+                  LOG OUT
+        </div>
       </div>
   </div>
 </template>
@@ -22,7 +25,15 @@
 <script>
 
     export default {
-
+        methods: {
+            logout() {
+                auth.signOut()
+                .then(() => {
+                    this.$router.push('/');
+                });
+                
+            }
+        }
     }
 </script>
 
