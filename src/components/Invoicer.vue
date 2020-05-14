@@ -84,6 +84,6 @@
     
   }
   .active {
-    opacity: .5;
+    opacity: .2;
   }
 </style>

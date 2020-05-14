@@ -158,7 +158,7 @@ export default {
 
 
           &-edit {
-            color: $base-color;
+            color: $color-green;
           }
           &-delete {
             color: $color-red;
