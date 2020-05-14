@@ -8,12 +8,10 @@
           <div class="menu__icon"><div></div><div></div><div></div></div>
         </router-link>
         <h1 class="header__title">Products</h1>
-        <!-- Add button -->
-        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
-          <i class="ion-plus"></i>
-        </div>
+        
+        
       </div>
-
+      
       <!--MAIN BODY-->
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
@@ -35,13 +33,17 @@
 
         <!--Footer with pagination-->
         <div class="footer">
-          <hr class="products__line">
+         
           <jw-pagination :items="allProducts" 
             :pageSize="13" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"
           ></jw-pagination>
+        </div>
+        <!-- Add button -->
+        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
+          <p>Add New</p>
         </div>
       </div>
 

@@ -4,6 +4,7 @@
 @import "./_layout.scss";
 @import "./_elements.scss";
 @import "./_lists.scss";
+@import "./_animations.scss";
 ////////////////////////////////////////////////////////////////////////
 // BASIC
 * {
@@ -29,7 +30,11 @@ h1 {
 }
 h2 {
   font-family: $main-font;
-  font-weight: 400;
+  font-weight: 500;
+}
+h3 {
+  font-family: $main-font;
+  font-weight: 200;
 }
 
 

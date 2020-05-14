@@ -17,15 +17,15 @@
 
   &__search {
     margin-top: 1rem;
-    margin-bottom: auto;
+    margin-bottom: 1rem;
     &-input {
       outline: none;
       color: $base-color;
-      height: 1.8rem;
-      width: 7rem;
-      border-radius: 100px;
+      height: 2.5rem;
+      width: 10rem;
+      
       border: 2px solid $base-color-light;
-      background-color: $base-color-lighter;
+      background-color: $base-color-light;
       transition: all .5s;
       padding-left: 10px ;
       &:focus {
@@ -49,8 +49,8 @@
     margin-bottom: .2rem;
     border: 0;
     height: 1px;
-    background: $base-color-light;
-    background-image: -webkit-linear-gradient(left, $base-color-light, $base-color, $base-color-light);
+    background: $base-color;
+   
     
   }
   
@@ -63,9 +63,9 @@
     margin-right: 1rem;
     color: $base-color;
     outline: none;
-    border-radius: 100px;
+   
     border: 2px solid $base-color-light;
-    background-color: $base-color-lighter;
+    background-color: $color-white;
     
     padding-left: 6px ;
   }

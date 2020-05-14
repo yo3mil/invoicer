@@ -109,7 +109,7 @@ export default {
         max-height: 4.6rem;
         align-items: center;
         transition: all .1s;
-        
+        font-size: .8rem;
         &:hover {
             background-color: $base-color-light;
         }

@@ -33,7 +33,6 @@
                 .then(
                     user => {
                         alert(`Loged in as: ${user.user.email}`)
-                        console.log(user);
                         this.$router.replace({path: '/menu'})
                     },
                     err => {

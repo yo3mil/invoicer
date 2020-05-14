@@ -2,8 +2,8 @@
   <li class="product" v-if="visible">
     <!--PRODUCT-->
     <div v-if="!edit" class="product__container product">
-      <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__id">{{ curCategory }}</h3>
+      <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__name">{{ curName }}</h3>
       <h3 class="product__size">{{ curSize }}</h3>
       <h3 class="product__price">£ {{ twoDecimals(curPrice) }}</h3>
@@ -84,7 +84,7 @@ export default {
         width: 100%;
         height: 100%;
         max-height: 2.3rem;
-        
+        font-size: .8rem;
         align-items: center;
         transition: all .1s;
         &:hover {
@@ -96,6 +96,8 @@ export default {
         &__name { width: 35%; }
         &__vat {width: 5%;}
         &__console {
+          margin-right: -1rem;
+          margin-left: 1rem;
           width: 11%;
           display: flex;
           align-items: center;
@@ -118,7 +120,7 @@ export default {
             }
           }
           &-edit {
-            color: $base-color;
+            color: $color-green;
           }
           &-delete {
             color: $color-red;

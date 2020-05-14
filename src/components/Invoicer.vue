@@ -58,6 +58,9 @@
         this.stage.verifyStage = verifyPage;
         this.backbtn = backButton;
         this.printbtn = printButton;
+      },
+      print() {
+        this.$router.replace({path: '/PrintPage'})
       }
     }
   }

@@ -7,9 +7,7 @@
           <div class="menu__icon"><div></div><div></div><div></div></div>
         </router-link>
         <h1 class="header__title">Customers</h1>
-        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
-          <i class="ion-plus"></i>
-        </div>
+        
       </div>
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
@@ -31,13 +29,16 @@
 
         <!--Footer with pagination-->
         <div class="footer">
-          <hr class="products__line">
+          
           <jw-pagination :items="allCustomers" 
             :pageSize="6" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"
           ></jw-pagination>
+        </div>
+        <div class="header__action margin " @click="addPopup = true" v-show="!addPopup">
+          <p>Add New</p>
         </div>
       </div>
 
@@ -102,9 +103,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .products__list {
     grid-row: 2 / -1;
     grid-column: center-start / center-end;
   }
+  
 </style>
