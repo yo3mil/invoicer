@@ -5,7 +5,7 @@ import Customers from './components/Customers.vue';
 import Products from './components/Products.vue';
 import History from './components/History.vue';
 import SingIn from './components/SingIn.vue'
-
+import PrintPage from './components/invoicer/subComponents/PrintPage.vue'
 
 export const routes = [
     {
@@ -35,6 +35,11 @@ export const routes = [
     {
         path: '/history', 
         component: History,
+        meta:{requiresAuth: true} 
+    },
+    {
+        path: '/printpage', 
+        component: PrintPage,
         meta:{requiresAuth: true} 
     }
 ]

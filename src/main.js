@@ -44,9 +44,22 @@ Vue.component('jw-pagination', JwPagination);
 import { store } from './store/store.js'
 
 
-new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
-})
+// VUE
+// fixes back to login page on reload:
+let app;
+firebase.auth().onAuthStateChanged(user => {
+  if(!app) {
+    app = new Vue({
+      el: '#app',
+      router,
+      store,
+      render: h => h(App)
+    });
+  }
+});
+// new Vue({
+//   el: '#app',
+//   router,
+//   store,
+//   render: h => h(App)
+// })
