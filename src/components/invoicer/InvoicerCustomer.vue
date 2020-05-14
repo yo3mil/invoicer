@@ -3,39 +3,35 @@
       <div class="form_details">
           <div class="form_details-row">
               <div class="form_details-input short">
-                  <label for="name">Company name</label>
-                  <input v-model="customer.name" id="name" type="text">
+                  <input v-model="customer.name" id="name" type="text" placeholder="Company">
               </div>
               <div class="form_details-input short">
-                  <label for="contact">Contact Person</label>
-                  <input v-model="customer.contact" id="contact" type="text">
+                  <input v-model="customer.contact" id="contact" type="text" placeholder="Contact person">
               </div>
               <div class="form_details-input short">
-                  <label for="email">Email</label>
-                  <input v-model="customer.email" id="email" type="text">
+                  <input v-model="customer.email" id="email" type="email" placeholder="Email">
               </div>
               <div class="form_details-input short">
-                  <label for="phone">Phone</label>
-                  <input v-model="customer.phone" id="phone" type="text">
+                  <input v-model="customer.phone" id="phone" type="text" placeholder="Telephone">
               </div>
           </div>
           <div class="form_details-row">
             <div class="form_details-input short">
-                <label for="payment">Payment method</label>
-                <select v-model="customer.payment" id="payment" name="payments">
+                <select v-model="customer.payment" id="payment" name="payments" required>
+                    <option value="" disabled selected>Payment Method</option>
                     <option>PayPal</option>
                     <option>Bank Transfer</option>
                     <option>Debit/Credit Card</option>
                 </select>
             </div>
             <div class="form_details-input long">
-                <label for="biling">Biling address</label>
-                <input v-model="customer.address" id="biling" type="text">
+                
+                <input v-model="customer.address" id="biling" type="text" placeholder="Billing Address">
             </div>
             
             <div class="form_details-input long">
-                <label for="shipping">Shipping Address</label>
-                <input v-model="customer.delivery" id="shipping" type="text" :disabled="deliveryAddress">
+                
+                <input v-model="customer.delivery" id="shipping" type="text" :disabled="deliveryAddress" placeholder="Delivery Address">
                 <div class="same_address">
                     <input v-model="deliveryAddress" id="addresscheckbox" type="checkbox" @change="copyAddress()" >
                     <label for="addresscheckbox">Same as billing address</label>

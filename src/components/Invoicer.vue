@@ -5,15 +5,23 @@
           <router-link tag="div" class="header__menu" to="/menu">
             <div class="menu__icon"><div></div><div></div><div></div></div>
           </router-link>
-          <h1 class="header__title">Invoicer</h1>
-          <div @click="proceed()" v-show="!printbtn" class="header__action"><i class="ion-arrow-right-a"></i></div>
-          <div @click="back()" v-show="backbtn" class="header__action move_left"><i class="ion-arrow-left-a"></i></div>
-          <div @click="print()" v-show="printbtn" class="header__action printer"><i class="ion-printer"></i></div>
+          <div class="header__title-container">
+            <h1 :class="{active: !stage.customerStage}"  class="header__title" >customer detail</h1>
+            <i class="ion-play"></i>
+            <h1 :class="{active: !stage.productStage}" class="header__title">add products</h1>
+            <i class="ion-play"></i>
+            <h1 :class="{active: !stage.verifyStage}" class="header__title">review</h1>
+          </div>
+          
+         
         </div>
         <div class="body">
           <invoicer-customer v-if="stage.customerStage"></invoicer-customer>
           <invoicer-product v-if="stage.productStage"></invoicer-product>
           <invoicer-verify v-if="stage.verifyStage"></invoicer-verify>
+          <div @click="proceed()" v-show="!printbtn" class="header__action header__action-right"><p>Continue</p></div>
+          <div @click="back()" v-show="backbtn" class="header__action header__action-left"><p>Back</p></div>
+          <div @click="print()" v-show="printbtn" class="header__action header__action-right"><p>Print</p></div>
         </div>
       </div>
   </div>
@@ -74,5 +82,8 @@
   .printer {
     transform: scale(1.2);
     
+  }
+  .active {
+    opacity: .5;
   }
 </style>

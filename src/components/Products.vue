@@ -7,7 +7,11 @@
         <router-link tag="div" class="header__menu" to="/menu">
           <div class="menu__icon"><div></div><div></div><div></div></div>
         </router-link>
-        <h1 class="header__title">Products</h1>
+        
+        <div class="header__title-container">
+          <h1 class="header__title">Products</h1>
+        </div>
+        
         
         
       </div>
@@ -42,7 +46,7 @@
           ></jw-pagination>
         </div>
         <!-- Add button -->
-        <div class="header__action" @click="addPopup = true" v-show="!addPopup">
+        <div class="header__action header__action-right" @click="addPopup = true" v-show="!addPopup">
           <p>Add New</p>
         </div>
       </div>

@@ -41,11 +41,9 @@
         
     }
     &-input {
-        margin-bottom: 5rem;
+        margin-bottom: 3rem;
         display: flex;
         flex-direction: column;
-        
-
         & label {
             text-transform: uppercase;
             font-size: 110%;
@@ -54,9 +52,11 @@
         & input,
         & select {
             border: 0;
-            border-bottom: 1px solid $base-color;
-            height: 2rem;
+            background-color: $base-color-light;
+            height: 3rem;
             outline: none;
+            padding-left: 1rem;
+            font-size: 1rem;
         }
     }
     &-console {
@@ -68,10 +68,10 @@
     }
 }
 .short {
-    width: 60%;
+    width: 70%;
 }
 .long {
-    width: 80%;
+    width: 90%;
 }
 .very_short {
   width: 20%;

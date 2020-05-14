@@ -68,15 +68,14 @@ const deleteCustomer = (id) => {
     });
 };
 // Updating a product 
-const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , newPhone, newEmail, newCategory) => {
+const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
     customerCollection.doc(id).update({
         name: newName,
         contactName: newContactName,
         address: newAddress,
         deliveryAddress: newDelivery,
         phone: newPhone,
-        email: newEmail,
-        category: newCategory
+        email: newEmail
     });
 }
 
