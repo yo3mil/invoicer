@@ -1,5 +1,5 @@
 <template>
-  <div class="page__container">
+  <div class="page__container bg-linear-green">
       <div class="container">
         <div class="header">
           <router-link tag="div" class="header__menu" to="/menu">

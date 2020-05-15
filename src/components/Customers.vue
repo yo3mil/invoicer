@@ -1,5 +1,5 @@
 <template>
-  <div class="page__container">
+  <div class="page__container bg-linear-red ">
     <div class="container">
       <div class="header">
         <!-- menu btn-->

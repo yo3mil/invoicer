@@ -47,15 +47,14 @@ const updateProduct = (id, newCode, newName, newSize, newPrice, newVat, newCateg
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //CUSTOMER QUERIES
 // Saving new product 
-const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhone, newEmail, newCategory) => {
+const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhone, newEmail) => {
     customerCollection.add({
         name: newName,
         contactName: newContactName,
         address: newAddress,
         deliveryAddress: newDelivery,
         phone: newPhone,
-        email: newEmail,
-        category: newCategory
+        email: newEmail
     })
 }
 // Deleting a product

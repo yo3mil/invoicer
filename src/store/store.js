@@ -39,7 +39,6 @@ export const store = new Vuex.Store({
         customer(state) {
             return state.customer;
         }
-
     },
     mutations: {
         increment(state, index) {
@@ -47,6 +46,10 @@ export const store = new Vuex.Store({
         },
         decrement(state, index) {
             state.productsOrder[index].quantity--;
+        },
+        resetState(state) {
+            state.customer = {};
+            state.productsOrder = [];
         }
     }
 });

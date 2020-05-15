@@ -3,48 +3,54 @@
         <div class="form_details">
             <div class="form_details-row">
                     
-                <div class="form_details-input short">
-                    <label for="Name">Company Name</label>
-                    <input id="name" v-model="name" type="text">
+                <div class="form_details-input short margin-bottom">
+                    
+                    <input id="name" v-model="name" type="text" placeholder="Company name">
                 </div>
-                <div class="form_details-input short">
-                    <label for="contactname">Contact Name</label>
-                    <input id="contactname" v-model="contactName" type="text">
+                <div class="form_details-input short margin-bottom">
+                    
+                    <input id="contactname" v-model="contactName" type="text" placeholder="Contact name">
                 </div>
-                <div class="inline short">
-                    <div class="form_details-input short">
-                        <label for="phone">Phone</label>
-                        <input id="phone" v-model="phone" type="text">
-                    </div>
-                    <div class="form_details-input short mg">
-                        <label for="email">email</label>
-                        <input id="email" v-model="email" type="email">
-                    </div>
+                
+                <div class="form_details-input short margin-bottom">
+                    
+                    <input id="phone" v-model="phone" type="text" placeholder="Telephone">
                 </div>
+                    
+                
             </div>
             <div class="form_details-row">
-                
-                <div class="form_details-input long">
-                <label for="address">Company Address</label>
-                    <input id="address" v-model="address" type="text">
+                <div class="form_details-input short margin-bottom">
+                    
+                    <input id="email" v-model="email" type="email" placeholder="Email">
                 </div>
 
-                <div class="form_details-input long">
-                    <label for="delivery">Delivery Address</label>
-                    <input id="delivery" v-model="delivery" type="text">
+                <div class="form_details-input long margin-bottom">
+                
+                    <input id="address" v-model="address" type="text" placeholder="Billing address">
+                </div>
+
+                <div class="form_details-input long margin-bottom">
+                    
+                    <input id="delivery" v-model="delivery" type="text" placeholder="Shipping address">
                 </div>
                 
                 
-                <div class="form_details-input">
+                <!-- <div class="form_details-input">
                     <label>Add this product ?</label>
                     <div class="form_details-console">
                         <div @click="exitPopup()" class="btn__simple"><i class="ion-close"></i></div>
                         <div @click="addCustomer()" class="btn__simple"><i class="ion-ios-download"></i></div>
                     </div>
                     
-                </div>
+                </div> -->
             </div>
         </div>
+        <div class="btn_container">
+            <div @click="exitPopup()" class="header__action"><p>Discard</p></div>
+            <div @click="addCustomer()" class="header__action"><p>Add Customer</p></div>
+        </div>
+        
     </div>
     
   

@@ -4,27 +4,24 @@
         <div class="form_details">
             <div class="form_details-row">
                 
-                <div class="form_details-input short">
-                    <label for="name" >Name of product</label>
-                    <input id="name" v-model="name" class="add__popup-input" type="text">
+                <div class="form_details-input short margin-bottom">
+                    <input id="name" v-model="name" class="add__popup-input" type="text" placeholder="Product name">
                 </div>
-                <div class="form_details-input short">
-                    <label for="category" >Category</label>
-                    <input id="category" v-model="category" class="add__popup-input" type="text">
+                <div class="form_details-input short margin-bottom">
+                    <input id="category" v-model="category" class="add__popup-input" type="text" placeholder="Category">
                 </div>
-                <div class="form_details-input short">
-                    <label for="size" >Size</label>
-                    <input id="size" v-model="size" class="add__popup-input" type="text">
+                <div class="form_details-input short margin-bottom">
+                    <input id="size" v-model="size" class="add__popup-input" type="text" placeholder="Size">
                 </div>
-                <div class="form_details-input very_short">
-                    <label for="price" >Price(no VAT)</label>
-                    <input id="price" v-model="price"  class="add__popup-input" type="text">
-                </div>
+                
             </div>
             <div class="form_details-row">
+                <div class="form_details-input short margin-bottom">
+                    <input id="price" v-model="price"  class="add__popup-input" type="text" placeholder="Price (excl. VAT)">
+                </div>
                 
-                <div class="form_details-input very_short">
-                    <label for="typeof">Type of food</label>
+                <div class="form_details-input short margin-bottom">
+                    
                     <select id="typeof" name="typeoffood" v-model="type">
                         <option value="D">Drink</option>
                         <option value="F">Frozen</option>
@@ -35,23 +32,18 @@
                     </select>
                 </div>
 
-                <div class="form_details-input">
+                <div class="form_details-input margin-bottom">
                     <label for="vat">CALCULATE VAT ?</label>
                     <input class="vat_checkbox" id="vat" type="checkbox" v-model="includeVat">
                 </div>
-                
-               
-                <div class="form_details-input">
-                    <label>Add this product ?</label>
-                    <div class="form_details-console">
-                        <div @click="exitPopup" class="btn__simple"><i class="ion-close"></i></div>
-                        <div @click="addProduct" class="btn__simple"><i class="ion-checkmark"></i></div>
-                    </div>
-                    
-                </div>
             </div>
+           
         </div>
-       
+        <div class="btn_container">
+            <div @click="exitPopup" class="header__action"><p>Discard</p></div>
+            <div @click="addProduct" class="header__action"><p>Add Product</p></div>
+        </div>
+        
         
     </div>
   

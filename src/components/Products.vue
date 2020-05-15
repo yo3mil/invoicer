@@ -1,5 +1,5 @@
 <template>
-  <div class="page__container">
+  <div class="page__container bg-linear-blue">
     <div class="container">
       <!--MAIN HEADER-->
       <div class="header">
@@ -11,12 +11,10 @@
         <div class="header__title-container">
           <h1 class="header__title">Products</h1>
         </div>
-        
-        
-        
       </div>
       
       <!--MAIN BODY-->
+      
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
         <products-header @inputChange="searched = $event"></products-header>
@@ -37,8 +35,7 @@
 
         <!--Footer with pagination-->
         <div class="footer">
-         
-          <jw-pagination :items="allProducts" 
+         <jw-pagination :items="allProducts" 
             :pageSize="13" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
@@ -50,11 +47,13 @@
           <p>Add New</p>
         </div>
       </div>
-
+      
       <!--Add Product Component-->
+      
       <div class="body" v-show="addPopup">
         <products-add  @popupClosed="addPopup = $event"></products-add>
       </div>
+      
     </div>
 
   </div>

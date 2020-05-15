@@ -10,9 +10,9 @@
             </div>
           </div>
           <ul class="menu__list">
-              <router-link tag="li" to="/invoicer" class="menu__element">
-                <div class="menu__element-icon bg-green">
-                    <i class="ion-android-add-circle"></i>
+              <router-link  tag="li" to="/invoicer" class="menu__element">
+                <div @click="resetStore()" class="menu__element-icon bg-green">
+                    <i class="ion-compose"></i>
                 </div>
                 <h2>new invoice</h2>
               </router-link>
@@ -47,13 +47,19 @@
 <script>
 
     export default {
+        computed: {
+            
+        },
         methods: {
             logout() {
                 auth.signOut()
                 .then(() => {
                     this.$router.push('/');
                 });
-                
+            },
+            resetStore() {
+                this.$store.commit('resetState');
+                console.log('hello')
             }
         }
     }

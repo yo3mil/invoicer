@@ -40,7 +40,7 @@
             <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Total:</h3><h3>{{subTotal}}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Discount:</h3><h3>00</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Discount:</h3><h3>0000</h3>
           </div>
         </div>
       </div>

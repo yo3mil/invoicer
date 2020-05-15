@@ -2,13 +2,15 @@
   <div class="page__container">
       <div class="container login">
           <div class="login__console">
-              <div class="login__console-user">
-                <label for="signin-login">Login</label>
+              <div class="form_details-input">
+                
                 <input v-model="email" id="signin-login" type="email">
+                <label for="signin-login">Login</label>
               </div>
-              <div class="login__console-password">
-                <label for="signin-password">password</label>
+              <div class="form_details-input">
+                
                 <input v-model="password" id="signin-password" type="password">
+                <label for="signin-password">password</label>
               </div>
               <div @click="login" class="login__console-btn" >
                   LOG IN
@@ -69,7 +71,7 @@
                 text-transform: uppercase;
             }
             &-btn {
-                background-color: $base-color;
+                background-color: #fff;
                 width: 3rem;
                 text-align: center;
                 margin-top: 1rem;
