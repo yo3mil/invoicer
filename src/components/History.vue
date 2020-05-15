@@ -1,17 +1,38 @@
 <template>
-  <div class="page__container">
-      <div class="container">
-        <div class="header">
-          <router-link tag="div" class="header__menu" to="/menu">
-            <a href="#">MENU</a>
-          </router-link>
-          <h1 class="header__title">History</h1>
-          <div class="header__action"><a href="#">GO</a></div>
+  <div class="page__container bg-linear-yellow ">
+    <div class="container">
+      <div class="header">
+        <!-- menu btn-->
+        <router-link tag="div" class="header__menu" to="/menu">
+          <div class="menu__icon"><div></div><div></div><div></div></div>
+        </router-link>
+        <div class="header__title-container">
+          <h1 class="header__title">history</h1>
         </div>
-        <div class="body">
-
-        </div>
+        
       </div>
+      <div class="body" v-show="!addPopup">
+        
+        <!--List With all Customers-->
+        <ul class="list">
+          
+        </ul>
+
+        <!--Footer with pagination-->
+        <div class="footer">
+          
+          <!-- <jw-pagination :items="allCustomers" 
+            :pageSize="6" 
+            @changePage="onChangePage"
+            :disableDefaultStyles="true"
+            :labels="customLabels"
+          ></jw-pagination> -->
+        </div>
+        
+      </div>
+
+      
+    </div>
   </div>
 </template>
 
