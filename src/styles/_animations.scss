@@ -9,7 +9,7 @@
 }
 
 // vue router transition
-
+//fade in/out
 .fade-enter-active,
 .fade-leave-active {
   transition-duration: 0.3s;
@@ -21,3 +21,20 @@
 .fade-leave-active {
   opacity: 0
 }
+
+//swipe in out
+.swipe-enter-active,
+.swipe-leave-active {
+  transition-duration: 0.3s;
+  transition-property: opacity;
+  transition-timing-function: ease;
+  
+  
+}
+
+.swipe-enter,
+.swipe-leave-active {
+  opacity: 0;
+  
+}
+  

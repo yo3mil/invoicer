@@ -79,6 +79,7 @@
       }
       
     }
+    
     &__menu {
       grid-row: 2;
       grid-column: 3;
@@ -88,7 +89,15 @@
       margin-top: .2rem;
     }
   }
-  
+  // for add products // customers button
+  .btn_container {
+    margin-top: -2rem;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+  }
+  // standard body element
   .body {
     flex: 0 0 80vh;
     width: 100%;

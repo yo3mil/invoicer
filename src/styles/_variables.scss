@@ -3,7 +3,7 @@
 $font-color: #313131;
 
 $base-color: #313131;
-$base-color-light: #F5F5F5;
+$base-color-light: rgb(224, 224, 224);
 $base-color-lighter: rgb(235, 248, 255);
 $color-white: #fff;
 
@@ -35,4 +35,21 @@ $main-font: 'Noto Sans TC', sans-serif;
 }
 .bg-yellow {
     background-color: $color-yellow;
+}
+.bg-gray {
+    background: $base-color-light;
+    background: linear-gradient(0deg, rgba($base-color-light,.8) 0%, transparent 90%);
+}
+
+.bg-linear-blue {
+    background: rgb(35,57,91);
+    background: linear-gradient(180deg, rgba(35,57,91,.2) 0%, rgba(255,255,255,1) 50%);
+}
+.bg-linear-red {
+    background: rgb(216,30,91);
+    background: linear-gradient(180deg, rgba(216,30,91,.1) 0%, rgba(255,255,255,1) 50%);
+}
+.bg-linear-green {
+    background: rgb(89,201,165);
+    background: linear-gradient(180deg, rgba(89,201,165,.1) 0%, rgba(255,255,255,1) 50%);
 }

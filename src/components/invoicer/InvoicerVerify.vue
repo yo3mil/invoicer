@@ -2,13 +2,13 @@
   <div class="body_element summary">
     <div class="summary__customer">
       <h3>
-        <span>SHIPPING TO:</span>{{customer.name}}{{ customer.payment }}
+        <span>{{customer.name}}</span>
       </h3>
     </div>
     <hr class="products__line">
-    <div class="summary__products">
-      <ul>
-        <store-product v-for="(product, index) in basket"
+    <div class="summary__products bg-gray">
+      <ul class="max-height">
+        <store-product v-for="(product, index) in pageOfBasket"
           :key="product.id"
           :code="product.code"
           :name="product.product"
@@ -20,22 +20,48 @@
         >
         </store-product>
       </ul>
+      <div class="footer">
+        <jw-pagination class="pagination"
+            :items="basket" 
+            :pageSize="10" 
+            @changePage="onChangePageBasket"
+            :disableDefaultStyles="true"
+            :labels="customLabels"
+        ></jw-pagination>
+      </div>
     </div>
     <!-- info CONSOLE-->
-    <hr class="products__line">
-    <div>
-      <h1> {{ totalPrice }} </h1>
-      <h1> {{ totalVat }} </h1>
-      <h1> {{ subTotal }} </h1>
-      <input v-model="shipping" type="text">
-      <input v-model="discount" type="text">
-      <h1>{{ total }}</h1>
+    <div class="summary__console">
+      <div class="form_details-input">
+        <input v-model="customer.order" id="ordernumber" type="text" placeholder="-">
+        <label for="ordernumber">Order number</label>
+      </div>
+      <div class="form_details-input">
+        <input v-model="totalPrice" id="totalprice" type="text" disabled>
+        <label for="totalprice">Total Price</label>
+      </div>
+      <div class="form_details-input">
+        <input v-model="totalVat" id="totalvat" type="text" disabled>
+        <label for="totalvat">vat</label>
+      </div>
+      <div class="form_details-input">
+        <input v-model="discount" id="discount" type="text" placeholder="0">
+        <label for="discount">Discount</label>
+      </div>
+      <div class="form_details-input">
+        <input v-model="shipping" id="shipping" type="text" placeholder="0">
+        <label for="shipping">Shipping</label>
+      </div>
+      <div class="form_details-input">
+        <input v-model="total" id="sum" type="text" disabled>
+        <label for="sum">total</label>
+      </div>
     </div>
-    
   </div>
 </template>
 
 <script>
+  const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
   import PrintPage from './subComponents/PrintPage.vue'
   import StoreProduct from './subComponents/StorePrododuct.vue';
   import {mapGetters} from 'vuex';
@@ -49,7 +75,9 @@
       return {
         shipping: 0,
         discount: 0,
-        print: false
+        print: false,
+        pageOfBasket: [],
+        customLabels
       }
     },
     computed: {
@@ -62,7 +90,9 @@
       }
     },
     methods: {
-       
+       onChangePageBasket(pageOfItems) {
+        this.pageOfBasket = pageOfItems;
+      }
     }
   }
 </script>
@@ -76,6 +106,14 @@
     .summary {
       display: flex;
       flex-direction: column;
+      
+      &__console {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex: 0 0 20%;
+        
+      }
       &__title {
         text-transform: uppercase;
         display: flex;
@@ -87,7 +125,7 @@
       }
       &__customer {
         width: 100%;
-        flex: 0 0 15%;
+        flex: 0 0 10%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -96,11 +134,19 @@
       &__products {
         width: 100%;
         flex: 1;
+        border-radius: 20px;
+        padding: .5rem;
       }
 
       & h3 span {
         color: $base-color;
       }
+    }
+    .max-height {
+      height: 88%;
+    }
+    .form_details-input {
+      margin-top: 2rem;
     }
 
 </style>
