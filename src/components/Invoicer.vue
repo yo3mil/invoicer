@@ -31,6 +31,7 @@
   import InvoicerCustomer from './invoicer/InvoicerCustomer.vue';
   import InvoicerProduct from './invoicer/InvoicerProduct.vue';
   import InvoicerVerify from './invoicer/InvoicerVerify.vue';
+  import { saveHistory } from "../database/firestore.js";
 
   export default {
     components: {
@@ -69,6 +70,7 @@
       },
       print() {
         this.$router.replace({path: '/PrintPage'})
+        saveHistory(this.$store.state.customer, this.$store.state.productsOrder);
       }
     }
   }

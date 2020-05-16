@@ -2,12 +2,13 @@
 export const products = [];
 export const customers = [];
 // export functions
-export {updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer}
+export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const productCollection = db.collection('test');
 const customerCollection = db.collection('test2');
+const historyCollection = db.collection('history');
 
 checkForChanges(productCollection, products);
 checkForChanges(customerCollection, customers);
@@ -76,6 +77,16 @@ const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , n
         phone: newPhone,
         email: newEmail
     });
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//HISTORY
+
+const saveHistory = (customer, products) => {
+    historyCollection.add({
+        customer: customer,
+        products: products
+        
+    })
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

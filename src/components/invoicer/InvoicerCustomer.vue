@@ -25,7 +25,7 @@
                 </select>
             </div>
             <div class="form_details-input long margin-bottom">
-                <input v-model="customer.notes" id="biling" type="text" placeholder="Notes">
+                <input v-model="customer.notes" id="notes" type="text" placeholder="Notes">
             </div>
             
             <div class="form_details-input long margin-bottom">

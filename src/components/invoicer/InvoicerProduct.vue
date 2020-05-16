@@ -118,6 +118,7 @@
     @import "../../styles/_base.scss";
     .body_element {
       display: flex;
+      height: 100%;
     }
     .body_half {
       height: 100%;
