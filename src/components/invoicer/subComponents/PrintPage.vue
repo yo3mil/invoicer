@@ -98,8 +98,11 @@
 //import print from 'print-js'
 import {mapGetters} from 'vuex';
 export default {
-  mounted() {
-    window.print();
+  created() {
+    setTimeout(()=> {
+      window.print();
+    }, 200)
+    
   },
   computed: {
     ...mapGetters([
