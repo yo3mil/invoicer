@@ -11,79 +11,76 @@
         </div>
       </div>
       <hr>
+
       <div class="print__title">
-        <h2>Invoice For Order: ORD129422</h2>
-        <h3>Order date: {{ new Date().toLocaleString() }}</h3>
+        <h2>Invoice For Order: {{ customer.info.orderNumber}}</h2>
+        <h3>Order date: {{ customer.info.orderDate }}</h3>
       </div>
-      <div class="print__list">
-        <div class="print__list-title">
-          <h3 class="print__list-title-1">Item</h3><h3>Quantity</h3><h3>Price</h3><h3>Tax</h3><h3>Total</h3>
-        </div>
-        <ul class="print__list-list">
-          <li class="print__list-list_element"
-              v-for="item in basket"
-              :key="item.id"
-          ><h3 class="print__list-list_element-1">{{item.product}}</h3><h3>{{item.quantity}}</h3><h3>{{item.priceNoVat}}</h3><h3>{{item.vat}}</h3><h3>{{item.quantity * item.priceNoVat}}</h3>
-        </li>
-        </ul>
-        <div class="print__list-summary">
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Subtotal:</h3><h3>{{totalPrice}}</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Shipping:</h3><h3>0</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Tax:</h3><h3>{{totalVat}}</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Total:</h3><h3>{{subTotal}}</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3>Discount:</h3><h3>0000</h3>
-          </div>
-        </div>
-      </div>
+
       <div class="print__details">
         <div class="print__details-customer">
           <div class="print__list-title">
             <h3>Your Details</h3>
           </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1">{{customer.name}}</h3><h3>{{customer.email}}</h3><h3></h3><h3></h3><h3>{{customer.phone}}</h3>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Company:</h3><h3>{{customer.name}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Telephone:</h3><h3>{{customer.phone}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Email:</h3><h3>{{customer.email}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Contact Person:</h3><h3>{{customer.contact}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Billing Address:</h3><h3>{{customer.address}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Delivery Address:</h3><h3>{{customer.delivery}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Payment Method:</h3><h3>{{customer.payment}}</h3>
+          </div>
+          <div class="print__details-line">
+            <h3 class="print__details-line-1">Note:</h3><h3>{{customer.notes}}</h3>
           </div>
         </div>
-        <div class="print__details-billing">
-          <div class="print__list-title">
-            <h3 class="print__list-title-1">Billing Address</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1 ">{{customer.address}}</h3>
-          </div>
-           <div class="print__list-title ">
-            <h3>Shipping Address</h3>
-          </div>
-          <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1">{{customer.delivery}}</h3>
-          </div>
+        
+      </div>
+      
+      <div class="print__list">
+        <div class="print__list-title">
+          <h3 class="print__list-title-1">Item</h3><h3>Size</h3><h3 class="qty">Qty</h3><h3>Price</h3><h3>Tax</h3><h3>Total</h3>
         </div>
-        <div class="print__details-payment">
-          <div class="print__list-title">
-            <h3>Payment Method</h3>
+        <ul class="print__list-list">
+          <li class="print__list-list_element"
+              v-for="item in basket"
+              :key="item.id"
+          ><h3 class="print__list-list_element-1">{{item.product}}</h3><h3>{{item.size}}</h3><h3 class="qty">{{item.quantity}}</h3><h3>£{{twoDecimals(item.priceNoVat)}}</h3><h3>£{{twoDecimals(item.vat)}}</h3><h3>£{{twoDecimals(item.quantity * item.priceNoVat)}}</h3>
+        </li>
+        </ul>
+        <div class="print__list-summary">
+          <div class="print__list-list_element">
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Subtotal:</h3><h3>£{{twoDecimals(totalPrice)}}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1">{{customer.payment}}</h3>
-          </div>
-        </div>
-        <div class="print__details-payment">
-          <div class="print__list-title">
-            <h3>Shipping Method</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Shipping:</h3><h3>£{{twoDecimals(customer.info.shipping)}}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1">ParcelForce UK Standard Delivery (Dispatch 1-3 working days)</h3><h3></h3><h3></h3><h3>Tracking:</h3><h3>IK7702520</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Tax:</h3><h3>£{{twoDecimals(totalVat)}}</h3>
           </div>
+          <div class="print__list-list_element">
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Discount:</h3><h3>{{ customer.info.discount}}%</h3>
+          </div>
+          <div class="print__list-list_element">
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Total:</h3><h3>£{{twoDecimals(finalPrice)}}</h3>
+          </div>
+          
         </div>
       </div>
+      
       <hr>
       <div class="print__footer">
         <h4>Oriental Mart - 6-8 Heathcoat Street, Nottingham, NG1 3AA</h4>
@@ -99,15 +96,18 @@
 import {mapGetters} from 'vuex';
 export default {
   created() {
-    setTimeout(()=> {
-      window.print();
-    }, 200)
-    
+    setTimeout(()=> {window.print();}, 500);
+    setTimeout(() => {this.$router.replace({path: '/menu'})}, 600);
   },
   computed: {
     ...mapGetters([
-        'totalPrice', 'totalVat', 'subTotal','basket','customer'
+        'totalPrice', 'totalVat', 'subTotal','basket','customer', 'finalPrice'
       ])
+  },
+  methods: {
+    twoDecimals(number) {
+      return (Math.round(number * 100) / 100).toFixed(2);
+    }
   }
 }
 </script>
@@ -129,6 +129,18 @@ export default {
     min-height: 100vh;
     background-color: white;
     padding: .5cm .5cm;
+    &__details-customer {
+      margin-bottom: 1.3rem;
+    }
+    &__details-line {
+      display: flex;
+      margin-bottom: .2rem;
+      &-1 {
+        width: 20%;
+        font-weight: bold;
+        
+      }
+    }
     &__header {
       width: 100%;
       height: 3cm;
@@ -180,28 +192,19 @@ export default {
         }
         
       }
+      
       &-summary {
           background-color: rgb(240, 240, 240) ;
           width: 100%;
-          &-element {
-            
-            display: flex;
-            width: 10%;
-          }
+        &-element {
+          
+          display: flex;
+          width: 10%;
         }
+      }
     }
 
-    &__details {
-      &-customer {
-        margin-bottom: 20px;
-      }
-      &-billing {
-        margin-bottom: 20px;
-      }
-      &-payment {
-        margin-bottom: 20px;
-      }
-    }
+    
     &__footer {
       display: flex;
       flex-direction: column;
@@ -211,6 +214,14 @@ export default {
       
     }
 
+  }
+  .qty {
+    text-align: center;
+    width: 10%;
+    margin-right: .7rem;
+  }
+  .bold {
+    font-weight: bold;
   }
 
 </style>
