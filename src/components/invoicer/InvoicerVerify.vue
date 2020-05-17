@@ -2,7 +2,7 @@
   <div class="body_element summary">
     <div class="summary__customer">
       <h3>
-        <span>{{customer.name}}</span>
+        <span>{{customer.name}}, {{ customer.contact}}</span>
       </h3>
     </div>
     <hr class="products__line">
@@ -33,28 +33,28 @@
     <!-- info CONSOLE-->
     <div class="summary__console">
       <div class="form_details-input">
-        <input v-model="customer.order" id="ordernumber" type="text" placeholder="-">
+        <input @input="updateInfo" v-model="info.orderNumber" id="ordernumber" type="text">
         <label for="ordernumber">Order number</label>
       </div>
       <div class="form_details-input">
         <input v-model="totalPrice" id="totalprice" type="text" disabled>
-        <label for="totalprice">Total Price</label>
+        <label for="totalprice">Total Price (£)</label>
       </div>
       <div class="form_details-input">
         <input v-model="totalVat" id="totalvat" type="text" disabled>
-        <label for="totalvat">vat</label>
+        <label for="totalvat">vat (£)</label>
       </div>
       <div class="form_details-input">
-        <input v-model="discount" id="discount" type="text" placeholder="0">
-        <label for="discount">Discount</label>
+        <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0">
+        <label for="discount">Discount (%)</label>
       </div>
       <div class="form_details-input">
-        <input v-model="shipping" id="shipping" type="text" placeholder="0">
-        <label for="shipping">Shipping</label>
+        <input @input="updateInfo" v-model="info.shipping" id="shipping" type="text" placeholder="0">
+        <label for="shipping">Shipping (£)</label>
       </div>
       <div class="form_details-input">
         <input v-model="total" id="sum" type="text" disabled>
-        <label for="sum">total</label>
+        <label for="sum">total (£)</label>
       </div>
     </div>
   </div>
@@ -71,10 +71,17 @@
       StoreProduct,
       PrintPage
     },
+    mounted() {
+      this.updateInfo();
+    },
     data() {
       return {
-        shipping: 0,
-        discount: 0,
+        info: {
+          shipping: 0,
+          discount: 0,
+          orderNumber: '-',
+          orderDate: new Date().toJSON().slice(0,10).replace(/-/g,'/')
+        },
         print: false,
         pageOfBasket: [],
         customLabels
@@ -82,16 +89,19 @@
     },
     computed: {
       ...mapGetters([
-        'totalPrice', 'totalVat', 'subTotal','basket','customer'
+        'totalPrice', 'totalVat', 'subTotal','basket','customer', 'finalPrice'
       ]),
       // total including shipping and discount.
       total() {
-        return (this.subTotal + Number(this.shipping)) - (this.subTotal * (Number(this.discount) / 100));
+        return (this.subTotal + Number(this.info.shipping)) - (this.subTotal * (Number(this.info.discount) / 100));
       }
     },
     methods: {
        onChangePageBasket(pageOfItems) {
         this.pageOfBasket = pageOfItems;
+      },
+      updateInfo (e) {
+        this.$store.commit('updateInfo', this.info)
       }
     }
   }
@@ -130,6 +140,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        text-transform: uppercase;
       }
       &__products {
         width: 100%;

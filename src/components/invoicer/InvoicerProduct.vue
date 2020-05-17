@@ -97,6 +97,7 @@
         for (let i = 0; i < products.length; i++) {
           if(products[i].product.toLowerCase().includes(this.searchPhrase.toLowerCase())
           || products[i].code.toLowerCase().includes(this.searchPhrase.toLowerCase())) {
+            products[i].quantity = 1;
             this.searchedProducts.push(products[i])
           }
         }

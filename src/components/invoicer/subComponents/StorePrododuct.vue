@@ -124,10 +124,24 @@
             color: $color-red;
         }
         &-quantity {
-            border: 0;
-            width: 12%;
-            background-color: transparent;
+        border: 0;
+        width: 12%;
+        background-color: transparent;
+           
+        }
+            
+    }
+    .ion-android-remove-circle,
+    .ion-android-add-circle {
+        color: $color-green;
+        font-size: 1rem;
+        margin: auto .6rem;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.1);
+        }
+        &:active {
+            transform: scale(1);
         }
     }
-
 </style>
