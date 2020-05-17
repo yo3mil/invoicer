@@ -9,13 +9,17 @@ export const store = new Vuex.Store({
         productsOrder: []
     },
     getters: {
+        // all in basket, with shipping and dicounts
+        finalPrice(state, getters) {
+            return (getters.subTotal + Number(state.customer.info.shipping)) - (getters.subTotal * (Number(state.customer.info.discount) / 100));
+        },
+        // all in basket just price no vat
         totalPrice(state) {
             let total = [];
             let multiplyItem;
             for(let i = 0; i < state.productsOrder.length; i++){
                 multiplyItem = state.productsOrder[i].quantity * Number(state.productsOrder[i].priceNoVat);
                 total.push(multiplyItem);
-                
             }
             return total.reduce((a, b) => a + b, 0);
         },
@@ -50,6 +54,15 @@ export const store = new Vuex.Store({
         resetState(state) {
             state.customer = {};
             state.productsOrder = [];
+        },
+        updateInfo (state, info) {
+            state.customer.info = info;
+            console.log(state.customer);
+            
         }
     }
 });
+// rounding helper function
+function twoDecimals(number) {
+    return (Math.round(number * 100) / 100).toFixed(2);
+}

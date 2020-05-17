@@ -85,7 +85,6 @@ const saveHistory = (customer, products) => {
     historyCollection.add({
         customer: customer,
         products: products
-        
     })
 }
 
