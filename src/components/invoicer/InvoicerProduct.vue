@@ -7,6 +7,7 @@
         <hr class="products__line">
       </div>
       <ul class="list max-height">
+        <!-- mode:true === for product, false for basket item-->
         <store-product v-for="product in pageOfProducts"
           :key="product.id"
           :code="product.code"
@@ -101,7 +102,6 @@
             this.searchedProducts.push(products[i])
           }
         }
-        
       },
       onChangePageProducts(pageOfItems) {
           // update page of items

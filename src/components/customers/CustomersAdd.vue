@@ -1,59 +1,36 @@
 <template>
     <div class="body_element">
         <div class="form_details">
+            <!--LEFT ROW-->
             <div class="form_details-row">
-                    
                 <div class="form_details-input short margin-bottom">
-                    
                     <input id="name" v-model="name" type="text" placeholder="Company name">
                 </div>
                 <div class="form_details-input short margin-bottom">
-                    
                     <input id="contactname" v-model="contactName" type="text" placeholder="Contact name">
                 </div>
-                
                 <div class="form_details-input short margin-bottom">
-                    
                     <input id="phone" v-model="phone" type="text" placeholder="Telephone">
                 </div>
-                    
-                
             </div>
+            <!--RIGHT ROW-->
             <div class="form_details-row">
                 <div class="form_details-input short margin-bottom">
-                    
                     <input id="email" v-model="email" type="email" placeholder="Email">
                 </div>
-
                 <div class="form_details-input long margin-bottom">
-                
                     <input id="address" v-model="address" type="text" placeholder="Billing address">
                 </div>
-
                 <div class="form_details-input long margin-bottom">
-                    
                     <input id="delivery" v-model="delivery" type="text" placeholder="Shipping address">
                 </div>
-                
-                
-                <!-- <div class="form_details-input">
-                    <label>Add this product ?</label>
-                    <div class="form_details-console">
-                        <div @click="exitPopup()" class="btn__simple"><i class="ion-close"></i></div>
-                        <div @click="addCustomer()" class="btn__simple"><i class="ion-ios-download"></i></div>
-                    </div>
-                    
-                </div> -->
             </div>
         </div>
         <div class="btn_container">
             <div @click="exitPopup()" class="header__action"><p>Discard</p></div>
             <div @click="addCustomer()" class="header__action"><p>Add Customer</p></div>
         </div>
-        
     </div>
-    
-  
 </template>
 
 <script>
@@ -96,8 +73,6 @@ export default {
 
 <style lang="scss">
 @import "../../styles/_base.scss";
- 
-
  .inline {
      display: flex;
      

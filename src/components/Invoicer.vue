@@ -1,6 +1,7 @@
 <template>
   <div class="page__container bg-linear-green">
       <div class="container">
+        <!--HEADER-->
         <div class="header">
           <router-link tag="div" class="header__menu" to="/menu">
             <div class="menu__icon"><div></div><div></div><div></div></div>
@@ -12,13 +13,14 @@
             <i class="ion-play"></i>
             <h1 :class="{active: !stage.verifyStage}" class="header__title">review</h1>
           </div>
-          
-         
         </div>
+        <!--BODY-->
         <div class="body">
-          <invoicer-customer v-if="stage.customerStage"></invoicer-customer>
-          <invoicer-product v-if="stage.productStage"></invoicer-product>
-          <invoicer-verify v-if="stage.verifyStage"></invoicer-verify>
+          <transition name="fade" mode="out-in">
+            <invoicer-customer v-if="stage.customerStage"></invoicer-customer>
+            <invoicer-product v-if="stage.productStage"></invoicer-product>
+            <invoicer-verify v-if="stage.verifyStage"></invoicer-verify>
+          </transition>
           <div @click="proceed()" v-show="!printbtn" class="header__action header__action-right"><p>Continue</p></div>
           <div @click="back()" v-show="backbtn" class="header__action header__action-left"><p>Back</p></div>
           <div @click="print()" v-show="printbtn" class="header__action header__action-right"><p>Print</p></div>

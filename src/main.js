@@ -1,22 +1,18 @@
+
 import Vue from 'vue'
 import App from './App.vue'
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 //Vue router
 import VueRouter from 'vue-router';
 import { routes } from './routes.js';
-
-
 const router = new VueRouter({
   mode: 'history',
   routes
 });
-
+// route guard
 router.beforeEach((to, from, next) => {
  // check for required path
-
-   //check if not logged in
+    //check if not logged in
     if (!auth.currentUser && to.matched.some(record => record.meta.requiresAuth)) {
      //go to login page
       next({
@@ -31,19 +27,18 @@ router.beforeEach((to, from, next) => {
     }
  
 });
-
 Vue.use(VueRouter);
 
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 //JW-Pagination 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
 
+///////////////////////////////////////////////////////////////////////////////////////////////
 // VUEX
 import { store } from './store/store.js'
 
-
+///////////////////////////////////////////////////////////////////////////////////////////////
 // VUE
 // fixes back to login page on reload:
 let app;
@@ -57,9 +52,4 @@ firebase.auth().onAuthStateChanged(user => {
     });
   }
 });
-// new Vue({
-//   el: '#app',
-//   router,
-//   store,
-//   render: h => h(App)
-// })
+

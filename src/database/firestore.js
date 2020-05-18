@@ -2,10 +2,9 @@
 export const products = [];
 export const customers = [];
 export const history = [];
-// export functions
+// export action functions
 export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
-
-//innit function
+//init function
 export { getDatabase }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -34,7 +33,6 @@ const saveProduct = (name, size, price, vat, code, category) => {
 }
 // Deleting a product
 const deleteProduct = (id) => {
-    
     productCollection.doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -86,7 +84,7 @@ const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , n
     });
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//HISTORY
+//HISTORY QUERIES
 
 const saveHistory = (customer, products) => {
     historyCollection.add({
@@ -95,7 +93,6 @@ const saveHistory = (customer, products) => {
     })
 };
 const deleteHistory = (id) => {
-    
     historyCollection.doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {

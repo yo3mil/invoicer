@@ -9,14 +9,12 @@
         <h2 class="customer__header-address">Address</h2>
         <h2 class="customer__header-address">Delivery Address</h2>
         <h2 class="customer__header-contact">Contact</h2>
-        
       </div>
       <div class="products__line">
         <hr class="products__line">
       </div>
     </div>
 </template>
-
 <script>
   export default {
     data() {

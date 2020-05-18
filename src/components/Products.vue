@@ -12,9 +12,7 @@
           <h1 class="header__title">Products</h1>
         </div>
       </div>
-      
       <!--MAIN BODY-->
-      
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
         <products-header @inputChange="searched = $event"></products-header>
@@ -113,5 +111,5 @@ export default {
 </script>
 
 <style lang="scss">
-  
+
 </style>

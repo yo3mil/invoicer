@@ -13,7 +13,6 @@
         <div v-if="!mode" @click="deleteProduct()" class="store_product-delete"><i class="ion-trash-a"></i></div>
     </li>
 </template>
-
 <script>
     import { products } from '../../../database/firestore';
     import {mapMutations} from 'vuex';
@@ -80,7 +79,6 @@
 
 <style lang="scss" scoped> 
     @import "../../../styles/_base.scss";
-
     .store_product {
         display: flex;
         width: 100%;

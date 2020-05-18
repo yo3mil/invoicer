@@ -7,14 +7,10 @@
         </div>
         <div class="login__console">
             <div class="form_details-input mg">
-            
                 <input v-on:keyup.enter="login" v-model="email" id="signin-login" type="email" placeholder="Login">
-            
             </div>
             <div class="form_details-input mg">
-            
                 <input v-on:keyup.enter="login" v-model="password" id="signin-password" type="password" placeholder="Password">
-            
             </div>
             <div @click="login"  class="login__console-btn" >
                <h3>Log-in</h3> 
@@ -23,7 +19,6 @@
       </div>
   </div>
 </template>
-
 <script>
 import { getDatabase } from "../database/firestore.js";
     export default {
@@ -51,7 +46,7 @@ import { getDatabase } from "../database/firestore.js";
     }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import "../styles/_base.scss";
     .signin {
         width: 100%;

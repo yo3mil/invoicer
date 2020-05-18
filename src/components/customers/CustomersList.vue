@@ -12,8 +12,6 @@
         <h3>{{ curPhone }}</h3>
         <h3>{{ curEmail }}</h3>
       </div>
-     
-    
       <!--Main Console-->
       <div class="customer__console" v-if="subConsole">
         <div @click="post()" class="customer__console-invoice"><i class="ion-printer"></i></div>
@@ -26,7 +24,6 @@
         <div @click="subConsole = true" class="customer__console-no"><i class="ion-close"></i></div>
       </div>
     </div>
-
     <!--EDIT-->
     <div v-else class="customer__container customer bg-lighter">
       <div class="customer__name">
@@ -44,9 +41,7 @@
       </div>
     </div>
   </li>
-  
 </template>
-
 <script>
 import { deleteCustomer, updateCustomer } from '../../database/firestore.js';
 
@@ -58,7 +53,6 @@ export default {
       phone: { type: String, required: true},
       address: { type: String, required: true },
       delivery: { type: String, required: true }
-      
     },
     data() {
       return {
@@ -101,76 +95,4 @@ export default {
 
 <style lang="scss">
     @import "../../styles/_base.scss";
-    
-    
-    .customer {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        max-height: 4.6rem;
-        align-items: center;
-        transition: all .1s;
-        font-size: .8rem;
-        &:hover {
-            background-color: $base-color-light;
-        }
-        &__name {
-          width: 19%;
-        }
-        &__address {
-          width: 40%;
-        }
-        &__contact {
-          width: 18%;
-        }
-        // console style
-        &__console {
-          width: 11%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          align-items: center;
-          font-size: .9rem;
-          cursor: pointer;
-          height: 100%;
-          &-edit,
-          &-delete,
-          &-invoice,
-          &-yes,
-          &-no {
-            
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            &:hover {
-              transform: scale(1.1);
-            }
-          }
-          &-edit,
-          &-delete,
-          &-invoice {
-            width: 33%;
-          }
-          &-yes,
-          &-no {
-            width: 50%;
-          }
-
-
-          &-edit {
-            color: $color-green;
-          }
-          &-delete {
-            color: $color-red;
-          }
-          &-yes {
-            color: $color-warning;
-            
-          }
-          &-no {
-            color: $color-ok;
-          }
-        }
-    }
 </style>

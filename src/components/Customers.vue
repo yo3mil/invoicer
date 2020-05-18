@@ -14,7 +14,6 @@
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
         <customers-header @inputChange="searched = $event"></customers-header>
-
         <!--List With all Customers-->
         <ul class="list">
           <customers-list 
@@ -28,7 +27,6 @@
             :delivery="customer.deliveryAddress"
           ></customers-list>
         </ul>
-
         <!--Footer with pagination-->
         <div class="footer">
           
@@ -106,9 +104,9 @@ export default {
 </script>
 
 <style lang="scss">
+  @import "../styles/_base.scss";
   .products__list {
     grid-row: 2 / -1;
     grid-column: center-start / center-end;
   }
-  
 </style>

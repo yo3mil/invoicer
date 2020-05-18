@@ -1,9 +1,8 @@
 <template>
     <div class="body_element">
-        
         <div class="form_details">
+            <!--left row-->
             <div class="form_details-row">
-                
                 <div class="form_details-input short margin-bottom">
                     <input id="name" v-model="name" class="add__popup-input" type="text" placeholder="Product name">
                 </div>
@@ -13,15 +12,13 @@
                 <div class="form_details-input short margin-bottom">
                     <input id="size" v-model="size" class="add__popup-input" type="text" placeholder="Size">
                 </div>
-                
             </div>
+            <!--right row-->
             <div class="form_details-row">
                 <div class="form_details-input short margin-bottom">
                     <input id="price" v-model="price"  class="add__popup-input" type="text" placeholder="Price (excl. VAT)">
                 </div>
-                
                 <div class="form_details-input short margin-bottom">
-                    
                     <select id="typeof" name="typeoffood" v-model="type">
                         <option value="D">Drink</option>
                         <option value="F">Frozen</option>
@@ -31,22 +28,17 @@
                         <option value="Z">Single</option>
                     </select>
                 </div>
-
                 <div class="form_details-input margin-bottom">
                     <label for="vat">CALCULATE VAT ?</label>
                     <input class="vat_checkbox" id="vat" type="checkbox" v-model="includeVat">
                 </div>
             </div>
-           
         </div>
         <div class="btn_container">
             <div @click="exitPopup" class="header__action"><p>Discard</p></div>
             <div @click="addProduct" class="header__action"><p>Add Product</p></div>
         </div>
-        
-        
     </div>
-  
 </template>
 
 <script>
@@ -109,14 +101,9 @@ export default {
     }
 }
 </script>
-
 <style lang="scss">
 @import "../../styles/_base.scss";
-    
-    
- .vat_checkbox {
+    .vat_checkbox {
      margin-right: auto;
- }
-
-
+    }
 </style>

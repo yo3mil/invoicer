@@ -8,7 +8,6 @@
       <h3 class="product__size">{{ curSize }}</h3>
       <h3 class="product__price">£ {{ twoDecimals(curPrice) }}</h3>
       <h3 class="product__vat">£ {{ twoDecimals(curVat) }}</h3>
-
       <!--Main Console-->
       <div class="product__console" v-if="subConsole">
           <div @click="editFields()" class="product__console-edit"><i class="ion-edit"></i></div>
@@ -20,7 +19,6 @@
         <div @click="subConsole = true" class="product__console-no"><i class="ion-close"></i></div>
       </div>
     </div>
-
     <!--EDIT-->
     <div v-else class="product__container product bg-lighter">
       <input v-model="curCode" type="text" class="product__id  edit_input">
