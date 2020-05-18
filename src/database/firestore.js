@@ -8,8 +8,8 @@ export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, 
 export { getDatabase }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-const productCollection = db.collection('test');
-const customerCollection = db.collection('test2');
+const productCollection = db.collection('products');
+const customerCollection = db.collection('customers');
 const historyCollection = db.collection('history');
 
 function getDatabase() {
