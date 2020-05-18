@@ -70,7 +70,7 @@
       },
       print() {
         this.$router.replace({path: '/PrintPage'})
-        //this.save();
+        this.save();
       },
       save() {
         saveHistory(this.$store.state.customer, this.$store.state.productsOrder);

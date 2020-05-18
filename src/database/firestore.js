@@ -1,17 +1,24 @@
  //Export Collections
 export const products = [];
 export const customers = [];
+export const history = [];
 // export functions
-export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer}
+export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
 
+//innit function
+export { getDatabase }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 const productCollection = db.collection('test');
 const customerCollection = db.collection('test2');
 const historyCollection = db.collection('history');
 
-checkForChanges(productCollection, products);
-checkForChanges(customerCollection, customers);
+function getDatabase() {
+    checkForChanges(productCollection, products);
+    checkForChanges(customerCollection, customers);
+    checkForChanges(historyCollection, history);
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
@@ -77,7 +84,7 @@ const updateCustomer = (id, newName, newContactName, newAddress, newDelivery , n
         phone: newPhone,
         email: newEmail
     });
-}
+};
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //HISTORY
 
@@ -86,7 +93,15 @@ const saveHistory = (customer, products) => {
         customer: customer,
         products: products
     })
-}
+};
+const deleteHistory = (id) => {
+    
+    historyCollection.doc(id).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+};
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -142,7 +157,10 @@ function checkForChanges(input, output) {
                
             }
         });
+    }, function(error) {
+        console.log("Listeners detached, no permmision");
     });
+
 }
 
 

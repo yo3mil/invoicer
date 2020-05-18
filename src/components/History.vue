@@ -11,22 +11,41 @@
         </div>
         
       </div>
-      <div class="body" v-show="!addPopup">
-        
-        <!--List With all Customers-->
-        <ul class="list">
+      <div class="body">
+      <div class="products">
+        <div class="products__search">
+          <input v-model="searched" class="products__search-input" type="text" placeholder="Search...">
           
+        </div>
+        <div class="products__header header-mg">
+          <h2 class="customer__header-name">Number/Date</h2>
+          <h2 class="customer__header-address">Company</h2>
+          <h2 class="customer__header-address">Delivery Address</h2>
+          <h2 class="customer__header-contact">Value</h2>
+        </div>
+        <div class="products__line">
+          <hr class="products__line">
+        </div>
+      </div>
+        <!--List With History-->
+        <ul class="list">
+          <history-list 
+            v-for="entry in historyList"
+            :key="entry.id"
+            :order="entry.products"
+            :customer="entry.customer"
+          ></history-list>
         </ul>
 
         <!--Footer with pagination-->
         <div class="footer">
           
-          <!-- <jw-pagination :items="allCustomers" 
+          <jw-pagination :items="historyList" 
             :pageSize="6" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"
-          ></jw-pagination> -->
+          ></jw-pagination>
         </div>
         
       </div>
@@ -37,11 +56,60 @@
 </template>
 
 <script>
+const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
+import { history } from "../database/firestore.js";
+import HistoryList from "./history/HistoryList.vue";
 export default {
-
+  components: {
+    HistoryList
+  },
+  data() {
+    return {
+      historyList: history,
+      searched: "",
+      //jw pagination
+      pageOfItems: [],
+      customLabels
+    }
+  },
+  watch: {
+    searched() {
+      if(this.searched === "") {
+        this.historyList = history;
+      } else {
+        this.historyList = [];
+        this.updateSearch();
+      }
+    }
+  },
+  methods: {
+    updateSearch() {
+      for (let i = 0; i < history.length; i++) {
+        if(history[i].customer.name.toLowerCase().includes(this.searched.toLowerCase())
+        || history[i].customer.info.orderNumber.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.historyList.push(history[i])
+        }
+      }
+    },
+    //pagination setup
+    onChangePage(pageOfitems) {
+      this.pageOfItems = pageOfitems;
+    }
+  }
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  @import "../styles/_base.scss";
+  .customer__header {
+    &-name {
+      width: 19%;
+    }
+    &-address {
+      width: 40%;
+    }
+    &-contact {
+      width: 29%;
+    }
+  }
 </style>
