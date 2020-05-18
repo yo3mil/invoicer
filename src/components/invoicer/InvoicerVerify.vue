@@ -81,6 +81,7 @@
           discount: 0,
           orderNumber: '-',
           orderDate: new Date().toJSON().slice(0,10).replace(/-/g,'/')
+          
         },
         print: false,
         pageOfBasket: [],
@@ -101,6 +102,7 @@
         this.pageOfBasket = pageOfItems;
       },
       updateInfo (e) {
+        this.info.sum = this.total;
         this.$store.commit('updateInfo', this.info)
       }
     }

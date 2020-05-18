@@ -57,12 +57,8 @@ export const store = new Vuex.Store({
         },
         updateInfo (state, info) {
             state.customer.info = info;
-            console.log(state.customer);
+            //console.log(state.customer);
             
         }
     }
 });
-// rounding helper function
-function twoDecimals(number) {
-    return (Math.round(number * 100) / 100).toFixed(2);
-}

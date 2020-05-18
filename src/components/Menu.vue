@@ -45,13 +45,11 @@
 </template>
 
 <script>
-
+    
     export default {
-        computed: {
-            
-        },
         methods: {
             logout() {
+                
                 auth.signOut()
                 .then(() => {
                     this.$router.push('/');
@@ -59,7 +57,6 @@
             },
             resetStore() {
                 this.$store.commit('resetState');
-                console.log('hello')
             }
         }
     }

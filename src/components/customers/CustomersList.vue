@@ -86,6 +86,7 @@ export default {
         this.edit = false;
       },
       post() {
+        this.$store.commit('resetState');
         this.$store.state.customer.name = this.curName;
         this.$store.state.customer.contact = this.curContactName;
         this.$store.state.customer.address = this.curAddress;
