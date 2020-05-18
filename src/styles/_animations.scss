@@ -22,19 +22,31 @@
   opacity: 0
 }
 
-//swipe in out
-.swipe-enter-active,
-.swipe-leave-active {
-  transition-duration: 0.3s;
-  transition-property: opacity;
-  transition-timing-function: ease;
-  
+/// slide in 
+//from right to left
+.slideLeft-leave-active,
+.slideLeft-enter-active {
+  transition: .5s;
+  transition-timing-function: ease-in-out;
   
 }
-
-.swipe-enter,
-.swipe-leave-active {
+.slideLeft-enter {
+  transform: translate(150%, 0);
+}
+.slideLeft-leave-to {
+  transform: translate(-150%, 0);
   opacity: 0;
-  
 }
-  
+//from right to left
+.slideRight-leave-active,
+.slideRight-enter-active {
+  transition: .5s;
+  transition-timing-function: ease-in-out;
+}
+.slideRight-enter {
+  transform: translate(-150%, 0);
+}
+.slideRight-leave-to {
+  transform: translate(150%, 0);
+  opacity: 0;
+}

@@ -15,8 +15,8 @@
           </div>
         </div>
         <!--BODY-->
-        <div class="body">
-          <transition name="fade" mode="out-in">
+        <div class="body overflow">
+          <transition :name="animation" mode="out-in">
             <invoicer-customer v-if="stage.customerStage"></invoicer-customer>
             <invoicer-product v-if="stage.productStage"></invoicer-product>
             <invoicer-verify v-if="stage.verifyStage"></invoicer-verify>
@@ -45,11 +45,13 @@
       return {
         stage: { customerStage: true, productStage: false, verifyStage: false },
         backbtn: false,
-        printbtn: false
+        printbtn: false,
+        animation: "slideLeft"
       }
     },
     methods: {
       proceed() {
+        this.animation = "slideLeft";
         if(this.stage.customerStage) {
           this.viewChanger(false, true, false, true, false);
         } else if (this.stage.productStage) {
@@ -57,6 +59,7 @@
         }
       },
       back() {
+        this.animation = "slideRight";
         if(this.stage.productStage) {
           this.viewChanger(true, false, false, false, false)
         } else if (this.stage.verifyStage) {
@@ -92,5 +95,8 @@
   }
   .active {
     opacity: .2;
+  }
+  .overflow {
+    overflow: hidden;
   }
 </style>

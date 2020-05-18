@@ -1,7 +1,7 @@
 <template>
     <li class="store_product">
         <h3 class="store_product-1">{{ code }}</h3>
-        <h3 class="store_product-2">{{ name }}</h3>
+        <h3 class="store_product-2">{{ shortString(name) }}</h3>
         <h3 class="store_product-1">{{ size }}</h3>
         <h3 class="store_product-1">£{{ twoDecimals(price) }}</h3>
         <div class="store_product-1 quantity" v-if="!mode">
@@ -72,6 +72,9 @@
             },
             decrementItem() {
                 this.$store.commit('decrement', this.index);
+            },
+            shortString(string) {
+                return (!this.mode && string.length > 20) ? string.substr(0, 20) + '...' : string;
             }
         }
     }

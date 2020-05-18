@@ -37,23 +37,23 @@
         <label for="ordernumber">Order number</label>
       </div>
       <div class="form_details-input">
-        <input v-model="totalPrice" id="totalprice" type="text" disabled>
-        <label for="totalprice">Total Price (£)</label>
-      </div>
-      <div class="form_details-input">
-        <input v-model="totalVat" id="totalvat" type="text" disabled>
-        <label for="totalvat">vat (£)</label>
-      </div>
-      <div class="form_details-input">
         <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0">
         <label for="discount">Discount (%)</label>
       </div>
-      <div class="form_details-input">
+       <div class="form_details-input">
         <input @input="updateInfo" v-model="info.shipping" id="shipping" type="text" placeholder="0">
         <label for="shipping">Shipping (£)</label>
       </div>
       <div class="form_details-input">
-        <input v-model="total" id="sum" type="text" disabled>
+        <h3 class="form_details-input-fake_input">£{{ twoDecimals(totalPrice) }}</h3>
+        <label for="totalprice">Total Price (£)</label>
+      </div>
+      <div class="form_details-input">
+        <h3 class="form_details-input-fake_input">£{{ twoDecimals(totalVat) }}</h3>
+        <label for="totalvat">vat (£)</label>
+      </div>
+      <div class="form_details-input">
+        <h3 class="form_details-input-fake_input">£{{ twoDecimals(total) }}</h3>
         <label for="sum">total (£)</label>
       </div>
     </div>
@@ -104,6 +104,9 @@
       updateInfo (e) {
         this.info.sum = this.total;
         this.$store.commit('updateInfo', this.info)
+      },
+      twoDecimals(number) {
+        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
   }
@@ -114,6 +117,12 @@
     button {
       width: 10rem;
       height: 10rem;
+    }
+    .form_details-input-fake_input {
+      font-weight: bold;
+      padding: .8rem;
+      text-align: center;
+      width: 13rem;
     }
     .summary {
       display: flex;

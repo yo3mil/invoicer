@@ -10,7 +10,7 @@
       <h3 class="customer__address">{{ customer.address }}</h3>
       <div class="customer__contact">
           
-        <h3>£{{ customer.info.sum }}</h3>
+        <h3>£{{ twoDecimals(customer.info.sum) }}</h3>
       </div>
       <!--Main Console-->
       <div class="customer__console" v-if="subConsole">
@@ -51,6 +51,9 @@ export default {
         this.$store.state.customer = this.customer;
         this.$store.state.productsOrder = this.order;
         this.$router.push({ path: '/invoicer' })
+      },
+      twoDecimals(number) {
+        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
 }

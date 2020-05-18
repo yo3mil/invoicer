@@ -41,23 +41,23 @@
         
     }
     &-input {
-        
-        display: flex;
-        flex-direction: column;
-        & label {
-            text-transform: uppercase;
-            font-size: 110%;
-            margin-bottom: .5rem;
-        }
-        & input,
-        & select {
-            border: 0;
-            background-color: $base-color-light;
-            height: 3.2rem;
-            outline: none;
-            padding-left: 1rem;
-            font-size: 1rem;
-        }
+      display: flex;
+      flex-direction: column;
+      & label {
+          text-transform: uppercase;
+          font-size: 110%;
+          margin-bottom: .5rem;
+      }
+      & input,
+      & select,
+      &-fake_input {
+          border: 0;
+          background-color: $base-color-light;
+          height: 3.2rem;
+          outline: none;
+          padding-left: 1rem;
+          font-size: 1rem;
+      }
     }
     &-console {
       display: flex;

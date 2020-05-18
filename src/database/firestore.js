@@ -150,6 +150,12 @@ function checkForChanges(input, output) {
                             customers.splice(i,1);
                         }
                     }
+                } else if (output === history){
+                    for (var i = history.length - 1; i >= 0; --i) {
+                        if (history[i].customer.info.orderNumber == change.doc.data().customer.info.orderNumber && history[i].customer.info.orderDate == change.doc.data().customer.info.orderDate) {
+                            history.splice(i,1);
+                        }
+                    }
                 }
                
             }
