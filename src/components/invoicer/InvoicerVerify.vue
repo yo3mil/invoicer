@@ -49,7 +49,7 @@
         <label for="totalprice">Total Price (£)</label>
       </div>
       <div class="form_details-input">
-        <h3 class="form_details-input-fake_input">£{{ twoDecimals(totalVat) }}</h3>
+        <h3 class="form_details-input-fake_input">£{{ twoDecimals(totalVatIncludingShipping) }}</h3>
         <label for="totalvat">vat (£)</label>
       </div>
       <div class="form_details-input">
@@ -71,7 +71,7 @@
       StoreProduct,
       PrintPage
     },
-    mounted() {
+    created() {
       this.updateInfo();
     },
     data() {
@@ -81,7 +81,6 @@
           discount: 0,
           orderNumber: '-',
           orderDate: new Date().toJSON().slice(0,10).replace(/-/g,'/')
-          
         },
         print: false,
         pageOfBasket: [],
@@ -90,11 +89,14 @@
     },
     computed: {
       ...mapGetters([
-        'totalPrice', 'totalVat', 'subTotal','basket','customer', 'finalPrice'
+        'totalPrice', 'totalVat', 'subTotal','basket','customer'
       ]),
       // total including shipping and discount.
       total() {
-        return (this.subTotal + Number(this.info.shipping)) - (this.subTotal * (Number(this.info.discount) / 100));
+        return (this.subTotal + Number(this.info.shipping)) - (this.subTotal * (Number(this.info.discount) / 100)) + this.totalVatIncludingShipping;
+      },
+      totalVatIncludingShipping() {
+        return this.totalVat + Number(this.info.shipping * 0.2)
       }
     },
     methods: {

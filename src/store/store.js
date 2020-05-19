@@ -9,10 +9,6 @@ export const store = new Vuex.Store({
         productsOrder: []
     },
     getters: {
-        // all in basket, with shipping and dicounts
-        finalPrice(state, getters) {
-            return (getters.subTotal + Number(state.customer.info.shipping)) - (getters.subTotal * (Number(state.customer.info.discount) / 100));
-        },
         // all in basket just price no vat
         totalPrice(state) {
             let total = [];
@@ -30,7 +26,6 @@ export const store = new Vuex.Store({
             for(let i = 0; i < state.productsOrder.length; i++){
                 multiplyItem = state.productsOrder[i].quantity * Number(state.productsOrder[i].vat);
                 total.push(multiplyItem);
-                
             }
             return total.reduce((a, b) => a + b, 0);
         },

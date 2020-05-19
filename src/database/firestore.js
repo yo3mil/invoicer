@@ -17,7 +17,7 @@ function getDatabase() {
     checkForChanges(customerCollection, customers);
     checkForChanges(historyCollection, history);
 }
-
+getDatabase();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
