@@ -71,7 +71,7 @@
           <div class="print__list-list_element">
             <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Tax:</h3><h3>£{{twoDecimals(totalVat)}}</h3>
           </div>
-          <div class="print__list-list_element">
+          <div class="print__list-list_element" v-if="customer.info.discount > 0">
             <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Discount:</h3><h3>{{ customer.info.discount}}%</h3>
           </div>
           <div class="print__list-list_element">
