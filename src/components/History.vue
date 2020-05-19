@@ -30,7 +30,7 @@
         <!--List With History-->
         <ul class="list">
           <history-list 
-            v-for="entry in historyList"
+            v-for="entry in pageOfItems"
             :key="entry.id"
             :order="entry.products"
             :customer="entry.customer"
@@ -41,7 +41,7 @@
         <div class="footer">
           
           <jw-pagination :items="historyList" 
-            :pageSize="6" 
+            :pageSize="7" 
             @changePage="onChangePage"
             :disableDefaultStyles="true"
             :labels="customLabels"
