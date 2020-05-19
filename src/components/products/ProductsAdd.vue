@@ -106,4 +106,7 @@ export default {
     .vat_checkbox {
      margin-right: auto;
     }
+    .form_details {
+        animation: bump .7s forwards;
+    }
 </style>

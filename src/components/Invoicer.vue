@@ -3,9 +3,12 @@
       <div class="container">
         <!--HEADER-->
         <div class="header">
-          <router-link tag="div" class="header__menu" to="/menu">
-            <div class="menu__icon"><div></div><div></div><div></div></div>
-          </router-link>
+          <div class="header__menu">
+            <router-link tag="div" to="/customers" class="header__menu-circle header__menu-circle-1 bg-red"><i class="ion-ios-people"></i></router-link>
+            <router-link tag="div" to="/products" class="header__menu-circle header__menu-circle-2 bg-blue"><i class="ion-grid"></i></router-link>
+            <router-link tag="div" to="/history" class="header__menu-circle header__menu-circle-3 bg-yellow"><i class="ion-document-text"></i></router-link>
+            <router-link tag="div" to="/menu" class="header__menu-circle header__menu-circle-4"><i class="ion-ios-home"></i></router-link>
+          </div>
           <div class="header__title-container">
             <h1 :class="{active: !stage.customerStage}"  class="header__title" >customer detail</h1>
             <i class="ion-play"></i>

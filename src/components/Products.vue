@@ -4,15 +4,19 @@
       <!--MAIN HEADER-->
       <div class="header">
         <!-- menu btn-->
-        <router-link tag="div" class="header__menu" to="/menu">
-          <div class="menu__icon"><div></div><div></div><div></div></div>
-        </router-link>
+        <div class="header__menu">
+          <router-link tag="div" to="/invoicer" class="header__menu-circle header__menu-circle-1 bg-green"><i class="ion-compose"></i></router-link>
+          <router-link tag="div" to="/customers" class="header__menu-circle header__menu-circle-2 bg-red"><i class="ion-ios-people"></i></router-link>
+          <router-link tag="div" to="/history" class="header__menu-circle header__menu-circle-3 bg-yellow"><i class="ion-document-text"></i></router-link>
+          <router-link tag="div" to="/menu" class="header__menu-circle header__menu-circle-4"><i class="ion-ios-home"></i></router-link>
+        </div>
         
         <div class="header__title-container">
           <h1 class="header__title">Products</h1>
         </div>
       </div>
       <!--MAIN BODY-->
+      
       <div class="body" v-show="!addPopup">
         <!--Header with Search Element-->
         <products-header @inputChange="searched = $event"></products-header>
@@ -111,5 +115,5 @@ export default {
 </script>
 
 <style lang="scss">
-
+  
 </style>

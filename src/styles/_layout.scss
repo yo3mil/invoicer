@@ -19,7 +19,7 @@
     color: $font-color;
     display: grid;
     grid-template-rows: repeat(2, 1fr);
-    grid-template-columns: 13vw repeat(2, 1fr) 13vw;
+    grid-template-columns: 15vw repeat(2, 1fr) 15vw;
   
     &__title {
       font-size: 2.3rem;
@@ -55,6 +55,8 @@
       grid-row: 6 / 7 ;
       margin-bottom: 1.3rem;
       align-self: end;
+      animation: bump .5s forwards;
+      transition-timing-function: ease-in-out;
       &:hover {
         transform: scale(1.1);
       }
@@ -67,13 +69,13 @@
   
       }
       &-right {
-        margin-right: 1.5rem;
+        
         grid-row: 6 / 7 ;
         grid-column: 9 / 10;
         justify-self: end;
       }
       &-left {
-        margin-left: 1.5rem;
+        
         grid-column: 2 / 3;
         justify-self: start;
       }
@@ -85,8 +87,63 @@
       grid-column: 3;
       align-self: start;
       justify-self: end;
-      margin-right: 2rem;
-      margin-top: .2rem;
+      
+      width: 80%;
+      height: 4rem;
+      position: relative;
+      margin-top: .5rem;
+      cursor: pointer;
+      animation: bump .5s forwards;
+      
+      &:hover .header__menu-circle-1 {
+        transform: translateX(-270%);
+        & i { opacity: 1;}
+      } 
+      &:hover .header__menu-circle-2 {
+        transform: translateX(-180%);
+        & i { opacity: 1;}
+      } 
+      &:hover .header__menu-circle-3 {
+        transform: translateX(-90%);
+        & i { opacity: 1;}
+      } 
+      &-circle {
+        position: absolute;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: all .5s;
+        &:hover {
+          top: -2px;
+        }
+        &:active {
+          top: 0;
+        }
+        &-1,&-2,&-3 {
+          opacity: .7;
+          & i {opacity: 0;}
+        }
+        &-1{right:6rem; }
+        &-2{right:4rem; }
+        &-3{right:2rem; }
+        &-4 {
+          right:0px; 
+          transform: scale(1.2); 
+          background-color: $base-color;
+          transition: all .5s;
+          opacity: .9;
+        }
+        & i {
+          font-size: 2rem;
+          color: $color-white;
+          margin-bottom: 2px;
+          transition: all 1s;
+        }
+        
+      }
     }
   }
   // for add products // customers button
