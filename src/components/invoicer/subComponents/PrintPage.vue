@@ -104,7 +104,7 @@ export default {
         'totalPrice', 'totalVat', 'subTotal','basket','customer', 'finalPrice'
       ]),
       total() {
-        return (this.subTotal + Number(this.customer.info.shipping)) - (this.subTotal * (Number(this.customer.info.discount) / 100)) + this.totalVatIncludingShipping;
+        return (this.totalPrice + Number(this.customer.info.shipping) + this.totalVatIncludingShipping);
       },
       totalVatIncludingShipping() {
         return this.totalVat + Number(this.customer.info.shipping * 0.2)

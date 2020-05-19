@@ -37,7 +37,7 @@
         <label for="ordernumber">Order number</label>
       </div>
       <div class="form_details-input">
-        <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0">
+        <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0" disabled>
         <label for="discount">Discount (%)</label>
       </div>
        <div class="form_details-input">
@@ -93,7 +93,7 @@
       ]),
       // total including shipping and discount.
       total() {
-        return (this.subTotal + Number(this.info.shipping)) - (this.subTotal * (Number(this.info.discount) / 100)) + this.totalVatIncludingShipping;
+        return (this.totalPrice + Number(this.info.shipping) + this.totalVatIncludingShipping);
       },
       totalVatIncludingShipping() {
         return this.totalVat + Number(this.info.shipping * 0.2)

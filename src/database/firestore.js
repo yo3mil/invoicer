@@ -7,9 +7,9 @@ export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, 
 //init function
 export { getDatabase }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-const productCollection = db.collection('test');
-const customerCollection = db.collection('test2');
+//use test , test1 for testing
+const productCollection = db.collection('products');
+const customerCollection = db.collection('customers');
 const historyCollection = db.collection('history');
 
 function getDatabase() {
@@ -17,7 +17,7 @@ function getDatabase() {
     checkForChanges(customerCollection, customers);
     checkForChanges(historyCollection, history);
 }
-getDatabase();
+//getDatabase();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
