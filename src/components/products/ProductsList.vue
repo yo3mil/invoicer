@@ -21,8 +21,8 @@
     </div>
     <!--EDIT-->
     <div v-else class="product__container product bg-lighter">
-      <input v-model="curCode" type="text" class="product__id  edit_input">
       <input v-model="curCategory" type="text" class="product__id  edit_input">
+      <input v-model="curCode" type="text" class="product__id  edit_input">
       <input v-model="curName" type="text" class="product__name edit_input">
       <input v-model="curSize" type="text" class="product__size edit_input">
       <input v-model="curPrice" type="text" class="product__price edit_input">
