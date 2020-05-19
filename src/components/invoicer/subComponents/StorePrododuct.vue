@@ -1,7 +1,7 @@
 <template>
     <li class="store_product">
         <h3 class="store_product-1">{{ code }}</h3>
-        <h3 class="store_product-2">{{ shortString(name) }}</h3>
+        <h3 class="store_product-2" :title="name">{{ shortString(name) }}</h3>
         <h3 class="store_product-1">{{ size }}</h3>
         <h3 class="store_product-1">£{{ twoDecimals(price) }}</h3>
         <div class="store_product-1 quantity" v-if="!mode">
@@ -107,7 +107,7 @@
 
         &-add,
         &-delete {
-            width: 25%;
+            width: 8%;
             height: 100%;
             display: flex;
             align-items: center;

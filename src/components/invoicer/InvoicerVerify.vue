@@ -80,7 +80,7 @@
           shipping: 0,
           discount: 0,
           orderNumber: '-',
-          orderDate: new Date().toJSON().slice(0,10).replace(/-/g,'/')
+          orderDate: new Date().toLocaleDateString()
         },
         print: false,
         pageOfBasket: [],
