@@ -100,7 +100,8 @@ export default {
     updateSearch() {
       for (let i = 0; i < products.length; i++) {
         if(products[i].product.toLowerCase().includes(this.searched.toLowerCase())
-        || products[i].code.toLowerCase().includes(this.searched.toLowerCase())) {
+        || products[i].code.toLowerCase().includes(this.searched.toLowerCase())
+        || products[i].category.toLowerCase().includes(this.searched.toLowerCase())) {
           this.allProducts.push(products[i])
         }
       }
