@@ -63,22 +63,23 @@
         </ul>
         <div class="print__list-summary">
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Subtotal:</h3><h3>£{{twoDecimals(totalPrice)}}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Subtotal:</h3><h3>£{{ twoDecimals(totalPrice) }}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Shipping:</h3><h3>£{{twoDecimals(customer.info.shipping)}}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Shipping:</h3><h3>£{{ twoDecimals(customer.info.shipping) }}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Tax:</h3><h3>£{{twoDecimals(totalVatIncludingShipping)}}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Tax:</h3><h3>£{{ twoDecimals(totalVat + (vatCalculator(customer.info.shipping) -customer.info.shipping)) }}</h3>
           </div>
           <div class="print__list-list_element" v-if="customer.info.discount > 0">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Discount:</h3><h3>{{ customer.info.discount}}%</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Discount*:</h3><h3>{{ customer.info.discount }}%</h3>
           </div>
           <div class="print__list-list_element">
             <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Total:</h3><h3>£{{twoDecimals(total)}}</h3>
           </div>
           
         </div>
+        <p v-if="customer.info.discount > 0">*Discount does not apply to shipping.</p>
       </div>
       
       <hr>
@@ -93,27 +94,24 @@
 
 <script>
 //import print from 'print-js'
-import {mapGetters} from 'vuex';
+import { mapGetters } from 'vuex';
+import { calculators } from '../../../mixins/mixins.js'
 export default {
   created() {
     setTimeout(()=> {window.print();}, 500);
     setTimeout(() => {this.$router.replace({path: '/menu'})}, 600);
   },
+  mixins: [ calculators ],
   computed: {
     ...mapGetters([
-        'totalPrice', 'totalVat', 'subTotal','basket','customer', 'finalPrice'
+        'totalPrice', 'totalVat', 'subTotal','basket','customer'
       ]),
       total() {
-        return (this.totalPrice + Number(this.customer.info.shipping) + this.totalVatIncludingShipping);
+        return (this.discountCalculator(this.totalPrice, this.customer.info.discount) + Number(this.customer.info.shipping) + this.totalVatIncludingShipping);
       },
       totalVatIncludingShipping() {
-        return this.totalVat + Number(this.customer.info.shipping * 0.2)
+        return this.discountCalculator(this.totalVat, this.customer.info.discount) + Number(this.customer.info.shipping * 0.2)
       }
-  },
-  methods: {
-    twoDecimals(number) {
-      return (Math.round(number * 100) / 100).toFixed(2);
-    }
   }
 }
 </script>

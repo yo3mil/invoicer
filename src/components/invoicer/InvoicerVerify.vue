@@ -37,15 +37,15 @@
         <label for="ordernumber">Order number</label>
       </div>
       <div class="form_details-input">
-        <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0" disabled>
+        <input @input="updateInfo" v-model="info.discount" id="discount" type="text" placeholder="0">
         <label for="discount">Discount (%)</label>
       </div>
        <div class="form_details-input">
         <input @input="updateInfo" v-model="info.shipping" id="shipping" type="text" placeholder="0">
-        <label for="shipping">Shipping (£)</label>
+        <label for="shipping">Shipping(£)(no VAT)</label>
       </div>
       <div class="form_details-input">
-        <h3 class="form_details-input-fake_input">£{{ twoDecimals(totalPrice) }}</h3>
+        <h3 class="form_details-input-fake_input">£{{ twoDecimals(discountCalculator(totalPrice, info.discount)) }}</h3>
         <label for="totalprice">Total Price (£)</label>
       </div>
       <div class="form_details-input">
@@ -64,13 +64,14 @@
   const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
   import PrintPage from './subComponents/PrintPage.vue'
   import StoreProduct from './subComponents/StorePrododuct.vue';
-  import {mapGetters} from 'vuex';
-  
+  import { mapGetters } from 'vuex';
+  import { calculators } from '../../mixins/mixins.js'
   export default {
     components: {
       StoreProduct,
       PrintPage
     },
+    mixins: [ calculators ],
     created() {
       this.updateInfo();
     },
@@ -91,24 +92,20 @@
       ...mapGetters([
         'totalPrice', 'totalVat', 'subTotal','basket','customer'
       ]),
-      // total including shipping and discount.
       total() {
-        return (this.totalPrice + Number(this.info.shipping) + this.totalVatIncludingShipping);
+        return (this.discountCalculator(this.totalPrice, this.info.discount) + Number(this.info.shipping) + this.totalVatIncludingShipping);
       },
       totalVatIncludingShipping() {
-        return this.totalVat + Number(this.info.shipping * 0.2)
+        return this.discountCalculator(this.totalVat, this.info.discount) + Number(this.info.shipping * 0.2)
       }
     },
     methods: {
-       onChangePageBasket(pageOfItems) {
+      onChangePageBasket(pageOfItems) {
         this.pageOfBasket = pageOfItems;
       },
       updateInfo (e) {
         this.info.sum = this.total;
         this.$store.commit('updateInfo', this.info)
-      },
-      twoDecimals(number) {
-        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
   }
