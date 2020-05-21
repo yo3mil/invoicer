@@ -37,7 +37,7 @@
 
 <script>
 import { deleteProduct, updateProduct } from '../../database/firestore.js';
-
+import { calculators } from '../../mixins/mixins.js'
 export default {
     props: {
       code: { type: String, required: true },
@@ -48,6 +48,7 @@ export default {
       vat: { type: [String, Number], required: true }
       
     },
+    mixins: [calculators],
     data() {
       return {
         edit: false,
@@ -67,9 +68,6 @@ export default {
       approveEdit() {
         updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat, this.curCategory);
         this.edit = false;
-      },
-      twoDecimals(number) {
-        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
 }

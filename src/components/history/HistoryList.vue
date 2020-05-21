@@ -29,12 +29,13 @@
 
 <script>
 import { deleteHistory } from '../../database/firestore.js';
-
+import { calculators } from '../../mixins/mixins.js'
 export default {
     props: {
       order: {type: Array},
       customer: {type: Object}
     },
+    mixins:[calculators],
     data() {
       return {
         visible: true,
@@ -51,9 +52,6 @@ export default {
         this.$store.state.customer = this.customer;
         this.$store.state.productsOrder = this.order;
         this.$router.push({ path: '/invoicer' })
-      },
-      twoDecimals(number) {
-        return (Math.round(number * 100) / 100).toFixed(2);
       }
     }
 }
