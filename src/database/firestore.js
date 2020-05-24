@@ -15,9 +15,10 @@ const historyCollection = db.collection('history');
 function getDatabase() {
     checkForChanges(productCollection, products);
     checkForChanges(customerCollection, customers);
-    checkForChanges(historyCollection, history);
+    //checkForChanges(historyCollection, history);
+    checkHistory()
 }
-//getDatabase();
+getDatabase();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
@@ -108,33 +109,30 @@ const deleteHistory = (id) => {
 function checkForChanges(input, output) {
     input.onSnapshot(function(snapshot) {
         snapshot.docChanges().forEach(function(change) {
-            if (change.type === "added") {
-                //passes ID as a field and pushes every object into an array.
-                let newProduct = change.doc.data();
-                let newProductID = change.doc.id;
+            //passes ID as a field
+            let newProduct = change.doc.data();
+            let newProductID = change.doc.id;
+            newProduct.id = newProductID;
+            if(output === products) { newProduct.quantity = 1; }
 
-                newProduct.id = newProductID;
-                if(output === products) {
-                    newProduct.quantity = 1;
-                }
+            //ADDED
+            if (change.type === "added") {
                 output.push(newProduct);
-                
-                //console.log("added product: ", change.doc.data());
+               // console.log("added product: ", change.doc.data());
             }
+            //MODIFIED
             if (change.type === "modified") {
                 for (var i = output.length - 1; i >= 0; --i) {
                     if (output[i].id == change.doc.id ) {
                         // removes old one
                         output.splice(i,1);
-                        // and updates with new one plus id
-                        let newProduct = change.doc.data();
-                        let newProductID = change.doc.id;
-                        newProduct.id = newProductID;
+                        // adds new
                         output.push(newProduct);
                     }
                 }
                 //console.log("Modified product: ", change.doc.data());
             }
+            //REMOVED
             if (change.type === "removed") {
                 // update array (remove product that was removed from the database)
                 if(output === products){
@@ -150,20 +148,46 @@ function checkForChanges(input, output) {
                             customers.splice(i,1);
                         }
                     }
-                } else if (output === history){
-                    for (var i = history.length - 1; i >= 0; --i) {
-                        if (history[i].customer.info.orderNumber == change.doc.data().customer.info.orderNumber && history[i].customer.info.orderDate == change.doc.data().customer.info.orderDate) {
-                            history.splice(i,1);
-                        }
-                    }
-                }
+                } 
+               
                
             }
         });
     }, function(error) {
-        console.log("Listeners detached, no permmision");
+        console.log("Listener from customers and products detached, no permmision");
     });
 
 }
+// separation of interests for history
+function checkHistory() {
+    historyCollection.onSnapshot(function(snapshot) {
+        snapshot.docChanges().forEach(function(change) {
+            //passes ID as a field
+            let newProduct = change.doc.data();
+            let newProductID = change.doc.id;
+            newProduct.id = newProductID;
+            //ADDED
+            if (change.type === "added") {
+                for (var i = history.length - 1; i >= 0; --i) {
+                    if (history[i].id === change.doc.data().id ) {
+                        history.splice(i,1);
+                    }
+                }
+                history.push(newProduct);
+                console.log("added history entry: ", change.doc.data());
+            }
+            //REMOVED
+            if (change.type === "removed") {
+                for (var i = history.length - 1; i >= 0; --i) {
+                    if (history[i].id === change.doc.data().id ) {
+                        history.splice(i,1);
+                    }
+                }
+            }
+        });
+    }, function(error) {
+        console.log("Listeners detached, no permmision");
+        
+    });
 
-
+}

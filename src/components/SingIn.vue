@@ -33,7 +33,7 @@ import { getDatabase } from "../database/firestore.js";
                 const data = auth.signInWithEmailAndPassword(this.email, this.password)
                 .then(
                     user => {
-                        getDatabase();
+                        //getDatabase();
                         alert(`Loged in as: ${user.user.email}`)
                         this.$router.replace({path: '/menu'})
                     },
