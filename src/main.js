@@ -1,8 +1,36 @@
-
 import Vue from 'vue'
 import App from './App.vue'
+
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
-//Vue router
+///////////////////////////////////////////////////////////////////////////////////////////////
+// FIREBASE
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+//Firebase Config
+// firebase config is just a pointer and can be (have to be) public.
+const config = {
+  apiKey: "AIzaSyAUhex5r079Zvcb9aVb8yXSKpxUgexoNoc",
+  authDomain: "orientalmart-a0ffd.firebaseapp.com",
+  databaseURL: "https://orientalmart-a0ffd.firebaseio.com",
+  projectId: "orientalmart-a0ffd",
+  storageBucket: "orientalmart-a0ffd.appspot.com",
+  messagingSenderId: "785374799937",
+  appId: "1:785374799937:web:84ea0759969e11c420bec0"
+}
+// Initialize Firebase
+firebase.initializeApp(config);
+export const db = firebase.firestore();
+export const auth = firebase.auth();
+// For this to work files from JSON upload folder have to be in root !
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
+// ROUTER
 import VueRouter from 'vue-router';
 import { routes } from './routes.js';
 const router = new VueRouter({
@@ -37,6 +65,8 @@ Vue.component('jw-pagination', JwPagination);
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // VUEX
 import { store } from './store/store.js'
+
+
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // VUE

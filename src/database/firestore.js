@@ -1,4 +1,6 @@
- //Export Collections
+import { db } from '../main.js'
+ 
+//Export Collections
 export const products = [];
 export const customers = [];
 export const history = [];
@@ -8,6 +10,7 @@ export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, 
 export { getDatabase }
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //use test , test1 for testing
+
 const productCollection = db.collection('test');
 const customerCollection = db.collection('test2');
 const historyCollection = db.collection('history');
@@ -18,7 +21,7 @@ function getDatabase() {
     //checkForChanges(historyCollection, history);
     checkHistory()
 }
-getDatabase();
+//getDatabase();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
