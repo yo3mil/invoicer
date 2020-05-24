@@ -1,7 +1,7 @@
  //Export Collections
-export const products = [];
-export const customers = [];
-export const history = [];
+export let products = [];
+export let customers = [];
+export let history = [];
 // export action functions
 export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
 //init function
@@ -18,7 +18,7 @@ function getDatabase() {
     //checkForChanges(historyCollection, history);
     checkHistory()
 }
-getDatabase();
+//getDatabase();
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
@@ -160,29 +160,26 @@ function checkForChanges(input, output) {
 }
 // separation of interests for history
 function checkHistory() {
-    historyCollection.onSnapshot(function(snapshot) {
+    historyCollection.onSnapshot((snapshot) => {
         snapshot.docChanges().forEach(function(change) {
-            //passes ID as a field
-            let newProduct = change.doc.data();
-            let newProductID = change.doc.id;
-            newProduct.id = newProductID;
+            
+            
             //ADDED
             if (change.type === "added") {
-                for (var i = history.length - 1; i >= 0; --i) {
-                    if (history[i].id === change.doc.data().id ) {
-                        history.splice(i,1);
-                    }
-                }
+                let newProduct = change.doc.data();
+                let newProductID = change.doc.id;
+                newProduct.id = newProductID;
                 history.push(newProduct);
-                console.log("added history entry: ", change.doc.data());
+                console.log("added history entry: ", newProduct);
             }
             //REMOVED
             if (change.type === "removed") {
                 for (var i = history.length - 1; i >= 0; --i) {
-                    if (history[i].id === change.doc.data().id ) {
+                    if (history[i].customer.info == change.doc.data().customer.info) {
                         history.splice(i,1);
                     }
                 }
+                
             }
         });
     }, function(error) {

@@ -1,4 +1,4 @@
-
+import {getDatabase} from './database/firestore.js'
 import Vue from 'vue'
 import App from './App.vue'
 ///////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,6 +43,7 @@ import { store } from './store/store.js'
 // fixes back to login page on reload:
 let app;
 firebase.auth().onAuthStateChanged(user => {
+  
   if(!app) {
     app = new Vue({
       el: '#app',
