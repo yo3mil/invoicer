@@ -62,7 +62,7 @@
 <script>
   const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
   import StoreProduct from './subComponents/StorePrododuct.vue';
-  import { products } from '../../database/firestore.js';
+  import { productCollection } from '../../database/firestore.js';
 
   export default {
     components: {
@@ -70,6 +70,7 @@
     },
     data() {
       return {
+        products: [],
         searchPhrase: '',
         searchedProducts: [],
         //jw-pagination
@@ -77,6 +78,9 @@
         pageOfBasket: [],
         customLabels
       }
+    },
+    firestore: {
+      products: productCollection
     },
     computed: {
       basket() {
@@ -90,16 +94,16 @@
         } else {
           this.searchedProducts = [];
           this.updateSearch();
+          
         }
       }
     },
     methods: {
       updateSearch() {
-        for (let i = 0; i < products.length; i++) {
-          if(products[i].product.toLowerCase().includes(this.searchPhrase.toLowerCase())
-          || products[i].code.toLowerCase().includes(this.searchPhrase.toLowerCase())) {
-            products[i].quantity = 1;
-            this.searchedProducts.push(products[i])
+        for (let i = 0; i < this.products.length; i++) {
+          if(this.products[i].product.toLowerCase().includes(this.searchPhrase.toLowerCase())
+          || this.products[i].code.toLowerCase().includes(this.searchPhrase.toLowerCase())) {
+             this.searchedProducts.push(this.products[i])
           }
         }
       },
@@ -110,7 +114,6 @@
       onChangePageBasket(pageOfItems) {
         this.pageOfBasket = pageOfItems;
       }
-      
     }
   }
 </script>

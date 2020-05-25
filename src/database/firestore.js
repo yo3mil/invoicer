@@ -1,24 +1,32 @@
- //Export Collections
-export let products = [];
-export let customers = [];
-export let history = [];
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/firestore';
+
+// Initialize Firebase
+export const db = firebase.initializeApp({
+    apiKey: "AIzaSyAUhex5r079Zvcb9aVb8yXSKpxUgexoNoc",
+    authDomain: "orientalmart-a0ffd.firebaseapp.com",
+    databaseURL: "https://orientalmart-a0ffd.firebaseio.com",
+    projectId: "orientalmart-a0ffd",
+    storageBucket: "orientalmart-a0ffd.appspot.com",
+    messagingSenderId: "785374799937",
+    appId: "1:785374799937:web:84ea0759969e11c420bec0"
+}).firestore();
+
+
 // export action functions
 export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
-//init function
-export { getDatabase }
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //use test , test1 for testing
-const productCollection = db.collection('test');
-const customerCollection = db.collection('test2');
-const historyCollection = db.collection('history');
 
-function getDatabase() {
-    checkForChanges(productCollection, products);
-    checkForChanges(customerCollection, customers);
-    //checkForChanges(historyCollection, history);
-    checkHistory()
-}
-//getDatabase();
+
+export const productCollection = db.collection('test');
+export const customerCollection = db.collection('test2');
+export const historyCollection = db.collection('history');
+export const auth = firebase.auth();
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
 // Saving new product 
@@ -66,7 +74,6 @@ const saveCustomer = (newName, newContactName, newAddress, newDelivery , newPhon
 }
 // Deleting a product
 const deleteCustomer = (id) => {
-    
     customerCollection.doc(id).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
@@ -101,90 +108,4 @@ const deleteHistory = (id) => {
     });
 };
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//Function that looks for changes in db and uppdates arrays acordingly 
 
-function checkForChanges(input, output) {
-    input.onSnapshot(function(snapshot) {
-        snapshot.docChanges().forEach(function(change) {
-            //passes ID as a field
-            let newProduct = change.doc.data();
-            let newProductID = change.doc.id;
-            newProduct.id = newProductID;
-            if(output === products) { newProduct.quantity = 1; }
-
-            //ADDED
-            if (change.type === "added") {
-                output.push(newProduct);
-               // console.log("added product: ", change.doc.data());
-            }
-            //MODIFIED
-            if (change.type === "modified") {
-                for (var i = output.length - 1; i >= 0; --i) {
-                    if (output[i].id == change.doc.id ) {
-                        // removes old one
-                        output.splice(i,1);
-                        // adds new
-                        output.push(newProduct);
-                    }
-                }
-                //console.log("Modified product: ", change.doc.data());
-            }
-            //REMOVED
-            if (change.type === "removed") {
-                // update array (remove product that was removed from the database)
-                if(output === products){
-                    for (var i = products.length - 1; i >= 0; --i) {
-                        if (products[i].product == change.doc.data().product && products[i].code == change.doc.data().code) {
-                            products.splice(i,1);
-                        }
-                    }
-                    //console.log('removed from the array')
-                } else if (output === customers){
-                    for (var i = customers.length - 1; i >= 0; --i) {
-                        if (customers[i].name == change.doc.data().name && customers[i].contactName == change.doc.data().contactName) {
-                            customers.splice(i,1);
-                        }
-                    }
-                } 
-               
-               
-            }
-        });
-    }, function(error) {
-        console.log("Listener from customers and products detached, no permmision");
-    });
-
-}
-// separation of interests for history
-function checkHistory() {
-    historyCollection.onSnapshot((snapshot) => {
-        snapshot.docChanges().forEach(function(change) {
-            
-            
-            //ADDED
-            if (change.type === "added") {
-                let newProduct = change.doc.data();
-                let newProductID = change.doc.id;
-                newProduct.id = newProductID;
-                history.push(newProduct);
-                console.log("added history entry: ", newProduct);
-            }
-            //REMOVED
-            if (change.type === "removed") {
-                for (var i = history.length - 1; i >= 0; --i) {
-                    if (history[i].customer.info == change.doc.data().customer.info) {
-                        history.splice(i,1);
-                    }
-                }
-                
-            }
-        });
-    }, function(error) {
-        console.log("Listeners detached, no permmision");
-        
-    });
-
-}

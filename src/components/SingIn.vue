@@ -20,7 +20,7 @@
   </div>
 </template>
 <script>
-import { getDatabase } from "../database/firestore.js";
+import { auth } from "../database/firestore.js";
     export default {
         data() {
             return {

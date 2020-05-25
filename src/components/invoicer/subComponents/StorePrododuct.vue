@@ -14,8 +14,8 @@
     </li>
 </template>
 <script>
-    import { products } from '../../../database/firestore';
-    import {mapMutations} from 'vuex';
+    import { productCollection } from '../../../database/firestore';
+    import { mapMutations } from 'vuex';
     export default {
         props: {
             code: { type: String, required: true },
@@ -29,12 +29,16 @@
         },
         data() {
             return {
+                products: [],
                 itemQuantity: 1
             }
         },
+        firestore: {
+            products: productCollection
+        },
         computed: {
             basket() {
-                return this.$store.state.productsOrder;
+                return this.$store.getters.basket;
             }
         },
         methods: {
@@ -49,13 +53,12 @@
                         return;
                     } 
                 }
-                for (let i = 0; i < products.length; i++) {
-                    if(products[i].id === this.$vnode.key) {
-                        
-                        this.basket.push(products[i]);
-                        
+                for (let i = 0; i < this.products.length; i++) {
+                    if(this.products[i].id === this.$vnode.key) {
+                        this.basket.push(this.products[i]);
                     }
                 }
+                console.log(this.basket);
             },
             deleteProduct() {
                 for (let i = 0; i < this.basket.length; i++) {
