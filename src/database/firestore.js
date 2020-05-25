@@ -13,16 +13,19 @@ export const db = firebase.initializeApp({
     appId: "1:785374799937:web:84ea0759969e11c420bec0"
 }).firestore();
 
+
 // export action functions
 export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //use test , test1 for testing
 
+
 export const productCollection = db.collection('test');
 export const customerCollection = db.collection('test2');
 export const historyCollection = db.collection('history');
 export const auth = firebase.auth();
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //PRODUCT QUERIES
@@ -104,4 +107,5 @@ const deleteHistory = (id) => {
         console.error("Error removing document: ", error);
     });
 };
+
 
