@@ -57,14 +57,16 @@
 // js pagination
 const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
 
-import { customers } from "../database/firestore.js";
+import { customerCollection } from "../database/firestore.js";
 import CustomersHeader from "./customers/CustomersHeader.vue";
 import CustomersList from "./customers/CustomersList.vue";
 import CustomersAdd from "./customers/CustomersAdd.vue";
+
 export default {
   data() {
     return {
-      allCustomers: customers,
+      customers: [],
+      allCustomers: [],
       searched: "",
       addPopup: false,
       
@@ -72,6 +74,12 @@ export default {
       pageOfItems: [],
       customLabels
     }
+  },
+  mounted() {
+    this.allCustomers = this.customers;
+  },
+  firestore: {
+    customers: customerCollection
   },
   components: {
     CustomersHeader,
@@ -81,7 +89,7 @@ export default {
   watch: {
     searched() {
       if(this.searched === "") {
-        this.allCustomers = customers;
+        this.allCustomers = this.customers;
       } else {
         this.allCustomers = [];
         this.updateSearch();
@@ -90,10 +98,10 @@ export default {
   },
   methods: {
     updateSearch() {
-      for (let i = 0; i < customers.length; i++) {
-        if(customers[i].name.toLowerCase().includes(this.searched.toLowerCase())
-        || customers[i].contactName.toLowerCase().includes(this.searched.toLowerCase())) {
-          this.allCustomers.push(customers[i])
+      for (let i = 0; i < this.customers.length; i++) {
+        if(this.customers[i].name.toLowerCase().includes(this.searched.toLowerCase())
+        || this.customers[i].contactName.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.allCustomers.push(this.customers[i])
         }
       }
     },

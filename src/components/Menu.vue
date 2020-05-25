@@ -45,7 +45,7 @@
 </template>
 
 <script>
-    
+    import { auth } from '../database/firestore.js'
     export default {
         methods: {
             logout() {

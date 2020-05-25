@@ -65,21 +65,28 @@
 // js pagination
 const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
 
-import {products} from "../database/firestore.js";
+import { productCollection } from "../database/firestore.js";
 import ProductsHeader from "./products/ProductsHeader.vue";
 import ProductsList from "./products/ProductsList.vue";
 import ProductsAdd from "./products/ProductsAdd.vue";
 export default {
   data() {
     return {
-      allProducts: products,
+      products: [],
+      allProducts: [],
       searched: "",
       addPopup: false,
-      
+      loader: false,
       //jw pagination
       pageOfItems: [],
       customLabels
     }
+  },
+  mounted() {
+     this.allProducts = this.products;
+  },
+  firestore: {
+    products: productCollection
   },
   components: {
     ProductsHeader,
@@ -88,8 +95,8 @@ export default {
   },
   watch: {
     searched() {
-      if(this.searched === "") {
-        this.allProducts = products;
+      if(this.searched == "") {
+        this.allProducts = this.products;
       } else {
         this.allProducts = [];
         this.updateSearch();
@@ -98,11 +105,11 @@ export default {
   },
   methods: {
     updateSearch() {
-      for (let i = 0; i < products.length; i++) {
-        if(products[i].product.toLowerCase().includes(this.searched.toLowerCase())
-        || products[i].code.toLowerCase().includes(this.searched.toLowerCase())
-        || products[i].category.toLowerCase().includes(this.searched.toLowerCase())) {
-          this.allProducts.push(products[i])
+      for (let i = 0; i < this.products.length; i++) {
+        if(this.products[i].product.toLowerCase().includes(this.searched.toLowerCase())
+        || this.products[i].code.toLowerCase().includes(this.searched.toLowerCase())
+        || this.products[i].category.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.allProducts.push(this.products[i])
         }
       }
     },

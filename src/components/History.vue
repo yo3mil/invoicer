@@ -60,7 +60,7 @@
 
 <script>
 const customLabels = {first: '<<',last: '>>',previous: '<',next: '>'};
-import { history } from "../database/firestore.js";
+import { historyCollection } from "../database/firestore.js";
 import HistoryList from "./history/HistoryList.vue";
 export default {
   components: {
@@ -68,17 +68,24 @@ export default {
   },
   data() {
     return {
-      historyList: history,
+      history: [],
+      historyList: [],
       searched: "",
       //jw pagination
       pageOfItems: [],
       customLabels
     }
   },
+  mounted() {
+    this.historyList = this.history;
+  },
+  firestore: {
+    history: historyCollection
+  },
   watch: {
     searched() {
       if(this.searched === "") {
-        this.historyList = history;
+        this.historyList = this.history;
       } else {
         this.historyList = [];
         this.updateSearch();
@@ -87,10 +94,10 @@ export default {
   },
   methods: {
     updateSearch() {
-      for (let i = 0; i < history.length; i++) {
-        if(history[i].customer.name.toLowerCase().includes(this.searched.toLowerCase())
-        || history[i].customer.info.orderNumber.toLowerCase().includes(this.searched.toLowerCase())) {
-          this.historyList.push(history[i])
+      for (let i = 0; i < this.history.length; i++) {
+        if(this.history[i].customer.name.toLowerCase().includes(this.searched.toLowerCase())
+        || this.history[i].customer.info.orderNumber.toLowerCase().includes(this.searched.toLowerCase())) {
+          this.historyList.push(this.history[i])
         }
       }
     },

@@ -1,32 +1,16 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // FIREBASE
+import { auth } from './database/firestore.js'
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 
-//Firebase Config
-// firebase config is just a pointer and can be (have to be) public.
-const config = {
-  apiKey: "AIzaSyAUhex5r079Zvcb9aVb8yXSKpxUgexoNoc",
-  authDomain: "orientalmart-a0ffd.firebaseapp.com",
-  databaseURL: "https://orientalmart-a0ffd.firebaseio.com",
-  projectId: "orientalmart-a0ffd",
-  storageBucket: "orientalmart-a0ffd.appspot.com",
-  messagingSenderId: "785374799937",
-  appId: "1:785374799937:web:84ea0759969e11c420bec0"
-}
-// Initialize Firebase
-firebase.initializeApp(config);
-export const db = firebase.firestore();
-export const auth = firebase.auth();
-// For this to work files from JSON upload folder have to be in root !
-
+import { firestorePlugin } from 'vuefire';
+Vue.use(firestorePlugin)
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////

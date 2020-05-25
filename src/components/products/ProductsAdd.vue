@@ -42,11 +42,12 @@
 </template>
 
 <script>
-import { saveProduct, products } from "../../database/firestore.js";
+import { saveProduct, productCollection } from "../../database/firestore.js";
 
 export default {
     data() {
         return {
+            products: [],
             name: '',
             size: '',
             price: '',
@@ -56,6 +57,9 @@ export default {
             code: '',
             category: ''
         }
+    },
+    firestore: {
+        products: productCollection
     },
     methods: {
         exitPopup() {
@@ -84,9 +88,9 @@ export default {
             // function creates next number in the category
             let codeArr = [];
             let largest;
-            for(let i = 0; i < products.length; i++){
-                if(products[i].code.toLowerCase().includes(this.type.toLowerCase())){
-                    codeArr.push(products[i].code.substring(1));
+            for(let i = 0; i < this.products.length; i++){
+                if(this.products[i].code.toLowerCase().includes(this.type.toLowerCase())){
+                    codeArr.push(this.products[i].code.substring(1));
                 } 
             }
             // in case there was no match:
