@@ -94,11 +94,11 @@ export default {
                 } 
             }
             // in case there was no match:
-            codeArr.push('0001')
+            codeArr.push('000001')
             // find the largest
             largest = Math.max.apply(Math, codeArr);
             // creates zeros before the main generatet number
-            largest = largest + 10001;
+            largest = largest + 1000001;
             this.code = this.type + (largest.toString().substring(1));
             console.log(this.code)
         }
