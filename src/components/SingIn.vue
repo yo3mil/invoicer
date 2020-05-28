@@ -3,7 +3,7 @@
       <div class="container login">
         <div class="login__header mg">
             <h1>Invoicing</h1>
-            <h3>0.1</h3>
+            <h3>made simple.</h3>
         </div>
         <div class="login__console">
             <div class="form_details-input mg">
@@ -68,6 +68,9 @@ import { auth } from "../database/firestore.js";
             justify-content: center;
             align-items: center;
             font-size: 150%;
+            & h3 {
+                font-size: 90%;
+            }
         }
         &__console {
             width: 12rem;
