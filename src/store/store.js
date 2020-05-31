@@ -19,7 +19,7 @@ export const store = new Vuex.Store({
             }
             return total.reduce((a, b) => a + b, 0);
         },
-        // code repetition here needs fixing !
+        //TODO: code repetition here needs fixing !
         totalVat(state) {
             let total = [];
             let multiplyItem;
