@@ -32,8 +32,8 @@
       <div class="title">
         <h2>Basket</h2>
       </div>
-      <ul class="list max-height">
-        <store-product v-for="(product, index) in pageOfBasket"
+      <ul class="list scroll">
+        <store-product v-for="(product, index) in basket"
           :index="index"
           :key="product.id"
           :code="product.code"
@@ -45,7 +45,7 @@
         >
         </store-product>
       </ul>
-      <div class="footer">
+      <!-- <div class="footer">
         <jw-pagination class="pagination"
             :items="basket" 
             :pageSize="13" 
@@ -53,7 +53,7 @@
             :disableDefaultStyles="true"
             :labels="customLabels"
         ></jw-pagination>
-      </div>
+      </div> -->
     </div>
     
   </div>
@@ -74,6 +74,7 @@
         searchPhrase: '',
         searchedProducts: [],
         //jw-pagination
+        // TODO: scroll or pagination ? 
         pageOfProducts: [],
         pageOfBasket: [],
         customLabels
@@ -132,10 +133,8 @@
       }
       &-2 {
         flex: 1;
-        border-radius: 20px;
-        padding: .5rem;
-        
-      }
+        padding-left: 4px;
+       }
       
     }
     .title {
@@ -153,8 +152,10 @@
       }
 
     }
-    .max-height {
-      height: 73%;
+    .scroll {
+      height: 85%;
+      overflow: hidden;
+        overflow-y: scroll;
     }
     .pagination {
       margin-top: 1rem;

@@ -8,7 +8,7 @@
     <hr class="products__line">
     <div class="summary__products bg-gray">
       <ul class="max-height">
-        <store-product v-for="(product, index) in pageOfBasket"
+        <store-product v-for="(product, index) in basket"
           :key="product.id"
           :code="product.code"
           :name="product.product"
@@ -20,7 +20,7 @@
         >
         </store-product>
       </ul>
-      <div class="footer">
+      <!-- <div class="footer">
         <jw-pagination class="pagination"
             :items="basket" 
             :pageSize="10" 
@@ -28,7 +28,7 @@
             :disableDefaultStyles="true"
             :labels="customLabels"
         ></jw-pagination>
-      </div>
+      </div> -->
     </div>
     <!-- info CONSOLE-->
     <div class="summary__console">
@@ -84,6 +84,7 @@
           orderDate: new Date().toLocaleDateString()
         },
         print: false,
+        // TODO: scroll or pages ? pagination, needs update.
         pageOfBasket: [],
         customLabels
       }
@@ -157,6 +158,8 @@
         flex: 1;
         border-radius: 20px;
         padding: .5rem;
+        overflow: hidden;
+        overflow-y: scroll;
       }
 
       & h3 span {
