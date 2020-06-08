@@ -62,7 +62,8 @@
             },
             deleteProduct() {
                 for (let i = 0; i < this.basket.length; i++) {
-                    if(this.basket[i].id === this.$vnode.key) {
+                    if(this.basket[i].code === this.code) {
+                        console.log(this.basket[i])
                         this.basket.splice(i,1);
                     }
                 }
