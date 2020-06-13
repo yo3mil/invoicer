@@ -21,8 +21,8 @@ export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, 
 //use test , test1 for testing
 
 
-export const productCollection = db.collection('products');
-export const customerCollection = db.collection('customers');
+export const productCollection = db.collection('test');
+export const customerCollection = db.collection('test2');
 export const historyCollection = db.collection('history');
 export const auth = firebase.auth();
 
