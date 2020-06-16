@@ -98,7 +98,7 @@ export default {
   methods: {
     updateSearch() {
       for (let i = 0; i < this.history.length; i++) {
-        if(this.history[i].customer.name.toLowerCase().includes(this.searched.toLowerCase())
+        if(this.history[i].customer.contact.toLowerCase().includes(this.searched.toLowerCase())
         || this.history[i].customer.info.orderNumber.toLowerCase().includes(this.searched.toLowerCase())) {
           this.historyList.push(this.history[i])
         }
