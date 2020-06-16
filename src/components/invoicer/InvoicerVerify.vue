@@ -20,18 +20,19 @@
         >
         </store-product>
       </ul>
-      <!-- <div class="footer">
-        <jw-pagination class="pagination"
-            :items="basket" 
-            :pageSize="10" 
-            @changePage="onChangePageBasket"
-            :disableDefaultStyles="true"
-            :labels="customLabels"
-        ></jw-pagination>
-      </div> -->
     </div>
+
+
     <!-- info CONSOLE-->
     <div class="summary__console">
+      <div class="form_details-input">
+        <select id="typeOfInvoice" name="typeofinvoice" v-model="info.orderType">
+          <option value="invoice">Invoice</option>
+          <option value="credit">Credit Note</option>
+          <option value="quote">Quotation</option>
+        </select>
+        <label for="ordernumber">Order type</label>
+      </div>
       <div class="form_details-input">
         <input @input="updateInfo" v-model="info.orderNumber" id="ordernumber" type="text">
         <label for="ordernumber">Order number</label>
@@ -80,7 +81,8 @@
         info: {
           shipping: 0,
           discount: 0,
-          orderNumber: '-',
+          orderType: 'invoice',
+          orderNumber: '',
           orderDate: new Date().toLocaleDateString()
         },
         print: false,
@@ -171,6 +173,11 @@
     }
     .form_details-input {
       margin-top: 2rem;
+      & input,
+      & select {
+        width: 9.5rem;
+      }
+      
     }
 
 </style>
