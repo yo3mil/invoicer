@@ -11,12 +11,18 @@
         </div>
       </div>
       <hr>
-
+      <!-- Invoice TYPE AND ORDER NUMBER -->
       <div class="print__title">
-        <h2>Invoice For Order: {{ customer.info.orderNumber}}</h2>
+        <h2>
+          <span v-if="customer.info.orderType === 'invoice'">Invoice For Order: </span>
+          <span v-if="customer.info.orderType === 'credit'">Credit Note For Order: </span>
+          <span v-if="customer.info.orderType === 'quote'">Quotation For </span>
+          {{ customer.info.orderNumber}}
+        </h2>
         <h3>Order date: {{ customer.info.orderDate }}</h3>
       </div>
 
+      <!-- Invoice CUSTOMER DETAILS -->
       <div class="print__details">
         <div class="print__details-customer">
           <div class="print__list-title">
@@ -49,7 +55,8 @@
         </div>
         
       </div>
-      
+
+       <!-- Invoice LIST of items -->
       <div class="print__list">
         <div class="print__list-title">
           <h3 class="print__list-title-1">Item</h3><h3>Size</h3><h3 class="qty">Qty</h3><h3>Price</h3><h3>Tax</h3><h3>Total</h3>
@@ -58,26 +65,43 @@
           <li class="print__list-list_element"
               v-for="item in basket"
               :key="item.id"
-          ><h3 class="print__list-list_element-1">{{item.product}}</h3><h3>{{item.size}}</h3><h3 class="qty">{{item.quantity}}</h3><h3>£{{twoDecimals(item.priceNoVat)}}</h3><h3>£{{twoDecimals(item.vat)}}</h3><h3>£{{twoDecimals(item.quantity * item.priceNoVat)}}</h3>
+          >
+          <h3 class="print__list-list_element-1">{{item.product}}</h3>
+          <h3>{{item.size}}</h3><h3 class="qty">{{item.quantity}}</h3>
+          <h3>£{{twoDecimals(item.priceNoVat)}}</h3>
+          <h3>£{{twoDecimals(item.vat)}}</h3>
+          <h3 v-if="customer.info.orderType != 'quote'">£{{twoDecimals(item.quantity * item.priceNoVat)}}</h3>
+          <h3 v-else>{{ twoDecimals(item.quantity * vatCalculator(item.priceNoVat)) }}</h3>
         </li>
         </ul>
-        <div class="print__list-summary">
+
+        <!-- Invoice summary -->
+        <div class="print__list-summary" v-if="customer.info.orderType != 'quote'">
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Subtotal:</h3><h3>£{{ twoDecimals(totalPrice) }}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3>
+            <h3 class="bold">Subtotal:</h3>
+            <h3>£{{ twoDecimals(totalPrice) }}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Shipping:</h3><h3>£{{ twoDecimals(customer.info.shipping) }}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3>
+            <h3 class="bold">Shipping:</h3>
+            <h3>£{{ twoDecimals(customer.info.shipping) }}</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Tax:</h3><h3>£{{ twoDecimals(totalVat + (vatCalculator(customer.info.shipping) -customer.info.shipping)) }}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3>
+            <h3 class="bold">Tax:</h3>
+            <h3>£{{ twoDecimals(totalVat + (vatCalculator(customer.info.shipping) - customer.info.shipping)) }}</h3>
           </div>
           <div class="print__list-list_element" v-if="customer.info.discount > 0">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Discount*:</h3><h3>{{ customer.info.discount }}%</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3>
+            <h3 class="bold">Discount*:</h3>
+            <h3>{{ customer.info.discount }}%</h3>
           </div>
           <div class="print__list-list_element">
-            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3><h3 class="bold">Total:</h3><h3>£{{twoDecimals(total)}}</h3>
+            <h3 class="print__list-list_element-1"></h3><h3></h3><h3></h3>
+            <h3 class="bold">Total:</h3>
+            <h3>£{{twoDecimals(total)}}</h3>
           </div>
-          
         </div>
         <p v-if="customer.info.discount > 0">*Discount does not apply to shipping.</p>
       </div>
@@ -93,7 +117,7 @@
 </template>
 
 <script>
-//import print from 'print-js'
+
 import { mapGetters } from 'vuex';
 import { calculators } from '../../../mixins/mixins.js'
 export default {
