@@ -52,6 +52,7 @@ import { auth } from "../database/firestore.js";
         width: 100%;
         height: 100vh;
         display: flex;
+        
     }
     .login {
         align-self: center;
