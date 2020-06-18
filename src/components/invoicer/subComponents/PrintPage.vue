@@ -70,8 +70,9 @@
           <h3>{{item.size}}</h3><h3 class="qty">{{item.quantity}}</h3>
           <h3>£{{twoDecimals(item.priceNoVat)}}</h3>
           <h3>£{{twoDecimals(item.vat)}}</h3>
+          <!-- in invoice total is without vat, in quote with-->
           <h3 v-if="customer.info.orderType != 'quote'">£{{twoDecimals(item.quantity * item.priceNoVat)}}</h3>
-          <h3 v-else>{{ twoDecimals(item.quantity * vatCalculator(item.priceNoVat)) }}</h3>
+          <h3 v-else>£{{ twoDecimals(item.quantity * (Number(item.priceNoVat) + Number(item.vat))) }}</h3>
         </li>
         </ul>
 
