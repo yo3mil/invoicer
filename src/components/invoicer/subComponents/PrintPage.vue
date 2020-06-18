@@ -19,7 +19,7 @@
           <span v-if="customer.info.orderType === 'quote'">Quotation For </span>
           {{ customer.info.orderNumber}}
         </h2>
-        <h3>Order date: {{ customer.info.orderDate }}</h3>
+        <h3>Date: {{ customer.info.orderDate }}</h3>
       </div>
 
       <!-- Invoice CUSTOMER DETAILS -->
