@@ -38,7 +38,7 @@ const saveProduct = (name, size, price, vat, code, category) => {
         priceNoVat: price,
         vat: vat,
         category: category,
-        quantity: '1',
+        quantity: '1', // default quantity 
         costPrice: '0'
     })
 }
@@ -51,14 +51,15 @@ const deleteProduct = (id) => {
     });
 };
 // Updating a product 
-const updateProduct = (id, newCode, newName, newSize, newPrice, newVat, newCategory) => {
+const updateProduct = (id, newCode, newName, newSize, newPrice, newVat, newCategory, newCost) => {
     productCollection.doc(id).update({
         code: newCode,
         product: newName,
         size: newSize,
         priceNoVat: newPrice,
         vat: newVat,
-        category: newCategory
+        category: newCategory,
+        costPrice: newCost
     });
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////

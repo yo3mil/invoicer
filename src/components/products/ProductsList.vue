@@ -27,8 +27,8 @@
       <input v-model="curName" type="text" class="product__name edit_input">
       <input v-model="curSize" type="text" class="product__size edit_input">
       <input v-model="curCost" type="text" class="product__price edit_input">
-      <input v-model="curPrice" type="text" class="product__price edit_input">
-      <input v-model="curVat" type="text" class="product__vat edit_input">
+      <input v-model="curPrice" type="text" class="product__price edit_input" disabled>
+      <input v-model="curVat" type="text" class="product__vat edit_input" disabled>
       <div class="product__console">
           <div @click="approveEdit()" class="product__console-edit"><i class="ion-checkmark-round"></i></div>
       </div>
@@ -68,7 +68,7 @@ export default {
         this.edit = true;
       },
       approveEdit() {
-        updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat, this.curCategory);
+        updateProduct(this.$vnode.key, this.curCode, this.curName, this.curSize, this.curPrice, this.curVat, this.curCategory, this.curCost);
         this.edit = false;
       }
     }
