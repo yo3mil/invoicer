@@ -32,6 +32,7 @@
             :price="product.priceNoVat"
             :vat="product.vat"
             :category="product.category"
+            :cost="product.costPrice"
           ></products-list>
         </ul>
 

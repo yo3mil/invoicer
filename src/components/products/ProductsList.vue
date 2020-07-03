@@ -6,8 +6,9 @@
       <h3 class="product__id">{{ curCode }}</h3>
       <h3 class="product__name">{{ curName }}</h3>
       <h3 class="product__size">{{ curSize }}</h3>
-      <h3 class="product__price">£ {{ twoDecimals(curPrice) }}</h3>
-      <h3 class="product__vat">£ {{ twoDecimals(curVat) }}</h3>
+      <h3 class="product__price">£{{ twoDecimals(curCost) }}</h3>
+      <h3 class="product__price">£{{ twoDecimals(curPrice) }}</h3>
+      <h3 class="product__vat">£{{ twoDecimals(curVat) }}</h3>
       <!--Main Console-->
       <div class="product__console" v-if="subConsole">
           <div @click="editFields()" class="product__console-edit"><i class="ion-edit"></i></div>
@@ -25,6 +26,7 @@
       <input v-model="curCode" type="text" class="product__id  edit_input">
       <input v-model="curName" type="text" class="product__name edit_input">
       <input v-model="curSize" type="text" class="product__size edit_input">
+      <input v-model="curCost" type="text" class="product__price edit_input">
       <input v-model="curPrice" type="text" class="product__price edit_input">
       <input v-model="curVat" type="text" class="product__vat edit_input">
       <div class="product__console">
@@ -45,15 +47,15 @@ export default {
       size: { type: String, required: true },
       price: { type: String, required: true},
       category: { type: String, required: true},
-      vat: { type: [String, Number], required: true }
-      
+      vat: { type: [String, Number], required: true },
+      cost: { type: String, required: true}
     },
     mixins: [calculators],
     data() {
       return {
         edit: false,
         visible: true,
-        curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat, curCategory: this.category,
+        curCode: this.code, curName: this.name, curSize: this.size, curPrice: this.price, curVat: this.vat, curCategory: this.category, curCost: this.cost,
         subConsole: true
       }
     },

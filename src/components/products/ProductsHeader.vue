@@ -8,6 +8,7 @@
       <h2 class="products__header-product">ID</h2>
       <h2 class="products__header-name">Product</h2>
       <h2 class="products__header-size">Size</h2>
+      <h2 class="products__header-size">Cost</h2>
       <h2 class="products__header-price">Price</h2>
       <h2 class="products__header-vat">VAT</h2>
     </div>

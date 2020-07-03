@@ -18,11 +18,11 @@ export const db = firebase.initializeApp({
 export {saveHistory, updateProduct, deleteProduct, saveProduct, updateCustomer, deleteCustomer, saveCustomer, deleteHistory}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-//use test , test1 for testing
+//use test , test2 for testing
 
 
-export const productCollection = db.collection('products');
-export const customerCollection = db.collection('customers');
+export const productCollection = db.collection('test');
+export const customerCollection = db.collection('test2');
 export const historyCollection = db.collection('history');
 export const auth = firebase.auth();
 
