@@ -1,8 +1,20 @@
-# invoicer
+# Invoicer
 
-> y
+Invoicing and product/customer management web app in development.
 
-## Build Setup
+## Preview
+
+![Invoicer](https://i.ibb.co/1JQp1s7/invoicer-SS.png)
+
+
+[VIDEO](http://www.emilwojcik.com/video/invoicerfinal.mp4)
+
+## Database
+
+Cloud Firestore configuration file is included in gitignore. 
+Please contact me if you wish to work/run it on an existing dummy data test database or simply create a new one. 
+
+## Build it
 
 ``` bash
 # install dependencies
