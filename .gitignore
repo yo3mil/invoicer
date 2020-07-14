@@ -7,6 +7,8 @@ yarn-error.log
 config.js
 products.json
 customers.json
+jsonUploader/
+firestore.js
 # Editor directories and files
 .idea
 *.suo
