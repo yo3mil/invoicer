@@ -4,7 +4,7 @@ Invoicing and product/customer management web app in development.
 
 ## Preview
 
-![Invoicer](http://www.emilwojcik.com/screenshots/invoicerSS.png)
+![Invoicer](https://ibb.co/gF9XNvm)
 
 
 [VIDEO](http://www.emilwojcik.com/video/invoicerfinal.mp4)
