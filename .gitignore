@@ -9,6 +9,7 @@ products.json
 customers.json
 jsonUploader/
 firestore.js
+ionicons.css
 # Editor directories and files
 .idea
 *.suo
