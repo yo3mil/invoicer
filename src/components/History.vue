@@ -66,9 +66,6 @@ export default {
   components: {
     HistoryList
   },
-  mounted() {
-    console.log(this.historyList)
-  },
   data() {
     return {
       history: [],
