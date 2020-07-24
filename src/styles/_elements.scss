@@ -1,0 +1,83 @@
+// menu icon
+
+.menu__icon {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    & div {
+      width: 40px;
+      height: 4px;
+      background-color: $base-color;
+      margin: 8px 0
+    }
+    
+  }
+  //simple btn 
+  .btn__simple {
+    
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    color: $base-color;
+    cursor: pointer;
+  }
+  
+  // customer detaiuls ADD
+
+  .form_details {
+    height: 100%;
+    display: flex;
+
+    &-row {
+        margin-top: 5rem;
+        height: 100%;
+        flex: 0 0 50%;
+
+        display: flex;
+        flex-direction: column;
+        
+    }
+    &-input {
+      display: flex;
+      flex-direction: column;
+
+      & label {
+          text-transform: uppercase;
+          font-size: 110%;
+          margin-bottom: .5rem;
+      }
+      & input,
+      & select,
+      &-fake_input {
+          border: 0;
+          background-color: $base-color-light;
+          height: 3.2rem;
+          outline: none;
+          padding-left: 1rem;
+          font-size: 1rem;
+      }
+      
+    }
+    &-console {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 10rem;
+      margin-left: -1.8rem;
+    }
+}
+.margin-bottom {
+  margin-bottom: 4rem;
+}
+.short {
+    width: 70%;
+}
+.long {
+    width: 100%;
+}
+.very_short {
+  width: 20%;
+}
