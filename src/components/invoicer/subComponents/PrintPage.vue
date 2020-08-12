@@ -2,7 +2,9 @@
   <div class="print_container">
     <div class="print" >
       <div class="print__header">
-        <div class="print__header-logo"></div>
+        <div class="print__header-logo">
+          <img :src="logo" alt="oriental logo">
+        </div>
         <div class="print__header-contact">
           <h3>6-8 Heathcoat Street, Nottingham NG1 3AA</h3>
           <h3>0115 950 6615</h3>
@@ -122,6 +124,11 @@
 import { mapGetters } from 'vuex';
 import { calculators } from '../../../mixins/mixins.js'
 export default {
+  data() {
+    return {
+      logo: "http://ominvoicing.online/dist/logo.png"
+    }
+  },
   created() {
     setTimeout(()=> {window.print();}, 500);
     setTimeout(() => {this.$router.replace({path: '/menu'})}, 600);
@@ -177,7 +184,7 @@ export default {
       &-logo {
         flex: 0 0 65%;
         height: 100%;
-        background-image: url('../../../assets/logo.png');
+        //background-image: url('../../../assets/logo.png');
         background-position: cover;
         background-repeat: no-repeat;
       }
