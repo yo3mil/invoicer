@@ -81,7 +81,11 @@
         this.save();
       },
       save() {
-        saveHistory(this.$store.state.customer, this.$store.state.productsOrder);
+        if(this.$store.state.customer.info) {
+          saveHistory(this.$store.state.customer, this.$store.state.productsOrder);
+        } else {
+          alert("State incomplete: order not saved.")
+        }
       } 
     }
   }
