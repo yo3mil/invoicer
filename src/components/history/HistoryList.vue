@@ -3,7 +3,7 @@
     <!--History-->
     <div class="customer__container customer">
       <div class="customer__name">
-        <h3>{{ customer.info.orderNumber }}</h3>
+        <h3>{{  customer.info.orderNumber  }}</h3>
         <h3>{{ customer.info.orderDate }}</h3>
       </div>
       <h3 class="customer__address">{{ customer.contact}}, {{ customer.name }}</h3>
@@ -30,6 +30,7 @@
 <script>
 import { deleteHistory } from '../../database/firestore.js';
 import { calculators } from '../../mixins/mixins.js'
+
 export default {
     props: {
       order: {type: Array},
@@ -43,6 +44,13 @@ export default {
       }
     },
     methods: {
+      orderNumberTest() {
+        if(!this.customer.info.orderNumber) {
+          return "GOTCHA"
+        } else {
+          return '...'
+        }
+      },
       remove() {
         deleteHistory(this.$vnode.key);
         this.visible = false;

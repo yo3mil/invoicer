@@ -130,8 +130,8 @@ export default {
     }
   },
   created() {
-    setTimeout(()=> {window.print();}, 500);
-    setTimeout(() => {this.$router.replace({path: '/menu'})}, 600);
+    setTimeout(()=> {window.print();}, 1000);
+    setTimeout(() => {this.$router.replace({path: '/menu'})}, 1100);
   },
   mixins: [ calculators ],
   computed: {
