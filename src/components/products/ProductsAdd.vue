@@ -26,6 +26,7 @@
                         <option value="N">Noodles</option>
                         <option value="E">Other</option>
                         <option value="Z">Single</option>
+                        <option value="X">International</option>
                     </select>
                 </div>
                 <div class="form_details-input margin-bottom">
